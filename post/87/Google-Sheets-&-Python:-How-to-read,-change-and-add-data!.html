@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-149203155-2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-149203155-2');
+    </script>
+    <!-- Favicons -->
+
+    <link href="/static/img/favicon/android-chrome-512x512.png" rel="icon">
+    <link href="/static/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/vendor/markdown-converter/styles.css" rel="stylesheet">
+
+    <link href="/static/vendor/icofont/icofont.min.css" rel="stylesheet">
+    <link href="/static/vendor/aos/aos.css" rel="stylesheet">
+    <link href="/static/vendor/line-awesome/css/line-awesome.min.css" rel="stylesheet">
+    <link href="/static/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="/static/css/style.css" rel="stylesheet">
+
+    <meta name="robots" content="index, follow">
+
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"> 
+<title>Python Everything - Google Sheets &amp; Python: How to read, change and add data!</title>
+<meta name="description" content="Using Google&#39;s gspread to extend Google Sheets endlessly! - I am quite a big fan of Google Sheets. It allows you to store data and work t..."> 
+</head>
+
+<body>
+
+    <!-- ======= Mobile Menu ======= -->
+    <div class="site-mobile-menu site-navbar-target">
+        <div class="site-mobile-menu-header">
+            <div class="site-mobile-menu-close mt-3">
+                <span class="icofont-close js-menu-toggle"></span>
+            </div>
+        </div>
+        <div class="site-mobile-menu-body"></div>
+    </div>
+
+    <!-- ======= Header ======= -->
+    <header class="site-navbar js-sticky-header site-navbar-target" role="banner">
+
+        <div class="container">
+            <div class="row align-items-center">
+
+                <div class="col-6 col-lg-2">
+                    <h1 class="mb-0 site-logo"><a href="/" class="mb-0">Python Everything</a></h1>
+                </div>
+
+                <div class="col-12 col-md-10 d-none d-lg-block">
+                    <nav class="site-navigation position-relative text-right" role="navigation">
+
+                        <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
+                            <li class="active"><a href="/" class="nav-link">Home</a></li>
+                            <li><a href="/explore/1.html" class="nav-link">Explore</a></li>
+                            <li><a href="/authors.html" class="nav-link">Collaborators</a></li>
+                            <li><a href="/#contact" class="nav-link">Get in touch</a></li>
+                        </ul>
+                    </nav>
+                </div>
+
+                <div class="col-6 d-inline-block d-lg-none ml-md-0 py-3" style="position: relative; top: 3px;">
+
+                    <a href="#" class="burger site-menu-toggle js-menu-toggle" data-toggle="collapse" data-target="#main-navbar">
+                        <span></span>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+    </header>
+
+    
+
+<main id="main">
+
+    <section class="hero-section inner-page">
+        <div class="wave">
+
+            <svg width="1920px" height="265px" viewBox="0 0 1920 265" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+          <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+            <g id="Apple-TV" transform="translate(0.000000, -402.000000)" fill="#FFFFFF">
+              <path d="M0,439.134243 C175.04074,464.89273 327.944386,477.771974 458.710937,477.771974 C654.860765,477.771974 870.645295,442.632362 1205.9828,410.192501 C1429.54114,388.565926 1667.54687,411.092417 1920,477.771974 L1920,667 L1017.15166,667 L0,667 L0,439.134243 Z" id="Path"></path>
+            </g>
+          </g>
+        </svg>
+
+        </div>
+
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-12">
+                    <div class="row justify-content-center">
+                        <div class="col-md-10 text-center hero-text">
+                            <h1 data-aos="fade-up" data-aos-delay=""><h1>Google Sheets &amp; Python: How to read, change and add data!</h1></h1>
+                            <p class="mb-5" data-aos="fade-up" data-aos-delay="100">2020-07-29 &bullet; By <a href="#" class="text-white">Ivo</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <section class="site-section mb-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 blog-content">
+
+                    <p class="lead mb-5"><p>Using Google's <strong>gspread</strong> to extend <strong>Google Sheets</strong> endlessly!</p></p>
+                    <p><p>I am quite a big fan of Google Sheets. It allows you to store data and work together in one document. We can extend the functionalities of Google Sheets with all the APIs that Google has launched for their Drive services. In this blog post I'd like to explain how we can read and write data from Google Sheets. This will be based on two parts: the first part is a seven step process to make sure we can communicate to the a sheet, and the part is where we get our hands dirty with Python!</p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Create a directory for our files:</span>
+mkdir google_sheets
+<span class="c1"># Go to directory</span>
+<span class="nb">cd</span> google_sheets
+<span class="c1"># Create a virtual environment for our project</span>
+python3 -m venv env
+<span class="c1"># Activate our virtual environment</span>
+<span class="nb">source</span> env/bin/activate
+<span class="c1"># Create a directory for our files:</span>
+touch script.py
+<span class="c1"># Install the needed libraries</span>
+pip install gspread
+pip install oauth2client
+</code></pre></div>
+
+
+<p>To be able to interact with Google Sheets through an external script, we have to execute the following seven steps:</p>
+<p>Step 1 - Go to <a href="https://console.developers.google.com/">https://console.developers.google.com/</a> and create new project</p>
+<p><img alt="create a new project" src="https://python-everything.com/static/blogpost_content/google_sheets/1_Create_new_project.png" /></p>
+<p><img alt="project name" src="https://python-everything.com/static/blogpost_content/google_sheets/2_Project_name.png" /></p>
+<p>Step 2 - Add <em>Google Drive API</em> to the project, and enable the API.</p>
+<p><img alt="Add APIs" src="https://python-everything.com/static/blogpost_content/google_sheets/3_Add_APIs.png" /></p>
+<p><img alt="Add Google Drive API" src="https://python-everything.com/static/blogpost_content/google_sheets/4_Add_Google_Drive_API.png" /></p>
+<p><img alt="Enable Google Drive API" src="https://python-everything.com/static/blogpost_content/google_sheets/5_Enable_Google_Drive_API.png" /></p>
+<p>Step 3 - Add credentials to the project. <em>Note: I would recommend taking over the same options as I have selected below. This allows you use an external Python script to edit sheets.</em></p>
+<p><img alt="Add Credentials" src="https://python-everything.com/static/blogpost_content/google_sheets/6_Add_Credentials.png" /></p>
+<p><img alt="Add credentials to your project" src="https://python-everything.com/static/blogpost_content/google_sheets/7_Add_Credentials_to_Project.png" /></p>
+<p>Step 4 - Create a service account. It will give us an <em>email address</em> that we can add to our sheets to give editing permissions. You have to download the <em>.json</em> file , which we store in the same directory as our <em>script.py</em> file. To make it easier to read the credentials, I renamed it to <em>credentials.json</em></p>
+<p><img alt="Create service account" src="https://python-everything.com/static/blogpost_content/google_sheets/8_Create_service_account.png" /></p>
+<p>Step 5 - Add the Google Sheets API, and enable it.</p>
+<p><img alt="Add Google Sheets API" src="https://python-everything.com/static/blogpost_content/google_sheets/9_Add_Google_Sheets_API.png" /></p>
+<p><img alt="Enable Google Sheets API" src="https://python-everything.com/static/blogpost_content/google_sheets/10_Enable_Google_Sheets_API.png" /></p>
+<p>Step 6 - Add the service account to your Sheet you want to handle with Python. The email address can be found in your <em>credentials.json</em> file, under key <code>client_email</code>.</p>
+<p><img alt="Share service account with Google Sheets" src="https://python-everything.com/static/blogpost_content/google_sheets/11_Share_with_your_google_sheet.png" /></p>
+<p>Step 7 - Let's make some sample data in the sheet which we shared with the service account.</p>
+<p><img alt="Sample data in Google Sheets" src="https://python-everything.com/static/blogpost_content/google_sheets/12_Sample_data.png" /></p>
+<p>Now everything is set up, we can continue with the second part: writing a script in Python to access the data sample data from the sheet.</p>
+<p>Let's import the needed libraries</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">gspread</span>
+<span class="kn">from</span> <span class="nn">oauth2client.service_account</span> <span class="kn">import</span> <span class="n">ServiceAccountCredentials</span>
+</code></pre></div>
+
+
+<p>Furthermore, we have to define the scopes needed for our project</p>
+<div class="codehilite"><pre><span></span><code><span class="n">scope</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;https://www.googleapis.com/auth/drive&#39;</span><span class="p">]</span>
+</code></pre></div>
+
+
+<p>You can read more about scopes <a href="">here</a>. The <code>https://www.googleapis.com/auth/drive</code> scope allows you to see, edit, create, and delete all of your Google Drive files.</p>
+<p>Now we create a <em>OAuth object</em> with the <em>from_json_keyfile_name()</em> function, which takes the <em>.json()</em> file which we downloaded in step 6 (see above) as an input, and the defined scopes.</p>
+<div class="codehilite"><pre><span></span><code><span class="n">credentials</span> <span class="o">=</span> <span class="n">ServiceAccountCredentials</span><span class="o">.</span><span class="n">from_json_keyfile_name</span><span class="p">(</span><span class="s1">&#39;credentials.json&#39;</span><span class="p">,</span> <span class="n">scope</span><span class="p">)</span>
+</code></pre></div>
+
+
+<p>We authorize a <em>client object</em></p>
+<div class="codehilite"><pre><span></span><code><span class="n">client</span> <span class="o">=</span> <span class="n">gspread</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="n">credentials</span><span class="p">)</span>
+</code></pre></div>
+
+
+<p>And we read in the first sheet, named <em>sheet1</em>.</p>
+<div class="codehilite"><pre><span></span><code><span class="n">sheet</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;DataOutput&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sheet1</span>
+</code></pre></div>
+
+
+<p>With the sheet imported to Python, we can read the data from the sheet:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">data</span> <span class="o">=</span> <span class="n">sheet</span><span class="o">.</span><span class="n">get_all_records</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</code></pre></div>
+
+
+<p>gives</p>
+<div class="codehilite"><pre><span></span><code><span class="err">[{&#39;Test&#39;: &#39;A&#39;}, {&#39;Test&#39;: &#39;B&#39;}, {&#39;Test&#39;: &#39;C&#39;}]</span>
+</code></pre></div>
+
+
+<p>As you can see, the data is a list of dictionaries. Each element in the list is one row. We can access the first row with:</p>
+<div class="codehilite"><pre><span></span><code><span class="err">print(data[0])</span>
+</code></pre></div>
+
+
+<p>gives</p>
+<div class="codehilite"><pre><span></span><code><span class="err">{&#39;Test&#39;: &#39;A&#39;}</span>
+</code></pre></div>
+
+
+<p>and the second row with:</p>
+<div class="codehilite"><pre><span></span><code><span class="err">print(data[1])</span>
+</code></pre></div>
+
+
+<p>gives</p>
+<div class="codehilite"><pre><span></span><code><span class="err">{&#39;Test&#39;: &#39;B&#39;}</span>
+</code></pre></div>
+
+
+<p>and the... you get the concept. Each element is a dictionary, where the key is the column name and the value is the cell value. </p>
+<p>If we want to receive the value in row 3 columns 1 (named 'Test'), we print:</p>
+<div class="codehilite"><pre><span></span><code><span class="err">print(data[2].get(&#39;Test&#39;))</span>
+</code></pre></div>
+
+
+<p>gives</p>
+<div class="codehilite"><pre><span></span><code><span class="err">C</span>
+</code></pre></div>
+
+
+<p>This can be done with our <em>sheet</em> variable as well:</p>
+<div class="codehilite"><pre><span></span><code><span class="err">print(sheet.get(&#39;A3&#39;)[0][0])</span>
+</code></pre></div>
+
+
+<p>gives</p>
+<div class="codehilite"><pre><span></span><code><span class="err">B</span>
+</code></pre></div>
+
+
+<p>If we would try to retrieve info from cell A5, we will get an error because there is not information. Lets see if we can put some information into the worksheet:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">sheet</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="s1">&#39;A5&#39;</span><span class="p">,</span><span class="s1">&#39;input from python&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+
+<p>gives</p>
+<div class="codehilite"><pre><span></span><code><span class="err">input from python</span>
+</code></pre></div>
+
+
+<p>We now have successful inserted a record with Python! If we would like to insert a record in the first non-empty row, we can do the following:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">first_empty_cell</span> <span class="o">=</span> <span class="s1">&#39;A&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sheet</span><span class="o">.</span><span class="n">get_all_records</span><span class="p">())</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">sheet</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">first_empty_cell</span><span class="p">,</span><span class="s1">&#39;input from python in first non-empty row&#39;</span><span class="p">)</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">sheet</span><span class="o">.</span><span class="n">get_all_records</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</code></pre></div>
+
+
+<p>gives</p>
+<div class="codehilite"><pre><span></span><code><span class="err">[{&#39;Test&#39;: &#39;A&#39;}, {&#39;Test&#39;: &#39;B&#39;}, {&#39;Test&#39;: &#39;C&#39;}, {&#39;Test&#39;: &#39;input from python&#39;}, {&#39;Test&#39;: &#39;input from python in first non-empty row&#39;}]</span>
+</code></pre></div>
+
+
+<p>Google's API to interact with Google Sheets is much more extensive as this. There are many more powerful things we can do. You can read more about these at the <a href="https://gspread.readthedocs.io/en/latest">official documentation</a>.</p>
+<p>Full script to read data and write to the next row:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">gspread</span>
+<span class="kn">from</span> <span class="nn">oauth2client.service_account</span> <span class="kn">import</span> <span class="n">ServiceAccountCredentials</span>
+
+<span class="n">scope</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;https://www.googleapis.com/auth/drive&#39;</span><span class="p">]</span>
+
+<span class="n">credentials</span> <span class="o">=</span> <span class="n">ServiceAccountCredentials</span><span class="o">.</span><span class="n">from_json_keyfile_name</span><span class="p">(</span><span class="s1">&#39;credentials.json&#39;</span><span class="p">,</span> <span class="n">scope</span><span class="p">)</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">gspread</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="n">credentials</span><span class="p">)</span>
+<span class="n">sheet</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;DataOutput&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sheet1</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">sheet</span><span class="o">.</span><span class="n">get_all_records</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+<span class="n">first_empty_cell</span> <span class="o">=</span> <span class="s1">&#39;A&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sheet</span><span class="o">.</span><span class="n">get_all_records</span><span class="p">())</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">sheet</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">first_empty_cell</span><span class="p">,</span><span class="s1">&#39;input from python in first non-empty row&#39;</span><span class="p">)</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">sheet</span><span class="o">.</span><span class="n">get_all_records</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</code></pre></div></p>
+                </div>
+                <div class="col-md-4 sidebar">
+                    <div class="sidebar-box">
+                        <h3>Google Sheets & Python: How to read, change and add data!</h3>
+                        <img src="/static/img/blogposts/87.png" alt="Image" class="round-image img-fluid">
+                        <p><p>Using Google's <strong>gspread</strong> to extend <strong>Google Sheets</strong> endlessly!</p></p>
+                    </div>
+                    <div class="sidebar-box">
+                        <div class="categories">
+                            <h3>Latest posts</h3>
+                            
+                            <li><a href="/post/113/-Hosting-a-SQL-Database-for-your-Python-projects-with-Digital-Ocean.html"> Hosting a SQL Database for your Python projects with Digital Ocean</a></li>
+                            
+                            <li><a href="/post/110/Build-your-own-Application---Web-interface.html">Build your own Application - Web interface</a></li>
+                            
+                            <li><a href="/post/109/Build-your-own-Application---Predictive-Modelling.html">Build your own Application - Predictive Modelling</a></li>
+                            
+                        </div>
+                    </div>
+                    <div class="sidebar-box">
+                        <h3>Python Everything</h3>
+                        <p>We at Python Everything try to provide you with your daily Python inspiration! Our post are ment to inspire you and ensure that you start coding in Python yourself.</p>
+                        <p><a href="/about.html" class="btn btn-primary btn-sm">Read More</a></p>
+                    </div>
+                    <!--
+                    <div class="sidebar-box">
+                        <h3>Paragraph</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus itaque, autem necessitatibus voluptate quod mollitia delectus aut, sunt placeat nam vero culpa sapiente consectetur similique, inventore eos fugit cupiditate numquam!</p>
+                    </div>
+                    -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+
+
+    <!-- ======= Footer ======= -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h3>About Python Everything</h3>
+                    <p>We're python enthousiasts, who want to ensure you are getting the same smile on you face everytime your python script runs successfully.</p>
+                </div>
+                <div class="col-md-7 ml-auto">
+                    <div class="row site-section pt-0">
+                        <div class="col-md-4 mb-4 mb-md-0">
+                            <h3>Navigation</h3>
+                            <ul class="list-unstyled">
+                                <li><a href="/">Home</a></li>
+                                <li><a href="/explore/1.html">Expore</a></li>
+                                <li><a href="/#contact">Get in touch</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row justify-content-center text-center">
+                <div class="col-md-7">
+                    <p class="copyright">&copy; Copyright Python Everything. All Rights Reserved</p>
+                    <div class="credits">
+                        Designed by <a href="/">Python Everything</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+    <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+
+    <!-- Vendor JS Files -->
+    <script src="/static/vendor/jquery/jquery.min.js"></script>
+    <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/vendor/jquery.easing/jquery.easing.min.js"></script>
+    <script src="/static/vendor/aos/aos.js"></script>
+    <script src="/static/vendor/owl.carousel/owl.carousel.min.js"></script>
+    <script src="/static/vendor/jquery-sticky/jquery.sticky.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="/static/js/main.js"></script>
+
+</body>
+
+</html>

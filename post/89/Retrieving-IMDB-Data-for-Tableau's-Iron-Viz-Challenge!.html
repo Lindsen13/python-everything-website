@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-149203155-2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-149203155-2');
+    </script>
+    <!-- Favicons -->
+
+    <link href="/static/img/favicon/android-chrome-512x512.png" rel="icon">
+    <link href="/static/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/vendor/markdown-converter/styles.css" rel="stylesheet">
+
+    <link href="/static/vendor/icofont/icofont.min.css" rel="stylesheet">
+    <link href="/static/vendor/aos/aos.css" rel="stylesheet">
+    <link href="/static/vendor/line-awesome/css/line-awesome.min.css" rel="stylesheet">
+    <link href="/static/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="/static/css/style.css" rel="stylesheet">
+
+    <meta name="robots" content="index, follow">
+
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"> 
+<title>Python Everything - Retrieving IMDB Data for Tableau&#39;s Iron Viz Challenge!</title>
+<meta name="description" content="Scraping and Cleaning data, the quick-and-dirty method. - Most of the time, I use Tableau to visualize my data. I recently found out th..."> 
+</head>
+
+<body>
+
+    <!-- ======= Mobile Menu ======= -->
+    <div class="site-mobile-menu site-navbar-target">
+        <div class="site-mobile-menu-header">
+            <div class="site-mobile-menu-close mt-3">
+                <span class="icofont-close js-menu-toggle"></span>
+            </div>
+        </div>
+        <div class="site-mobile-menu-body"></div>
+    </div>
+
+    <!-- ======= Header ======= -->
+    <header class="site-navbar js-sticky-header site-navbar-target" role="banner">
+
+        <div class="container">
+            <div class="row align-items-center">
+
+                <div class="col-6 col-lg-2">
+                    <h1 class="mb-0 site-logo"><a href="/" class="mb-0">Python Everything</a></h1>
+                </div>
+
+                <div class="col-12 col-md-10 d-none d-lg-block">
+                    <nav class="site-navigation position-relative text-right" role="navigation">
+
+                        <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
+                            <li class="active"><a href="/" class="nav-link">Home</a></li>
+                            <li><a href="/explore/1.html" class="nav-link">Explore</a></li>
+                            <li><a href="/authors.html" class="nav-link">Collaborators</a></li>
+                            <li><a href="/#contact" class="nav-link">Get in touch</a></li>
+                        </ul>
+                    </nav>
+                </div>
+
+                <div class="col-6 d-inline-block d-lg-none ml-md-0 py-3" style="position: relative; top: 3px;">
+
+                    <a href="#" class="burger site-menu-toggle js-menu-toggle" data-toggle="collapse" data-target="#main-navbar">
+                        <span></span>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+    </header>
+
+    
+
+<main id="main">
+
+    <section class="hero-section inner-page">
+        <div class="wave">
+
+            <svg width="1920px" height="265px" viewBox="0 0 1920 265" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+          <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+            <g id="Apple-TV" transform="translate(0.000000, -402.000000)" fill="#FFFFFF">
+              <path d="M0,439.134243 C175.04074,464.89273 327.944386,477.771974 458.710937,477.771974 C654.860765,477.771974 870.645295,442.632362 1205.9828,410.192501 C1429.54114,388.565926 1667.54687,411.092417 1920,477.771974 L1920,667 L1017.15166,667 L0,667 L0,439.134243 Z" id="Path"></path>
+            </g>
+          </g>
+        </svg>
+
+        </div>
+
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-12">
+                    <div class="row justify-content-center">
+                        <div class="col-md-10 text-center hero-text">
+                            <h1 data-aos="fade-up" data-aos-delay=""><h1>Retrieving IMDB Data for Tableau's Iron Viz Challenge!</h1></h1>
+                            <p class="mb-5" data-aos="fade-up" data-aos-delay="100">2020-08-03 &bullet; By <a href="#" class="text-white">Ivo</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <section class="site-section mb-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 blog-content">
+
+                    <p class="lead mb-5"><p><strong>Scraping</strong> and <strong>Cleaning</strong> data, the quick-and-dirty method.</p></p>
+                    <p><p>Most of the time, I use Tableau to visualize my data. I recently found out that the submission deadline for the 2020 content was comming up. I decided to join as well! For this, I needed a dataset.</p>
+<p>This post will just show my quick-and-dirty Python script to scrape all the movies from <a href="https://www.imdb.com/">IMDB</a>. I will not go over the script to descibe what I have done; since the idea of this post is just to showcase how skills in Python can be used to quicky mock up a script that will help you with a one-time-only task.</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="c1"># Paramters to initialize the script:</span>
+<span class="n">page_start</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">genre</span> <span class="o">=</span> <span class="s1">&#39;action&#39;</span>
+<span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;https://www.imdb.com/search/title/?title_type=feature&amp;num_votes=25000,&amp;genres=</span><span class="si">{</span><span class="n">genre</span><span class="si">}</span><span class="s1">&amp;view=simple&amp;sort=alpha,asc&amp;start=</span><span class="si">{</span><span class="n">page_start</span><span class="si">}</span><span class="s1">&amp;ref_=adv_nxt&#39;</span>
+
+<span class="n">output</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+
+<span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">output</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="s1">&#39;html.parser&#39;</span><span class="p">)</span>
+<span class="n">soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">class_</span><span class="o">=</span><span class="s1">&#39;desc&#39;</span><span class="p">)</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s1">&#39;d+,d+&#39;</span><span class="p">,</span> <span class="n">soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">class_</span><span class="o">=</span><span class="s1">&#39;desc&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+<span class="n">number_of_results</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">))</span>
+
+<span class="c1"># Function to clean the image url</span>
+<span class="k">def</span> <span class="nf">clean_image_url</span><span class="p">(</span><span class="n">image_div</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">image_url</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s1">&#39;loadlate=&quot;.*&quot; src=&#39;</span><span class="p">,</span><span class="nb">str</span><span class="p">(</span><span class="n">image_div</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]))</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">image_url</span> <span class="o">=</span> <span class="n">image_url</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;loadlate=&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+        <span class="n">image_url</span> <span class="o">=</span> <span class="n">image_url</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;src=&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+        <span class="n">image_url</span> <span class="o">=</span> <span class="n">image_url</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="n">image_url</span> <span class="o">=</span> <span class="n">image_url</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;&quot;&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="n">image_url</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;issue with image&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">image_url</span>
+
+<span class="c1"># Function to clean the votes</span>
+<span class="k">def</span> <span class="nf">clean_votes</span><span class="p">(</span><span class="n">votes_div</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">votes</span> <span class="o">=</span> <span class="n">votes_div</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">&#39;strong&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;title&#39;</span><span class="p">]</span>
+        <span class="n">votes</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s1">&#39;base on .* votes&#39;</span><span class="p">,</span><span class="n">votes</span><span class="p">)</span>
+        <span class="n">votes</span> <span class="o">=</span> <span class="n">votes</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">votes</span> <span class="o">=</span> <span class="n">votes</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;base on &#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+        <span class="n">votes</span> <span class="o">=</span> <span class="n">votes</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; votes&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+        <span class="n">votes</span> <span class="o">=</span> <span class="n">votes</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+        <span class="n">votes</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">votes</span><span class="p">)</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="n">votes</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;issue with votes&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">votes</span>
+
+<span class="c1"># Function to clean the year</span>
+<span class="k">def</span> <span class="nf">clean_year</span><span class="p">(</span><span class="n">year</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">year</span> <span class="o">=</span> <span class="n">year</span><span class="o">.</span><span class="n">text</span>
+        <span class="n">year</span> <span class="o">=</span> <span class="n">year</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;(I) &#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;(II) &#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;(III) &#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+        <span class="n">year</span> <span class="o">=</span> <span class="n">year</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;)&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+        <span class="n">year</span> <span class="o">=</span> <span class="n">year</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;(&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+        <span class="n">year</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">year</span><span class="p">)</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="n">year</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;issue with year&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">year</span>
+
+<span class="c1"># Function to clean the title</span>
+<span class="k">def</span> <span class="nf">clean_title</span><span class="p">(</span><span class="n">title</span><span class="p">):</span> 
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">title</span> <span class="o">=</span> <span class="n">title</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">text</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="n">title</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;issue with title&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">title</span>
+
+<span class="c1"># Function to clean the actor: from string to list, split by a comma.</span>
+<span class="k">def</span> <span class="nf">clean_actor</span><span class="p">(</span><span class="n">actor</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">actor</span> <span class="o">=</span> <span class="n">actor</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;span&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">][</span><span class="s1">&#39;title&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="n">actor</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;issue with actor&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">actor</span>
+
+<span class="c1"># Function to clean the rank</span>
+<span class="k">def</span> <span class="nf">clean_rank</span><span class="p">(</span><span class="n">rank</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">rank</span> <span class="o">=</span> <span class="n">rank</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="n">rank</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;issue with rank&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">rank</span>
+
+<span class="c1"># Function to clean the rating</span>
+<span class="k">def</span> <span class="nf">clean_rating</span><span class="p">(</span><span class="n">rating</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">rating</span> <span class="o">=</span> <span class="n">rating</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="n">rating</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">rating</span><span class="p">)</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="n">rating</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;issue with rating&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">rating</span>
+
+<span class="c1"># Loop over all genres</span>
+<span class="n">film_list</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">genre</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;Action&#39;</span><span class="p">,</span> <span class="s1">&#39;Adventure&#39;</span><span class="p">,</span> <span class="s1">&#39;Animation&#39;</span><span class="p">,</span> <span class="s1">&#39;Biography&#39;</span><span class="p">,</span> <span class="s1">&#39;Comedy&#39;</span><span class="p">,</span> <span class="s1">&#39;Crime&#39;</span><span class="p">,</span> <span class="s1">&#39;Drama&#39;</span><span class="p">,</span> <span class="s1">&#39;Family&#39;</span><span class="p">,</span> <span class="s1">&#39;Fantasy&#39;</span><span class="p">,</span> <span class="s1">&#39;Film-Noir&#39;</span><span class="p">,</span> <span class="s1">&#39;History&#39;</span><span class="p">,</span> <span class="s1">&#39;Horror&#39;</span><span class="p">,</span> <span class="s1">&#39;Music&#39;</span><span class="p">,</span> <span class="s1">&#39;Musical&#39;</span><span class="p">,</span> <span class="s1">&#39;Mystery&#39;</span><span class="p">,</span> <span class="s1">&#39;Romance&#39;</span><span class="p">,</span> <span class="s1">&#39;Sci-Fi&#39;</span><span class="p">,</span> <span class="s1">&#39;Sport&#39;</span><span class="p">,</span> <span class="s1">&#39;Thriller&#39;</span><span class="p">,</span> <span class="s1">&#39;War&#39;</span><span class="p">,</span> <span class="s1">&#39;Western&#39;</span><span class="p">]:</span>
+    <span class="c1"># Retrieve number of films within genre, to determine number of loops (50 films a page)</span>
+    <span class="n">page_start</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;https://www.imdb.com/search/title/?title_type=feature&amp;num_votes=25000,&amp;genres=</span><span class="si">{</span><span class="n">genre</span><span class="si">}</span><span class="s1">&amp;view=simple&amp;sort=alpha,asc&amp;start=</span><span class="si">{</span><span class="n">page_start</span><span class="si">}</span><span class="s1">&amp;ref_=adv_nxt&#39;</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">output</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="s1">&#39;html.parser&#39;</span><span class="p">)</span>
+    <span class="n">soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">class_</span><span class="o">=</span><span class="s1">&#39;desc&#39;</span><span class="p">)</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Everything is wrapped in a try-except block. Doing this, we miss some information.</span>
+<span class="sd">    But for my puspose, that does not matter.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">results</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s1">&#39;d+,d+&#39;</span><span class="p">,</span> <span class="n">soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">class_</span><span class="o">=</span><span class="s1">&#39;desc&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+            <span class="n">number_of_results</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">))</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="n">results</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s1">&#39;d</span><span class="si">{3}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">class_</span><span class="o">=</span><span class="s1">&#39;desc&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+            <span class="n">number_of_results</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">number_of_results</span><span class="o">/</span><span class="mi">50</span><span class="p">))</span><span class="si">}</span><span class="s1"> pages to be scraped for </span><span class="si">{</span><span class="n">genre</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">temp_i</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">while</span> <span class="n">page_start</span> <span class="o">&lt;</span> <span class="n">number_of_results</span><span class="p">:</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;https://www.imdb.com/search/title/?title_type=feature&amp;num_votes=25000,&amp;genres=</span><span class="si">{</span><span class="n">genre</span><span class="si">}</span><span class="s1">&amp;view=simple&amp;sort=alpha,asc&amp;start=</span><span class="si">{</span><span class="n">page_start</span><span class="si">}</span><span class="s1">&amp;ref_=adv_nxt&#39;</span>
+            <span class="n">output</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+            <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">output</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="s1">&#39;html.parser&#39;</span><span class="p">)</span>
+            <span class="n">soup_list</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="n">class_</span><span class="o">=</span><span class="s1">&#39;lister-item mode-simple&#39;</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">film</span> <span class="ow">in</span> <span class="n">soup_list</span><span class="p">:</span>
+                <span class="c1">#Append each film to the list</span>
+                <span class="n">film_list</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+                    <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="n">clean_title</span><span class="p">(</span><span class="n">film</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;span&quot;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s1">&#39;lister-item-header&#39;</span><span class="p">)),</span>
+                    <span class="s1">&#39;actors&#39;</span><span class="p">:</span> <span class="n">clean_actor</span><span class="p">(</span><span class="n">film</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;span&quot;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s1">&#39;lister-item-header&#39;</span><span class="p">)),</span>
+                    <span class="s1">&#39;image&#39;</span><span class="p">:</span> <span class="n">clean_image_url</span><span class="p">(</span><span class="n">film</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">class_</span><span class="o">=</span><span class="s1">&#39;lister-item-image&#39;</span><span class="p">)),</span>
+                    <span class="s1">&#39;rank&#39;</span><span class="p">:</span> <span class="n">clean_rank</span><span class="p">(</span><span class="n">film</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;span&quot;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s1">&#39;lister-item-index unbold text-primary&#39;</span><span class="p">)),</span>
+                    <span class="s1">&#39;year&#39;</span><span class="p">:</span> <span class="n">clean_year</span><span class="p">(</span><span class="n">film</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;span&quot;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s1">&#39;lister-item-year text-muted unbold&#39;</span><span class="p">)),</span>
+                    <span class="s1">&#39;votes&#39;</span><span class="p">:</span> <span class="n">clean_votes</span><span class="p">(</span><span class="n">film</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">class_</span><span class="o">=</span><span class="s1">&#39;col-imdb-rating&#39;</span><span class="p">)),</span>
+                    <span class="s1">&#39;rating&#39;</span><span class="p">:</span> <span class="n">clean_rating</span><span class="p">(</span><span class="n">film</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">class_</span><span class="o">=</span><span class="s1">&#39;col-imdb-rating&#39;</span><span class="p">)),</span>
+                    <span class="s1">&#39;genre&#39;</span><span class="p">:</span> <span class="n">genre</span>
+                <span class="p">})</span>
+            <span class="c1"># Logic for checking process</span>
+            <span class="n">temp_i</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">if</span> <span class="n">temp_i</span> <span class="o">%</span><span class="mi">250</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;scraped </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">film_list</span><span class="p">))</span><span class="si">}</span><span class="s1"> movies&#39;</span><span class="p">)</span>
+            <span class="n">page_start</span> <span class="o">+=</span> <span class="mi">50</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="c1"># If something goes wrong, maximum 50 films are excluded and the next batch is processed</span>
+        <span class="k">continue</span>
+<span class="n">output</span> <span class="o">=</span> <span class="nb">eval</span><span class="p">(</span><span class="n">film_list</span><span class="p">)</span>
+
+<span class="c1"># Data cleaning, generating columns for each actor/director</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">output</span><span class="p">)):</span>
+    <span class="k">if</span> <span class="n">output</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">&#39;year&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">output</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">&#39;year&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">output</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">&#39;year&#39;</span><span class="p">])</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">output</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">&#39;actors&#39;</span><span class="p">])</span> <span class="o">==</span> <span class="mi">0</span> <span class="p">:</span>
+        <span class="k">continue</span>
+    <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">output</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">&#39;actors&#39;</span><span class="p">])</span> <span class="o">==</span> <span class="mi">1</span> <span class="p">:</span>
+        <span class="n">output</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">&#39;1st_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">output</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">&#39;actors&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; (dir.)&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">output</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">&#39;actors&#39;</span><span class="p">])</span> <span class="o">==</span> <span class="mi">2</span> <span class="p">:</span>    
+        <span class="n">output</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">&#39;1st_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">output</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">&#39;actors&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; (dir.)&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+        <span class="n">output</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">&#39;2nd_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">output</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">&#39;actors&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; (dir.)&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">output</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">&#39;1st_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">output</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">&#39;actors&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; (dir.)&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+        <span class="n">output</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">&#39;2nd_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">output</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">&#39;actors&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; (dir.)&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+        <span class="n">output</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">&#39;3rd_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">output</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">&#39;actors&#39;</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; (dir.)&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+
+<span class="c1"># To pandas dataframe, and some more cleaning.</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;actors&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">([</span><span class="s1">&#39;title&#39;</span><span class="p">,</span><span class="s1">&#39;rank&#39;</span><span class="p">,</span><span class="s1">&#39;year&#39;</span><span class="p">],</span><span class="n">keep</span><span class="o">=</span><span class="s1">&#39;first&#39;</span><span class="p">)</span>
+
+<span class="c1"># Output CSV, ready to be read with Tableau!</span>
+<span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;output.csv&#39;</span><span class="p">,</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</code></pre></div>
+
+
+<p>See the interactive dashboard <a href="https://public.tableau.com/views/MoviesovertheCentury/MoviesovertheCentury">here</a></p></p>
+                </div>
+                <div class="col-md-4 sidebar">
+                    <div class="sidebar-box">
+                        <h3>Retrieving IMDB Data for Tableau's Iron Viz Challenge!</h3>
+                        <img src="/static/img/blogposts/89.png" alt="Image" class="round-image img-fluid">
+                        <p><p><strong>Scraping</strong> and <strong>Cleaning</strong> data, the quick-and-dirty method.</p></p>
+                    </div>
+                    <div class="sidebar-box">
+                        <div class="categories">
+                            <h3>Latest posts</h3>
+                            
+                            <li><a href="/post/113/-Hosting-a-SQL-Database-for-your-Python-projects-with-Digital-Ocean.html"> Hosting a SQL Database for your Python projects with Digital Ocean</a></li>
+                            
+                            <li><a href="/post/110/Build-your-own-Application---Web-interface.html">Build your own Application - Web interface</a></li>
+                            
+                            <li><a href="/post/109/Build-your-own-Application---Predictive-Modelling.html">Build your own Application - Predictive Modelling</a></li>
+                            
+                        </div>
+                    </div>
+                    <div class="sidebar-box">
+                        <h3>Python Everything</h3>
+                        <p>We at Python Everything try to provide you with your daily Python inspiration! Our post are ment to inspire you and ensure that you start coding in Python yourself.</p>
+                        <p><a href="/about.html" class="btn btn-primary btn-sm">Read More</a></p>
+                    </div>
+                    <!--
+                    <div class="sidebar-box">
+                        <h3>Paragraph</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus itaque, autem necessitatibus voluptate quod mollitia delectus aut, sunt placeat nam vero culpa sapiente consectetur similique, inventore eos fugit cupiditate numquam!</p>
+                    </div>
+                    -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+
+
+    <!-- ======= Footer ======= -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h3>About Python Everything</h3>
+                    <p>We're python enthousiasts, who want to ensure you are getting the same smile on you face everytime your python script runs successfully.</p>
+                </div>
+                <div class="col-md-7 ml-auto">
+                    <div class="row site-section pt-0">
+                        <div class="col-md-4 mb-4 mb-md-0">
+                            <h3>Navigation</h3>
+                            <ul class="list-unstyled">
+                                <li><a href="/">Home</a></li>
+                                <li><a href="/explore/1.html">Expore</a></li>
+                                <li><a href="/#contact">Get in touch</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row justify-content-center text-center">
+                <div class="col-md-7">
+                    <p class="copyright">&copy; Copyright Python Everything. All Rights Reserved</p>
+                    <div class="credits">
+                        Designed by <a href="/">Python Everything</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+    <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+
+    <!-- Vendor JS Files -->
+    <script src="/static/vendor/jquery/jquery.min.js"></script>
+    <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/vendor/jquery.easing/jquery.easing.min.js"></script>
+    <script src="/static/vendor/aos/aos.js"></script>
+    <script src="/static/vendor/owl.carousel/owl.carousel.min.js"></script>
+    <script src="/static/vendor/jquery-sticky/jquery.sticky.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="/static/js/main.js"></script>
+
+</body>
+
+</html>

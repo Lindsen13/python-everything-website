@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-149203155-2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-149203155-2');
+    </script>
+    <!-- Favicons -->
+
+    <link href="/static/img/favicon/android-chrome-512x512.png" rel="icon">
+    <link href="/static/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/vendor/markdown-converter/styles.css" rel="stylesheet">
+
+    <link href="/static/vendor/icofont/icofont.min.css" rel="stylesheet">
+    <link href="/static/vendor/aos/aos.css" rel="stylesheet">
+    <link href="/static/vendor/line-awesome/css/line-awesome.min.css" rel="stylesheet">
+    <link href="/static/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="/static/css/style.css" rel="stylesheet">
+
+    <meta name="robots" content="index, follow">
+
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"> 
+<title>Python Everything - Scraping data which seems to be unaccesable with... Selenium! </title>
+<meta name="description" content="Using Selenium for Python to scrape all videos from a Youtuber! - A while ago, I played around with creating classes in Python..."> 
+</head>
+
+<body>
+
+    <!-- ======= Mobile Menu ======= -->
+    <div class="site-mobile-menu site-navbar-target">
+        <div class="site-mobile-menu-header">
+            <div class="site-mobile-menu-close mt-3">
+                <span class="icofont-close js-menu-toggle"></span>
+            </div>
+        </div>
+        <div class="site-mobile-menu-body"></div>
+    </div>
+
+    <!-- ======= Header ======= -->
+    <header class="site-navbar js-sticky-header site-navbar-target" role="banner">
+
+        <div class="container">
+            <div class="row align-items-center">
+
+                <div class="col-6 col-lg-2">
+                    <h1 class="mb-0 site-logo"><a href="/" class="mb-0">Python Everything</a></h1>
+                </div>
+
+                <div class="col-12 col-md-10 d-none d-lg-block">
+                    <nav class="site-navigation position-relative text-right" role="navigation">
+
+                        <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
+                            <li class="active"><a href="/" class="nav-link">Home</a></li>
+                            <li><a href="/explore/1.html" class="nav-link">Explore</a></li>
+                            <li><a href="/authors.html" class="nav-link">Collaborators</a></li>
+                            <li><a href="/#contact" class="nav-link">Get in touch</a></li>
+                        </ul>
+                    </nav>
+                </div>
+
+                <div class="col-6 d-inline-block d-lg-none ml-md-0 py-3" style="position: relative; top: 3px;">
+
+                    <a href="#" class="burger site-menu-toggle js-menu-toggle" data-toggle="collapse" data-target="#main-navbar">
+                        <span></span>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+    </header>
+
+    
+
+<main id="main">
+
+    <section class="hero-section inner-page">
+        <div class="wave">
+
+            <svg width="1920px" height="265px" viewBox="0 0 1920 265" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+          <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+            <g id="Apple-TV" transform="translate(0.000000, -402.000000)" fill="#FFFFFF">
+              <path d="M0,439.134243 C175.04074,464.89273 327.944386,477.771974 458.710937,477.771974 C654.860765,477.771974 870.645295,442.632362 1205.9828,410.192501 C1429.54114,388.565926 1667.54687,411.092417 1920,477.771974 L1920,667 L1017.15166,667 L0,667 L0,439.134243 Z" id="Path"></path>
+            </g>
+          </g>
+        </svg>
+
+        </div>
+
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-12">
+                    <div class="row justify-content-center">
+                        <div class="col-md-10 text-center hero-text">
+                            <h1 data-aos="fade-up" data-aos-delay=""><h1>Scraping data which seems to be unaccesable with... Selenium!</h1></h1>
+                            <p class="mb-5" data-aos="fade-up" data-aos-delay="100">2020-09-02 &bullet; By <a href="#" class="text-white">Ivo</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <section class="site-section mb-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 blog-content">
+
+                    <p class="lead mb-5"><p>Using <em>Selenium</em> for <em>Python</em> to scrape all <em>videos</em> from a <em>Youtuber</em>!</p></p>
+                    <p><p>A while ago, I played around with creating <strong>classes</strong> in Python. For this, I made a class that scrapes Youtube information from a certain user. Read more about this <a href="https://python-everything.com/post/92/Creating-Classes-to-handle-your-Python-code%21.html">here</a>.</p>
+<p>One of the major drawbacks, is that I was not able to retrieve more video's of a user than visible on his or her channel page. If you scroll down in a browser, more videos will appear. This <strong>Infinite scroll</strong> method creates some very nice user experience, but it's not so nice for web scraping.</p>
+<h2>Let's use Selenium to scrape all the data!</h2>
+<p>Selenium allows you to imitate a browser session as you would yourself. </p>
+<div class="codehilite"><pre><span></span><code><span class="err">Selenium Python bindings provide a convenient API to access Selenium WebDrivers like Firefox, Ie, Chrome, Remote etc</span>
+</code></pre></div>
+
+
+<p>It uses a special driver, which allows us to basically trigger the same commands as we could do. The one I am looking for, is to scroll down the bottom. You can read more about it <a href="https://selenium-python.readthedocs.io/">here</a>.</p>
+<h2>Lets scrape Youtube with Selenium</h2>
+<p>First, we will download the dependencies and initiate a script</p>
+<div class="codehilite"><pre><span></span><code>pip install selenium
+pip install BeautifulSoup4
+pip install pandas
+<span class="nb">cd</span> to/prefered/directory
+touch script.py
+</code></pre></div>
+
+
+<p>Next up, we need to download the latest driver. I am a big fan of Google Chrome, so I would advise to use <a href="https://sites.google.com/a/chromium.org/chromedriver/downloads">this</a> driver. Doing so, will also allow you to use the same code as I have writen here.</p>
+<p>We download the chromedriver and place it in our folder where <strong>script.py</strong> is located. Lets open <strong>script.py</strong> and get started with importing the libraries</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">selenium</span> <span class="kn">import</span> <span class="n">webdriver</span>
+<span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">re</span>
+</code></pre></div>
+
+
+<p>Furthermore, we need to specify a url and an empty list:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://www.youtube.com/c/TechWithTim/videos&#39;</span>
+<span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+</code></pre></div>
+
+
+<p>Next up we are getting started with Selenium. We define a driver with our downloaded chromedriver, and navigate to the url. We will wait 5 seconds before we continue (this is done to give selenium the time to initiate).</p>
+<div class="codehilite"><pre><span></span><code><span class="n">driver</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">Chrome</span><span class="p">(</span><span class="s1">&#39;chromedrive/chromedriver&#39;</span><span class="p">)</span>
+<span class="n">driver</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</code></pre></div>
+
+
+<p>Now we need to make a logic that scrolls down, and checks if we are completely at the bottom. For this, we make a <strong>While</strong> loop, download all data, and put it in our <strong>data</strong> list. We remove duplicates, and checks the length of the new list is the same as previous iteration. If not, we continue, if it is 10 times in a row, we assume we reached the end of the page and therefore break the loop.</p>
+<div class="codehilite"><pre><span></span><code><span class="n">height</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">tries</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">old_length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">height</span> <span class="o">+=</span> <span class="mi">2000</span>
+    <span class="n">driver</span><span class="o">.</span><span class="n">execute_script</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;window.scrollTo(0, </span><span class="si">{</span><span class="n">height</span><span class="si">}</span><span class="s2">);&quot;</span><span class="p">)</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.25</span><span class="p">)</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="n">driver</span><span class="o">.</span><span class="n">page_source</span>
+    <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="s1">&#39;html.parser&#39;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="n">class_</span><span class="o">=</span><span class="s1">&#39;yt-simple-endpoint style-scope ytd-grid-video-renderer&#39;</span><span class="p">):</span>
+        <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">dict</span><span class="o">.</span><span class="n">fromkeys</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">==</span> <span class="n">old_length</span><span class="p">:</span>
+        <span class="n">tries</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">tries</span> <span class="o">==</span> <span class="mi">0</span>
+    <span class="k">if</span> <span class="n">tries</span> <span class="o">&gt;=</span> <span class="mi">10</span><span class="p">:</span>
+        <span class="k">break</span>
+</code></pre></div>
+
+
+<p>Now we have a list of raw information about each video for a user. We will loop over the list and retrieve the information we need.</p>
+<div class="codehilite"><pre><span></span><code><span class="n">final_output</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">text</span>
+    <span class="n">views</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;(d*.d*)W</span><span class="si">{1}</span><span class="s1">views&#39;</span><span class="p">,</span><span class="nb">str</span><span class="p">(</span><span class="n">element</span><span class="p">))</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">))</span>
+    <span class="n">duration</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;(?&lt;=agoW)(.*)W</span><span class="si">{1}</span><span class="s1">views&#39;</span><span class="p">,</span><span class="nb">str</span><span class="p">(</span><span class="n">element</span><span class="p">))</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">views</span><span class="p">),</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="n">final_output</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+        <span class="p">{</span>
+            <span class="s1">&#39;Title&#39;</span><span class="p">:</span><span class="n">title</span><span class="p">,</span>
+            <span class="s1">&#39;views&#39;</span><span class="p">:</span><span class="n">views</span><span class="p">,</span>
+            <span class="s1">&#39;duration&#39;</span><span class="p">:</span><span class="n">duration</span><span class="p">,</span>
+            <span class="s1">&#39;video_number&#39;</span><span class="p">:</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">final_output</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">)</span>
+</code></pre></div>
+
+
+<p>This gives us the title, the views, the duration and the video number (where the first posted video  is number 1). The latter is not so useful to us right now: instead of "10 minutes and 5 seconds", we would like to see the total duration in seconds. We therefore we change the loop to the following:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">final_output</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">text</span>
+    <span class="n">views</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;(d*.d*)W</span><span class="si">{1}</span><span class="s1">views&#39;</span><span class="p">,</span><span class="nb">str</span><span class="p">(</span><span class="n">element</span><span class="p">))</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">))</span>
+    <span class="n">duration</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;(?&lt;=agoW)(.*)W</span><span class="si">{1}</span><span class="s1">views&#39;</span><span class="p">,</span><span class="nb">str</span><span class="p">(</span><span class="n">element</span><span class="p">))</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">views</span><span class="p">),</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">hours</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;(d*)W</span><span class="si">{1}</span><span class="s1">hour&#39;</span><span class="p">,</span> <span class="n">duration</span><span class="p">)</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="n">hours</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">minutes</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;(d*)W</span><span class="si">{1}</span><span class="s1">minute&#39;</span><span class="p">,</span> <span class="n">duration</span><span class="p">)</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="n">minutes</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">seconds</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;(d*)W</span><span class="si">{1}</span><span class="s1">second&#39;</span><span class="p">,</span> <span class="n">duration</span><span class="p">)</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="n">seconds</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">duration_in_seconds</span> <span class="o">=</span> <span class="n">hours</span><span class="o">*</span><span class="mi">3600</span> <span class="o">+</span> <span class="n">minutes</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">+</span> <span class="n">seconds</span>
+    <span class="n">final_output</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+        <span class="p">{</span>
+            <span class="s1">&#39;Title&#39;</span><span class="p">:</span><span class="n">title</span><span class="p">,</span>
+            <span class="s1">&#39;views&#39;</span><span class="p">:</span><span class="n">views</span><span class="p">,</span>
+            <span class="s1">&#39;duration&#39;</span><span class="p">:</span><span class="n">duration_in_seconds</span><span class="p">,</span>
+            <span class="s1">&#39;video_number&#39;</span><span class="p">:</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">final_output</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">)</span>
+</code></pre></div>
+
+
+<p>This piece of regex-magic will allow us to extract the hours, minutes and seconds, and add them op in the <strong>duration</strong> variable. Lets store the output as a .csv file:</p>
+<div class="codehilite"><pre><span></span><code><span class="err">output = pd.DataFrame.from_dict(final_output)</span>
+<span class="err">output.to_csv(&#39;output.csv&#39;,index=True)</span>
+<span class="err">print(output.head())</span>
+</code></pre></div>
+
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Title</th>
+<th>views</th>
+<th>duration</th>
+<th>video_number</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>My YouTube Analytics - How Much Does YouTube Pay?</td>
+<td>29600</td>
+<td>900</td>
+<td>457</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Mastering Python - Everything You Need To Know...</td>
+<td>76344</td>
+<td>960</td>
+<td>456</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Flutter Tutorial For Beginners #11 - Flutter D...</td>
+<td>4685</td>
+<td>1020</td>
+<td>455</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Flutter Tutorial for Beginners #10 - Flutter D...</td>
+<td>4762</td>
+<td>1440</td>
+<td>454</td>
+</tr>
+<tr>
+<td>4</td>
+<td>12 Weeks as a Microsoft Intern - My Software E...</td>
+<td>54295</td>
+<td>899</td>
+<td>453</td>
+</tr>
+</tbody>
+</table>
+<p>All together:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">selenium</span> <span class="kn">import</span> <span class="n">webdriver</span>
+<span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">re</span>
+
+<span class="k">def</span> <span class="nf">scrape_channel</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">driver</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">Chrome</span><span class="p">(</span><span class="s1">&#39;chromedrive/chromedriver&#39;</span><span class="p">)</span>
+    <span class="n">driver</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+
+    <span class="n">height</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">tries</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">old_length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="n">height</span> <span class="o">+=</span> <span class="mi">2000</span>
+        <span class="n">driver</span><span class="o">.</span><span class="n">execute_script</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;window.scrollTo(0, </span><span class="si">{</span><span class="n">height</span><span class="si">}</span><span class="s2">);&quot;</span><span class="p">)</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.25</span><span class="p">)</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="n">driver</span><span class="o">.</span><span class="n">page_source</span>
+        <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="s1">&#39;html.parser&#39;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="n">class_</span><span class="o">=</span><span class="s1">&#39;yt-simple-endpoint style-scope ytd-grid-video-renderer&#39;</span><span class="p">):</span>
+            <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">dict</span><span class="o">.</span><span class="n">fromkeys</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">==</span> <span class="n">old_length</span><span class="p">:</span>
+            <span class="n">tries</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">tries</span> <span class="o">==</span> <span class="mi">0</span>
+        <span class="k">if</span> <span class="n">tries</span> <span class="o">&gt;=</span> <span class="mi">10</span><span class="p">:</span>
+            <span class="k">break</span>
+
+    <span class="n">final_output</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+        <span class="n">title</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">text</span>
+        <span class="n">views</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;(d*.d*)W</span><span class="si">{1}</span><span class="s1">views&#39;</span><span class="p">,</span><span class="nb">str</span><span class="p">(</span><span class="n">element</span><span class="p">))</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">))</span>
+        <span class="n">duration</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;(?&lt;=agoW)(.*)W</span><span class="si">{1}</span><span class="s1">views&#39;</span><span class="p">,</span><span class="nb">str</span><span class="p">(</span><span class="n">element</span><span class="p">))</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">views</span><span class="p">),</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">duration</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">hours</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;(d*)W</span><span class="si">{1}</span><span class="s1">hour&#39;</span><span class="p">,</span> <span class="n">duration</span><span class="p">)</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="n">hours</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">minutes</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;(d*)W</span><span class="si">{1}</span><span class="s1">minute&#39;</span><span class="p">,</span> <span class="n">duration</span><span class="p">)</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="n">minutes</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">seconds</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;(d*)W</span><span class="si">{1}</span><span class="s1">second&#39;</span><span class="p">,</span> <span class="n">duration</span><span class="p">)</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="n">seconds</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">duration_in_seconds</span> <span class="o">=</span> <span class="n">hours</span><span class="o">*</span><span class="mi">3600</span> <span class="o">+</span> <span class="n">minutes</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">+</span> <span class="n">seconds</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;total duration: </span><span class="si">{</span><span class="n">duration_in_seconds</span><span class="si">}</span><span class="s1">, hours: </span><span class="si">{</span><span class="n">hours</span><span class="si">}</span><span class="s1">, minutes: </span><span class="si">{</span><span class="n">minutes</span><span class="si">}</span><span class="s1">, seconds: </span><span class="si">{</span><span class="n">seconds</span><span class="si">}</span><span class="s1">.&#39;</span><span class="p">)</span>
+        <span class="n">final_output</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="p">{</span>
+                <span class="s1">&#39;Title&#39;</span><span class="p">:</span><span class="n">title</span><span class="p">,</span>
+                <span class="s1">&#39;views&#39;</span><span class="p">:</span><span class="n">views</span><span class="p">,</span>
+                <span class="s1">&#39;duration&#39;</span><span class="p">:</span><span class="n">duration_in_seconds</span><span class="p">,</span>
+                <span class="s1">&#39;video_number&#39;</span><span class="p">:</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">final_output</span><span class="p">)</span>
+            <span class="p">}</span>
+        <span class="p">)</span>
+
+    <span class="n">output</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">final_output</span><span class="p">)</span>
+    <span class="n">output</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;output.csv&#39;</span><span class="p">,</span><span class="n">index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://www.youtube.com/c/TechWithTim/videos&#39;</span>
+    <span class="n">scrape_channel</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+</code></pre></div>
+
+
+<p>You can also find the script at on my <a href="https://github.com/Lindsen13/Youtube_Selenium_Scraper">Github</a> page.</p></p>
+                </div>
+                <div class="col-md-4 sidebar">
+                    <div class="sidebar-box">
+                        <h3>Scraping data which seems to be unaccesable with... Selenium! </h3>
+                        <img src="/static/img/blogposts/107.png" alt="Image" class="round-image img-fluid">
+                        <p><p>Using <em>Selenium</em> for <em>Python</em> to scrape all <em>videos</em> from a <em>Youtuber</em>!</p></p>
+                    </div>
+                    <div class="sidebar-box">
+                        <div class="categories">
+                            <h3>Latest posts</h3>
+                            
+                            <li><a href="/post/113/-Hosting-a-SQL-Database-for-your-Python-projects-with-Digital-Ocean.html"> Hosting a SQL Database for your Python projects with Digital Ocean</a></li>
+                            
+                            <li><a href="/post/110/Build-your-own-Application---Web-interface.html">Build your own Application - Web interface</a></li>
+                            
+                            <li><a href="/post/109/Build-your-own-Application---Predictive-Modelling.html">Build your own Application - Predictive Modelling</a></li>
+                            
+                        </div>
+                    </div>
+                    <div class="sidebar-box">
+                        <h3>Python Everything</h3>
+                        <p>We at Python Everything try to provide you with your daily Python inspiration! Our post are ment to inspire you and ensure that you start coding in Python yourself.</p>
+                        <p><a href="/about.html" class="btn btn-primary btn-sm">Read More</a></p>
+                    </div>
+                    <!--
+                    <div class="sidebar-box">
+                        <h3>Paragraph</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus itaque, autem necessitatibus voluptate quod mollitia delectus aut, sunt placeat nam vero culpa sapiente consectetur similique, inventore eos fugit cupiditate numquam!</p>
+                    </div>
+                    -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+
+
+    <!-- ======= Footer ======= -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h3>About Python Everything</h3>
+                    <p>We're python enthousiasts, who want to ensure you are getting the same smile on you face everytime your python script runs successfully.</p>
+                </div>
+                <div class="col-md-7 ml-auto">
+                    <div class="row site-section pt-0">
+                        <div class="col-md-4 mb-4 mb-md-0">
+                            <h3>Navigation</h3>
+                            <ul class="list-unstyled">
+                                <li><a href="/">Home</a></li>
+                                <li><a href="/explore/1.html">Expore</a></li>
+                                <li><a href="/#contact">Get in touch</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row justify-content-center text-center">
+                <div class="col-md-7">
+                    <p class="copyright">&copy; Copyright Python Everything. All Rights Reserved</p>
+                    <div class="credits">
+                        Designed by <a href="/">Python Everything</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+    <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+
+    <!-- Vendor JS Files -->
+    <script src="/static/vendor/jquery/jquery.min.js"></script>
+    <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/vendor/jquery.easing/jquery.easing.min.js"></script>
+    <script src="/static/vendor/aos/aos.js"></script>
+    <script src="/static/vendor/owl.carousel/owl.carousel.min.js"></script>
+    <script src="/static/vendor/jquery-sticky/jquery.sticky.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="/static/js/main.js"></script>
+
+</body>
+
+</html>
