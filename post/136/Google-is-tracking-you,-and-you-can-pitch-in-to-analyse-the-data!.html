@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-149203155-2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-149203155-2');
+    </script>
+    <!-- Favicons -->
+
+    <link href="/static/img/favicon/android-chrome-512x512.png" rel="icon">
+    <link href="/static/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/vendor/markdown-converter/styles.css" rel="stylesheet">
+
+    <link href="/static/vendor/icofont/icofont.min.css" rel="stylesheet">
+    <link href="/static/vendor/aos/aos.css" rel="stylesheet">
+    <link href="/static/vendor/line-awesome/css/line-awesome.min.css" rel="stylesheet">
+    <link href="/static/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="/static/css/style.css" rel="stylesheet">
+
+    <meta name="robots" content="index, follow">
+
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"> 
+<title>Python Everything - Google is tracking you, and you can pitch in to analyse the data!</title>
+<meta name="description" content="Requesting your personal data from google to create a Pandas DataFrame with all the locations you have visited - I wasn&#39;t aware, but you are able to dow..."> 
+</head>
+
+<body>
+
+    <!-- ======= Mobile Menu ======= -->
+    <div class="site-mobile-menu site-navbar-target">
+        <div class="site-mobile-menu-header">
+            <div class="site-mobile-menu-close mt-3">
+                <span class="icofont-close js-menu-toggle"></span>
+            </div>
+        </div>
+        <div class="site-mobile-menu-body"></div>
+    </div>
+
+    <!-- ======= Header ======= -->
+    <header class="site-navbar js-sticky-header site-navbar-target" role="banner">
+
+        <div class="container">
+            <div class="row align-items-center">
+
+                <div class="col-6 col-lg-2">
+                    <h1 class="mb-0 site-logo"><a href="/" class="mb-0">Python Everything</a></h1>
+                </div>
+
+                <div class="col-12 col-md-10 d-none d-lg-block">
+                    <nav class="site-navigation position-relative text-right" role="navigation">
+
+                        <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
+                            <li class="active"><a href="/" class="nav-link">Home</a></li>
+                            <li><a href="/explore/1.html" class="nav-link">Explore</a></li>
+                            <li><a href="/authors.html" class="nav-link">Collaborators</a></li>
+                            <li><a href="/#contact" class="nav-link">Get in touch</a></li>
+                        </ul>
+                    </nav>
+                </div>
+
+                <div class="col-6 d-inline-block d-lg-none ml-md-0 py-3" style="position: relative; top: 3px;">
+
+                    <a href="#" class="burger site-menu-toggle js-menu-toggle" data-toggle="collapse" data-target="#main-navbar">
+                        <span></span>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+    </header>
+
+    
+
+<main id="main">
+
+    <section class="hero-section inner-page">
+        <div class="wave">
+
+            <svg width="1920px" height="265px" viewBox="0 0 1920 265" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+          <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+            <g id="Apple-TV" transform="translate(0.000000, -402.000000)" fill="#FFFFFF">
+              <path d="M0,439.134243 C175.04074,464.89273 327.944386,477.771974 458.710937,477.771974 C654.860765,477.771974 870.645295,442.632362 1205.9828,410.192501 C1429.54114,388.565926 1667.54687,411.092417 1920,477.771974 L1920,667 L1017.15166,667 L0,667 L0,439.134243 Z" id="Path"></path>
+            </g>
+          </g>
+        </svg>
+
+        </div>
+
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-12">
+                    <div class="row justify-content-center">
+                        <div class="col-md-10 text-center hero-text">
+                            <h1 data-aos="fade-up" data-aos-delay=""><h1>Google is tracking you, and you can pitch in to analyse the data!</h1></h1>
+                            <p class="mb-5" data-aos="fade-up" data-aos-delay="100">2020-09-22 &bullet; By <a href="#" class="text-white">Ivo</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <section class="site-section mb-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 blog-content">
+
+                    <p class="lead mb-5"><h2>Requesting your personal data from google to create a Pandas DataFrame with all the locations you have visited</h2></p>
+                    <p><p>I wasn't aware, but you are able to <a href="https://takeout.google.com/">download</a> the data that Google collects on you! This is both incredible interesting and terrifying at the same time. Let us for now focus on mainly the first part, that it's incredibly interesting.</p>
+<p>I requested all my location data from above's link, which was send to me after 24 hours of waiting. What I got back, was a zipped folder with the following files:</p>
+<div class="codehilite"><pre><span></span><code><span class="err">GoogleLocationData</span>
+<span class="err">├── Location History</span>
+<span class="err">│   ├── Location History.json</span>
+<span class="err">│   └── Semantic Location History</span>
+<span class="err">│       ├── 2018</span>
+<span class="err">│       │    ├── 2013_DECEMBER.json</span>
+<span class="err">│       │    ├── 2013_NOVEMBER.json</span>
+<span class="err">│       │    ├── ...</span>
+<span class="err">│       │    ├── 2013_FEBRUAR.json</span>
+<span class="err">│       │    └── 2013_JANUARY.json</span>
+<span class="err">│       ├── ...</span>
+<span class="err">│       ├── ...</span>
+<span class="err">│       └── 2019</span>
+<span class="err">│       │    ├── 2019_DECEMBER.json</span>
+<span class="err">│       │    ├── 2019_NOVEMBER.json</span>
+<span class="err">│       │    ├── ...</span>
+<span class="err">│       │    ├── 2019_FEBRUAR.json</span>
+<span class="err">│       │    └── 2019_JANUARY.json</span>
+<span class="err">└── archive_browser.html</span>
+</code></pre></div>
+
+
+<p>Let's have a look at the <strong>GoogleLocationData/Location History/Location History.json</strong> file:</p>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span>
+<span class="s2">&quot;locations&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="p">{</span>
+    <span class="s2">&quot;timestampMs&quot;</span> <span class="o">:</span> <span class="s2">&quot;1379618430096&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;latitudeE7&quot;</span> <span class="o">:</span> <span class="mi">518930356</span><span class="p">,</span>
+    <span class="s2">&quot;longitudeE7&quot;</span> <span class="o">:</span> <span class="mi">58892968</span><span class="p">,</span>
+    <span class="s2">&quot;accuracy&quot;</span> <span class="o">:</span> <span class="mi">13</span><span class="p">,</span>
+    <span class="s2">&quot;activity&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="p">{</span>
+    <span class="s2">&quot;timestampMs&quot;</span> <span class="o">:</span> <span class="s2">&quot;1379614128129&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;activity&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="p">{</span>
+        <span class="s2">&quot;type&quot;</span> <span class="o">:</span> <span class="s2">&quot;TILTING&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;confidence&quot;</span> <span class="o">:</span> <span class="mi">100</span>
+    <span class="p">}</span> <span class="p">]</span>
+    <span class="p">}</span> <span class="p">]</span>
+<span class="p">},</span> <span class="p">{</span>
+    <span class="s2">&quot;timestampMs&quot;</span> <span class="o">:</span> <span class="s2">&quot;1379618431446&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;latitudeE7&quot;</span> <span class="o">:</span> <span class="mi">518930354</span><span class="p">,</span>
+    <span class="s2">&quot;longitudeE7&quot;</span> <span class="o">:</span> <span class="mi">58892966</span><span class="p">,</span>
+    <span class="s2">&quot;accuracy&quot;</span> <span class="o">:</span> <span class="mi">13</span>
+<span class="p">},</span> <span class="p">{</span>
+    <span class="s2">&quot;timestampMs&quot;</span> <span class="o">:</span> <span class="s2">&quot;1379618432387&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;latitudeE7&quot;</span> <span class="o">:</span> <span class="mi">518930353</span><span class="p">,</span>
+    <span class="s2">&quot;longitudeE7&quot;</span> <span class="o">:</span> <span class="mi">58892962</span><span class="p">,</span>
+    <span class="s2">&quot;accuracy&quot;</span> <span class="o">:</span> <span class="mi">12</span>
+<span class="p">},</span> 
+<span class="p">...</span>
+<span class="p">,{</span>
+    <span class="s2">&quot;timestampMs&quot;</span> <span class="o">:</span> <span class="s2">&quot;1379618477706&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;latitudeE7&quot;</span> <span class="o">:</span> <span class="mi">518930486</span><span class="p">,</span>
+    <span class="s2">&quot;longitudeE7&quot;</span> <span class="o">:</span> <span class="mi">58893072</span><span class="p">,</span>
+    <span class="s2">&quot;accuracy&quot;</span> <span class="o">:</span> <span class="mi">9</span>
+<span class="p">}]</span>
+</code></pre></div>
+
+
+<p>Interesting! We have a <strong>timestampMs</strong> variable (which is the timestamp at that moment in ms), a latitudeE7 variable (which is the latitude multiplied by 10^7) and a longitudeE7 variable (which is the Longitude multiplied by 10^7 as well).</p>
+<p>I'd like to convert the <strong>JSON</strong> file to a csv file, for future analysis. I'll do this with the <strong>JSON</strong> library, the <strong>datetime</strong> library and the <strong>pandas</strong> library.</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">datetime</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</code></pre></div>
+
+
+<p>First, I would like to read in the data, and return a Python dictionary.</p>
+<div class="codehilite"><pre><span></span><code><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;Location History.json&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">json_file</span><span class="p">:</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">json_file</span><span class="p">)</span>
+</code></pre></div>
+
+
+<p>Now, we have a dictionary, but there are some more key-values in there then we need. Therefore, I will loop over each element in the dictionary and append the time and location to a list.</p>
+<div class="codehilite"><pre><span></span><code><span class="n">output_list</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">loc</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;locations&#39;</span><span class="p">):</span>
+    <span class="n">output_list</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+        <span class="s1">&#39;timestamp&#39;</span><span class="p">:</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">fromtimestamp</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">loc</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;timestampMs&#39;</span><span class="p">))</span><span class="o">/</span><span class="mi">1000</span><span class="p">),</span>
+        <span class="s1">&#39;latitude&#39;</span><span class="p">:</span><span class="n">loc</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;latitudeE7&#39;</span><span class="p">)</span> <span class="o">/</span> <span class="mi">10</span><span class="o">**</span><span class="mi">7</span><span class="p">,</span>
+        <span class="s1">&#39;longitude&#39;</span><span class="p">:</span><span class="n">loc</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;longitudeE7&#39;</span><span class="p">)</span> <span class="o">/</span> <span class="mi">10</span><span class="o">**</span><span class="mi">7</span>
+        <span class="p">})</span>
+</code></pre></div>
+
+
+<p>The <strong>output_list</strong> contains all the data I need, in a list of dictionaries. This is easy to convert to a Panda's DataFrame, which allows us to output the data into a csv.</p>
+<div class="codehilite"><pre><span></span><code><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">output_json</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;output.csv&#39;</span><span class="p">,</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</code></pre></div>
+
+
+<p>We now have a csv, consisting of the following:</p>
+<div class="codehilite"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">)</span>
+</code></pre></div>
+
+
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>timestamp</th>
+<th>latitude</th>
+<th>longitude</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>2013-05-16 05:45:36.035</td>
+<td>51,8930356</td>
+<td>58,892968</td>
+</tr>
+<tr>
+<td>1</td>
+<td>2013-05-16 05:46:37.225</td>
+<td>51,8930354</td>
+<td>58,892966</td>
+</tr>
+<tr>
+<td>2</td>
+<td>2013-05-16 05:47:37.668</td>
+<td>51,8930353</td>
+<td>58,892962</td>
+</tr>
+<tr>
+<td>3</td>
+<td>2013-05-16 05:48:37.755</td>
+<td>51,8930486</td>
+<td>58,893072</td>
+</tr>
+<tr>
+<td>4</td>
+<td>2013-05-16 05:49:37.772</td>
+<td>51,8930464</td>
+<td>58,892999</td>
+</tr>
+<tr>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr>
+<td>262204</td>
+<td>2015-02-03 07:45:01.722</td>
+<td>51,8930057</td>
+<td>58,892884</td>
+</tr>
+<tr>
+<td>262205</td>
+<td>2015-02-03 07:50:08.003</td>
+<td>51,8930093</td>
+<td>58,892654</td>
+</tr>
+<tr>
+<td>262206</td>
+<td>2015-02-03 07:55:21.345</td>
+<td>51,8930008</td>
+<td>58,893248</td>
+</tr>
+<tr>
+<td>262207</td>
+<td>2015-04-17 23:36:40.367</td>
+<td>51,8929410</td>
+<td>58,892963</td>
+</tr>
+<tr>
+<td>262208</td>
+<td>2015-04-17 23:39:12.629</td>
+<td>51,8929137</td>
+<td>58,892798</td>
+</tr>
+</tbody>
+</table>
+<p>This is just a sub-section of the data I downloaded and processed. There is much more (location) data available. I have downloaded 5 MB out of 19 GB available of data. Curious to see what more information we can retrieve about ourselves!</p>
+<p>This is a little sample of what I did on the 14th of October in 2013:</p>
+<p><img alt="Sample usage of Google's data" src="https://python-everything.com/static/blogpost_content/Google_Data/output_of_google_data.png" /></p></p>
+                </div>
+                <div class="col-md-4 sidebar">
+                    <div class="sidebar-box">
+                        <h3>Google is tracking you, and you can pitch in to analyse the data!</h3>
+                        <img src="/static/img/blogposts/136.png" alt="Image" class="round-image img-fluid">
+                        <p><h2>Requesting your personal data from google to create a Pandas DataFrame with all the locations you have visited</h2></p>
+                    </div>
+                    <div class="sidebar-box">
+                        <div class="categories">
+                            <h3>Latest posts</h3>
+                            
+                            <li><a href="/post/136/Google-is-tracking-you%2C-and-you-can-pitch-in-to-analyse-the-data%21.html">Google is tracking you, and you can pitch in to analyse the data!</a></li>
+                            
+                            <li><a href="/post/113/-Hosting-a-SQL-Database-for-your-Python-projects-with-Digital-Ocean.html"> Hosting a SQL Database for your Python projects with Digital Ocean</a></li>
+                            
+                            <li><a href="/post/110/Build-your-own-Application---Web-interface.html">Build your own Application - Web interface</a></li>
+                            
+                        </div>
+                    </div>
+                    <div class="sidebar-box">
+                        <h3>Python Everything</h3>
+                        <p>We at Python Everything try to provide you with your daily Python inspiration! Our post are ment to inspire you and ensure that you start coding in Python yourself.</p>
+                        <p><a href="/about.html" class="btn btn-primary btn-sm">Read More</a></p>
+                    </div>
+                    <!--
+                    <div class="sidebar-box">
+                        <h3>Paragraph</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus itaque, autem necessitatibus voluptate quod mollitia delectus aut, sunt placeat nam vero culpa sapiente consectetur similique, inventore eos fugit cupiditate numquam!</p>
+                    </div>
+                    -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+
+
+    <!-- ======= Footer ======= -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h3>About Python Everything</h3>
+                    <p>We're python enthousiasts, who want to ensure you are getting the same smile on you face everytime your python script runs successfully.</p>
+                </div>
+                <div class="col-md-7 ml-auto">
+                    <div class="row site-section pt-0">
+                        <div class="col-md-4 mb-4 mb-md-0">
+                            <h3>Navigation</h3>
+                            <ul class="list-unstyled">
+                                <li><a href="/">Home</a></li>
+                                <li><a href="/explore/1.html">Expore</a></li>
+                                <li><a href="/#contact">Get in touch</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row justify-content-center text-center">
+                <div class="col-md-7">
+                    <p class="copyright">&copy; Copyright Python Everything. All Rights Reserved</p>
+                    <div class="credits">
+                        Designed by <a href="/">Python Everything</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+    <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+
+    <!-- Vendor JS Files -->
+    <script src="/static/vendor/jquery/jquery.min.js"></script>
+    <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/vendor/jquery.easing/jquery.easing.min.js"></script>
+    <script src="/static/vendor/aos/aos.js"></script>
+    <script src="/static/vendor/owl.carousel/owl.carousel.min.js"></script>
+    <script src="/static/vendor/jquery-sticky/jquery.sticky.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="/static/js/main.js"></script>
+
+</body>
+
+</html>
