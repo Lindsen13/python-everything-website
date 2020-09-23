@@ -301,7 +301,30 @@
 </table>
 <p>This is just a sub-section of the data I downloaded and processed. There is much more (location) data available. I have downloaded 5 MB out of 19 GB available of data. Curious to see what more information we can retrieve about ourselves!</p>
 <p>This is a little sample of what I did on the 14th of October in 2013:</p>
-<p><img alt="Sample usage of Google's data" src="https://python-everything.com/static/blogpost_content/Google_Data/output_of_google_data.png" /></p></p>
+<p><img alt="Sample usage of Google's data" src="https://python-everything.com/static/blogpost_content/Google%20Data/output_of_google_data.png" /></p>
+<p>Full script:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">datetime</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;Location History.json&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">json_file</span><span class="p">:</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">json_file</span><span class="p">)</span>
+
+<span class="n">output_json</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">loc</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;locations&#39;</span><span class="p">):</span>
+    <span class="n">output_json</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+        <span class="s1">&#39;timestamp&#39;</span><span class="p">:</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">fromtimestamp</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">loc</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;timestampMs&#39;</span><span class="p">))</span><span class="o">/</span><span class="mi">1000</span><span class="p">),</span>
+        <span class="s1">&#39;latitude&#39;</span><span class="p">:</span><span class="n">loc</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;latitudeE7&#39;</span><span class="p">)</span> <span class="o">/</span> <span class="mi">10</span><span class="o">**</span><span class="mi">7</span><span class="p">,</span>
+        <span class="s1">&#39;longitude&#39;</span><span class="p">:</span><span class="n">loc</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;longitudeE7&#39;</span><span class="p">)</span> <span class="o">/</span> <span class="mi">10</span><span class="o">**</span><span class="mi">7</span>
+        <span class="p">})</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">output_json</span><span class="p">)</span>
+
+<span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;output.csv&#39;</span><span class="p">,</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</code></pre></div>
+
+
+<p>Which can also be found on my <a href="https://github.com/Lindsen13/Google-Location-Data">Github page</a>.</p></p>
                 </div>
                 <div class="col-md-4 sidebar">
                     <div class="sidebar-box">
