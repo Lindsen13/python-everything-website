@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-149203155-2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-149203155-2');
+    </script>
+    <!-- Favicons -->
+
+    <link href="/static/img/favicon/android-chrome-512x512.png" rel="icon">
+    <link href="/static/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/vendor/markdown-converter/styles.css" rel="stylesheet">
+
+    <link href="/static/vendor/icofont/icofont.min.css" rel="stylesheet">
+    <link href="/static/vendor/aos/aos.css" rel="stylesheet">
+    <link href="/static/vendor/line-awesome/css/line-awesome.min.css" rel="stylesheet">
+    <link href="/static/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="/static/css/style.css" rel="stylesheet">
+
+    <meta name="robots" content="index, follow">
+
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"> 
+<title>Python Everything - ETL Part III - Schedule with AWS Lambda</title>
+<meta name="description" content="Let&#39;s schedule your newly made functions on Amazon&#39;s AWS Lambda - Part of an ETL system is to schedule the scripts we have made to run..."> 
+</head>
+
+<body>
+
+    <!-- ======= Mobile Menu ======= -->
+    <div class="site-mobile-menu site-navbar-target">
+        <div class="site-mobile-menu-header">
+            <div class="site-mobile-menu-close mt-3">
+                <span class="icofont-close js-menu-toggle"></span>
+            </div>
+        </div>
+        <div class="site-mobile-menu-body"></div>
+    </div>
+
+    <!-- ======= Header ======= -->
+    <header class="site-navbar js-sticky-header site-navbar-target" role="banner">
+
+        <div class="container">
+            <div class="row align-items-center">
+
+                <div class="col-6 col-lg-2">
+                    <h1 class="mb-0 site-logo"><a href="/" class="mb-0">Python Everything</a></h1>
+                </div>
+
+                <div class="col-12 col-md-10 d-none d-lg-block">
+                    <nav class="site-navigation position-relative text-right" role="navigation">
+
+                        <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
+                            <li class="active"><a href="/" class="nav-link">Home</a></li>
+                            <li><a href="/explore/1.html" class="nav-link">Explore</a></li>
+                            <li><a href="/authors.html" class="nav-link">Collaborators</a></li>
+                            <li><a href="/#contact" class="nav-link">Get in touch</a></li>
+                        </ul>
+                    </nav>
+                </div>
+
+                <div class="col-6 d-inline-block d-lg-none ml-md-0 py-3" style="position: relative; top: 3px;">
+
+                    <a href="#" class="burger site-menu-toggle js-menu-toggle" data-toggle="collapse" data-target="#main-navbar">
+                        <span></span>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+    </header>
+
+    
+
+<main id="main">
+
+    <section class="hero-section inner-page">
+        <div class="wave">
+
+            <svg width="1920px" height="265px" viewBox="0 0 1920 265" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+          <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+            <g id="Apple-TV" transform="translate(0.000000, -402.000000)" fill="#FFFFFF">
+              <path d="M0,439.134243 C175.04074,464.89273 327.944386,477.771974 458.710937,477.771974 C654.860765,477.771974 870.645295,442.632362 1205.9828,410.192501 C1429.54114,388.565926 1667.54687,411.092417 1920,477.771974 L1920,667 L1017.15166,667 L0,667 L0,439.134243 Z" id="Path"></path>
+            </g>
+          </g>
+        </svg>
+
+        </div>
+
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-12">
+                    <div class="row justify-content-center">
+                        <div class="col-md-10 text-center hero-text">
+                            <h1 data-aos="fade-up" data-aos-delay=""><h1>ETL Part III - Schedule with AWS Lambda</h1></h1>
+                            <p class="mb-5" data-aos="fade-up" data-aos-delay="100">2020-07-25 &bullet; By <a href="#" class="text-white">Ivo</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <section class="site-section mb-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 blog-content">
+
+                    <p class="lead mb-5"><p>Let's <strong>schedule</strong> your newly made functions on Amazon's <strong>AWS Lambda</strong></p></p>
+                    <p><p>Part of an <em>ETL</em> system is to schedule the scripts we have made to run on a daily (or a different frequency) basis. In this blog post you will find out how we can schedule the scripts we have made in the previous posts in this series <a href="https://python-everything.com/post/76/Aligning-currency-conversions-in-your-organisation-with-APIs-and-Python%21.html">here</a>, <a href="https://python-everything.com/post/77/ETL-Part-I---From-API-to-stored-in-a-database.html">here</a> and [here])(https://python-everything.com/post/78/ETL-Part-II---Transform-and-Load-your-data%21.html).</p>
+<p>We will be using <a href="https://docs.aws.amazon.com/lambda/latest/dg/welcome.html">Amazon's AWS Lambda</a>. It allows you to create functions which can be invoked on a scheduled basis, with an API or on an event. We will look into the last method on running the function, on a scheduled basis!</p>
+<p>We are running the <em>process_exchange_rates()</em> function from <a href="https://python-everything.com/post/77/ETL-Part-I---From-API-to-stored-in-a-database.html">ETL part I</a>. I'd advice to have a look at the post if you haven't read it.</p>
+<p>On top of the <em>config.py</em> file, <em>script.py</em> file and <em>models.py</em> file, we need to create a <em>lambda_function.py</em> file:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Navigate into the directory we made in [this](https://python-everything.com/post/77/ETL-Part-I---From-API-to-stored-in-a-database.html) post</span>
+<span class="nb">cd</span> etl_part_1
+<span class="c1"># Activate the virtual environment</span>
+<span class="nb">source</span> env/bin/activate
+<span class="c1"># Create the new file</span>
+touch lambda_function.py
+</code></pre></div>
+
+
+<p>Let's open the <em>lambda_function.py</em> file and add the following:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">script</span> <span class="kn">import</span> <span class="n">process_exchange_rates</span>
+<span class="kn">from</span> <span class="nn">config</span> <span class="kn">import</span> <span class="n">url</span><span class="p">,</span> <span class="n">access_key</span>
+
+<span class="k">def</span> <span class="nf">lambda_handler</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
+    <span class="n">process_exchange_rates</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">access_key</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;Executed succesfully!&quot;</span><span class="p">}</span>
+</code></pre></div>
+
+
+<p>It's a rather simple file, we import the <em>process_exchange_rates()</em> function from the <em>script.py</em> file, and the <em>url</em> string and <em>access_key</em> from our <em>config.py</em> file to pass as paramters to the already imported function. We create a function that returns <em>"Executed succesfully "</em> once the lambda funnction is executed.</p>
+<p>We have to create a zip file with all the dependencies stored in one file. In this case, also all the libraries we have installed with pip. For that, I am using following bash script (which can be run in iOS's terminal)</p>
+<div class="codehilite"><pre><span></span><code>mkdir python-deploy
+pip install -r requirements.txt -t python-deploy/ --upgrade
+mkdir tmp
+cp -r python-deploy/* tmp/
+cp scipt.py tmp/
+cp models.py tmp/
+cp config.py tmp/
+cp lambda_function.py tmp/
+<span class="nb">cd</span> tmp/
+zip -r -X <span class="s2">&quot;../deploy_folder.zip&quot;</span> *
+<span class="nb">cd</span> ../
+rm -rf tmp/
+</code></pre></div>
+
+
+<p>This script will, in order:
+- create a directory and install all the libraries into it
+- createa a temporarily directory where into which copy all the installed libraries and the files we created ourselves.
+- We zip the content of the file into <em>.zip</em> file
+- We remove the temporarily directory</p>
+<p>Now the Python part is done: next is getting it up and running on AWS Lambda. There are many guides available on how to do this, so I will only address it quickly.</p>
+<ul>
+<li>Go to <a href="https://aws.amazon.com/lambda/">https://aws.amazon.com/lambda/</a> and sign in</li>
+<li>Create a new function, select 'Author from scratch', give the function a name (ExchangeRateLoader for example) and choose the same python in the Runtime menu (tip: run <code>python --version</code> in your terminal to see what version you are running, the samples here are made with Python 3.7). Keep the permissions default and press <em>Create function</em></li>
+<li>We scroll down to <em>Function code</em> and at <em>Action</em> we select <em>Upload a .zip file</em>.</li>
+<li>Upload the <em>deploy_folder.zip</em>. You well get a message that it's bigger than 10 MB, so you are not able to edit the code with the online editor. This is fine, we do not need to make any changes to the code.</li>
+<li>Define a test with the default JSON format, and test the function by clicking <em>Test</em>. If everything went well, you should see below output:</li>
+</ul>
+<p><img alt="AWS Lambda test output succeeded" src="https://python-everything.com/static/blogpost_content/AWS_Lambda_Execution_Succeeded.png" /></p>
+<ul>
+<li>We managed to upload the code successfully. The only thing to do is to schedule it on a daily basis (we choose daily here, since the exchange rate information from <a href="https://fixer.io/">fixer.io</a> which we are retrieving is on a daily level). To do so, we go to the <em>Designed</em> pane and click <em>+ Add Trigger</em>. Here we select <em>EventBridge (CloudWatch Events)</em>, and specify <em>Create a new rule</em>.</li>
+<li>Give the new rule a name (for example, DailySchedule) and a matching rule description. As a <em>Rule type</em>, we specify <em>Schedule expression</em>, and we type <code>rate(1 day)</code>. This will execute our function once a day. More about the <em>Schedule Expression</em> can be found <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html">here</a>, and keep in mind that the schedule is set at the time you saved it. In other words, if you are setting the rule at 17:30, the lambda function will be triggered every day at 17:30.</li>
+</ul>
+<p>And you are done! Now the script is executed every day. We can check this in the database by looking at our 'created_at' column. It should always use the current time when an insert is made. Following script allows you to retrieve the date of the latest insert.</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">config</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span> <span class="nn">pymysql.cursors</span>
+<span class="kn">import</span> <span class="nn">pymysql</span>
+<span class="kn">from</span> <span class="nn">script</span> <span class="kn">import</span> <span class="n">create_connection</span>
+
+<span class="k">def</span> <span class="nf">retrieve_latest_update</span><span class="p">():</span>
+    <span class="n">connection</span> <span class="o">=</span> <span class="n">create_connection</span><span class="p">()</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;SELECT MAX(created_at) as latest_insert FROM ExchangeRates&quot;</span>
+    <span class="k">with</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span> <span class="k">as</span> <span class="n">cursor</span><span class="p">:</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Latest update at </span><span class="si">{</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;latest_insert&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">retrieve_latest_update</span><span class="p">()</span>
+</code></pre></div>
+
+
+<p>Congrats! You managed to implement your first <em>ETL</em> system, where you ensured that your organisation has up-to-date exchange rates standardized accross all departments!</p></p>
+                </div>
+                <div class="col-md-4 sidebar">
+                    <div class="sidebar-box">
+                        <h3>ETL Part III - Schedule with AWS Lambda</h3>
+                        <img src="/static/img/blogposts/81.png" alt="Image" class="round-image img-fluid">
+                        <p><p>Let's <strong>schedule</strong> your newly made functions on Amazon's <strong>AWS Lambda</strong></p></p>
+                    </div>
+                    <div class="sidebar-box">
+                        <div class="categories">
+                            <h3>Latest posts</h3>
+                            
+                            <li><a href="/post/137/Build-your-own-Application---Deployment-on-Heroku.html">Build your own Application - Deployment on Heroku</a></li>
+                            
+                            <li><a href="/post/136/Google-is-tracking-you%2C-and-you-can-pitch-in-to-analyse-the-data%21.html">Google is tracking you, and you can pitch in to analyse the data!</a></li>
+                            
+                            <li><a href="/post/113/-Hosting-a-SQL-Database-for-your-Python-projects-with-Digital-Ocean.html"> Hosting a SQL Database for your Python projects with Digital Ocean</a></li>
+                            
+                        </div>
+                    </div>
+                    <div class="sidebar-box">
+                        <h3>Python Everything</h3>
+                        <p>We at Python Everything try to provide you with your daily Python inspiration! Our post are ment to inspire you and ensure that you start coding in Python yourself.</p>
+                        <p><a href="/about.html" class="btn btn-primary btn-sm">Read More</a></p>
+                    </div>
+                    <!--
+                    <div class="sidebar-box">
+                        <h3>Paragraph</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus itaque, autem necessitatibus voluptate quod mollitia delectus aut, sunt placeat nam vero culpa sapiente consectetur similique, inventore eos fugit cupiditate numquam!</p>
+                    </div>
+                    -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+
+
+    <!-- ======= Footer ======= -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h3>About Python Everything</h3>
+                    <p>We're python enthousiasts, who want to ensure you are getting the same smile on you face everytime your python script runs successfully.</p>
+                </div>
+                <div class="col-md-7 ml-auto">
+                    <div class="row site-section pt-0">
+                        <div class="col-md-4 mb-4 mb-md-0">
+                            <h3>Navigation</h3>
+                            <ul class="list-unstyled">
+                                <li><a href="/">Home</a></li>
+                                <li><a href="/explore/1.html">Expore</a></li>
+                                <li><a href="/#contact">Get in touch</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row justify-content-center text-center">
+                <div class="col-md-7">
+                    <p class="copyright">&copy; Copyright Python Everything. All Rights Reserved</p>
+                    <div class="credits">
+                        Designed by <a href="/">Python Everything</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+    <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+
+    <!-- Vendor JS Files -->
+    <script src="/static/vendor/jquery/jquery.min.js"></script>
+    <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/vendor/jquery.easing/jquery.easing.min.js"></script>
+    <script src="/static/vendor/aos/aos.js"></script>
+    <script src="/static/vendor/owl.carousel/owl.carousel.min.js"></script>
+    <script src="/static/vendor/jquery-sticky/jquery.sticky.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="/static/js/main.js"></script>
+
+</body>
+
+</html>

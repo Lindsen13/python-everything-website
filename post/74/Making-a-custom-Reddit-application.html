@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-149203155-2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-149203155-2');
+    </script>
+    <!-- Favicons -->
+
+    <link href="/static/img/favicon/android-chrome-512x512.png" rel="icon">
+    <link href="/static/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/vendor/markdown-converter/styles.css" rel="stylesheet">
+
+    <link href="/static/vendor/icofont/icofont.min.css" rel="stylesheet">
+    <link href="/static/vendor/aos/aos.css" rel="stylesheet">
+    <link href="/static/vendor/line-awesome/css/line-awesome.min.css" rel="stylesheet">
+    <link href="/static/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="/static/css/style.css" rel="stylesheet">
+
+    <meta name="robots" content="index, follow">
+
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"> 
+<title>Python Everything - Making a custom Reddit application</title>
+<meta name="description" content="Using Flask and Requests together with some HTML to build an front-end application for a sub-reddit of your choice! - Most of the time, my breakfast is combined with a quit scroll on my personal ..."> 
+</head>
+
+<body>
+
+    <!-- ======= Mobile Menu ======= -->
+    <div class="site-mobile-menu site-navbar-target">
+        <div class="site-mobile-menu-header">
+            <div class="site-mobile-menu-close mt-3">
+                <span class="icofont-close js-menu-toggle"></span>
+            </div>
+        </div>
+        <div class="site-mobile-menu-body"></div>
+    </div>
+
+    <!-- ======= Header ======= -->
+    <header class="site-navbar js-sticky-header site-navbar-target" role="banner">
+
+        <div class="container">
+            <div class="row align-items-center">
+
+                <div class="col-6 col-lg-2">
+                    <h1 class="mb-0 site-logo"><a href="/" class="mb-0">Python Everything</a></h1>
+                </div>
+
+                <div class="col-12 col-md-10 d-none d-lg-block">
+                    <nav class="site-navigation position-relative text-right" role="navigation">
+
+                        <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
+                            <li class="active"><a href="/" class="nav-link">Home</a></li>
+                            <li><a href="/explore/1.html" class="nav-link">Explore</a></li>
+                            <li><a href="/authors.html" class="nav-link">Collaborators</a></li>
+                            <li><a href="/#contact" class="nav-link">Get in touch</a></li>
+                        </ul>
+                    </nav>
+                </div>
+
+                <div class="col-6 d-inline-block d-lg-none ml-md-0 py-3" style="position: relative; top: 3px;">
+
+                    <a href="#" class="burger site-menu-toggle js-menu-toggle" data-toggle="collapse" data-target="#main-navbar">
+                        <span></span>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+    </header>
+
+    
+
+<main id="main">
+
+    <section class="hero-section inner-page">
+        <div class="wave">
+
+            <svg width="1920px" height="265px" viewBox="0 0 1920 265" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+          <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+            <g id="Apple-TV" transform="translate(0.000000, -402.000000)" fill="#FFFFFF">
+              <path d="M0,439.134243 C175.04074,464.89273 327.944386,477.771974 458.710937,477.771974 C654.860765,477.771974 870.645295,442.632362 1205.9828,410.192501 C1429.54114,388.565926 1667.54687,411.092417 1920,477.771974 L1920,667 L1017.15166,667 L0,667 L0,439.134243 Z" id="Path"></path>
+            </g>
+          </g>
+        </svg>
+
+        </div>
+
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-12">
+                    <div class="row justify-content-center">
+                        <div class="col-md-10 text-center hero-text">
+                            <h1 data-aos="fade-up" data-aos-delay=""><h1>Making a custom Reddit application</h1></h1>
+                            <p class="mb-5" data-aos="fade-up" data-aos-delay="100">2020-07-22 &bullet; By <a href="#" class="text-white">Ivo</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <section class="site-section mb-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 blog-content">
+
+                    <p class="lead mb-5"><p>Using Flask and Requests together with some HTML to build an front-end application for a sub-reddit of your choice!</p></p>
+                    <p><p>Most of the time, my breakfast is combined with a quit scroll on my personal <a href="https://www.reddit.com/">reddit</a> feed. It's a big community which contains sub-communities called 'sub-reddits'. Each so called sub-reddit is designed around a certain topic, ranging from discussing politics to sharing memes. The other day I found out that there are multiple third-party apps available, all basically showing the same: Reddit in a different user interface. In this post I'd like to explore how such thing could be created with Python. <em>Fun fact: Reddit is made with Python!</em></p>
+<p>Let's initiate a directory, and install some dependencies:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># create a directory called &#39;reddit-app&#39;</span>
+mkdir reddit-app
+<span class="c1"># Navigate into the directory</span>
+<span class="nb">cd</span> reddit-app
+<span class="c1"># Create a virtual environment</span>
+python3 -m venv env
+<span class="c1"># Activate the virtual environment</span>
+<span class="nb">source</span> env/bin/activate
+<span class="c1"># Install the &#39;Requests&#39; package.</span>
+pip install requests
+<span class="c1"># Install the &#39;Flask&#39; package.</span>
+pip install flask
+<span class="c1"># Create a python file for the app</span>
+touch app.py
+<span class="c1"># Create a html file to be used as a template</span>
+touch index.html
+</code></pre></div>
+
+
+<p>Let's open the app.py file and create a simple flask application, as described at <a href="https://flask.palletsprojects.com/en/1.1.x/quickstart/">Flask's quickstart guide</a>:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">hello_world</span><span class="p">():</span>
+    <span class="k">return</span> <span class="s1">&#39;Hello, World!&#39;</span>
+</code></pre></div>
+
+
+<p>If we want to run the server, we have to export some flask variables in the terminal. </p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Exporting FLASK_APP environment variable</span>
+<span class="nb">export</span> <span class="nv">FLASK_APP</span><span class="o">=</span>hello.py
+<span class="c1"># Launch the application</span>
+flask run
+</code></pre></div>
+
+
+<p>Great, we now have a webpage that tells us <em>'hello world'</em>. We would like to change this to a html table, which we will later populate with information from reddit. For that, we need to edit the <em>index.html</em> file.</p>
+<div class="codehilite"><pre><span></span><code><span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Reddit App Example<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">table</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">thead</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">th</span><span class="p">&gt;</span>Title<span class="p">&lt;/</span><span class="nt">th</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">th</span><span class="p">&gt;</span>Author<span class="p">&lt;/</span><span class="nt">th</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">th</span><span class="p">&gt;</span>Ups<span class="p">&lt;/</span><span class="nt">th</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">th</span><span class="p">&gt;</span>Link<span class="p">&lt;/</span><span class="nt">th</span><span class="p">&gt;</span>
+            <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">thead</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">tbody</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>title_1<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>author_1<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>ups_1<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;url_1&quot;</span><span class="p">&gt;</span>click<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+            <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>title_2<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>author_2<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>ups_2<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;url_2&quot;</span><span class="p">&gt;</span>click<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+            <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>...<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>...<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>...<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;...&quot;</span><span class="p">&gt;</span>click<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+            <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>title_99<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>author_99<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>ups_99<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;url_99&quot;</span><span class="p">&gt;</span>click<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+            <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+
+        <span class="p">&lt;/</span><span class="nt">tbody</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">table</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</code></pre></div>
+
+
+<p>Now we have a simple html page with a table on it. We want to load this html page with our flask app. We will do this with the <em>render_template</em> function that comes with Flask. To do so, we need to place the html file in a folder that is called 'templates'. The structure of your folder should look like this right now:</p>
+<div class="codehilite"><pre><span></span><code><span class="err">.</span>
+<span class="err">├── app.py</span>
+<span class="err">├── templates</span>
+<span class="err">│   ├── index.html</span>
+<span class="err">└── env</span>
+</code></pre></div>
+
+
+<p>And your python code should include the render_template function:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">render_template</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">hello_world</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;index.html&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+
+<p>Now we have everything in place, the only thing that we need to add is some logic to get data from Reddit, and place it in our application. Reddit has a nice <a href="https://www.reddit.com/dev/api/">API</a> available. However, we will just append <em>.json</em> to the url to retrieve the data in json format. Since this is just an example, is should do the trick.</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">requests</span>
+<span class="n">endpoint</span> <span class="o">=</span> <span class="s1">&#39;https://www.reddit.com/&#39;</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;User-Agent&#39;</span><span class="p">:</span> <span class="s2">&quot;Python-Everything&#39;s Reddit Test (by /u/lindsen13)&quot;</span><span class="p">}</span>
+<span class="n">subreddit</span> <span class="o">=</span> <span class="s1">&#39;Tableau&#39;</span>
+<span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">endpoint</span><span class="si">}</span><span class="s1">/r/</span><span class="si">{</span><span class="n">subreddit</span><span class="si">}</span><span class="s1">/new.json&#39;</span>
+<span class="n">output</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</code></pre></div>
+
+
+<p>The above code makes a call to the Reddit website for a given sub-reddit. In this case, it is for 'Tableau', a sub-reddit about the dashboard software called the same. We include some headers to tell them who we are (often looking at the <a href="https://www.reddit.com/robots.txt">robots.txt</a> file will help you how to figure out to be nice towards the host). We are using Python's <em>requests</em> package to make a call to the server.</p>
+<p>If we include this in the flask application, and pass the output to the <em>render_template</em> function, we will end with the following:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">render_template</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="n">endpoint</span> <span class="o">=</span> <span class="s1">&#39;https://www.reddit.com/&#39;</span>
+
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;User-Agent&#39;</span><span class="p">:</span> <span class="s2">&quot;Python-Everything&#39;s Reddit Test (by /u/lindsen13)&quot;</span>
+<span class="p">}</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/&lt;string:subreddit&gt;&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">hello_world</span><span class="p">(</span><span class="n">subreddit</span><span class="p">):</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">endpoint</span><span class="si">}</span><span class="s1">/r/</span><span class="si">{</span><span class="n">subreddit</span><span class="si">}</span><span class="s1">/new.json&#39;</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;index.html&#39;</span><span class="p">,</span> <span class="n">output</span><span class="o">=</span><span class="n">output</span><span class="p">)</span>
+</code></pre></div>
+
+
+<p>Some more things are added, like the <em>string:subreddit</em> argument in the <em>@app.route()</em> function. This allows us to use the application for any sub-reddit we want!</p>
+<p>Running the Flask application with <em>flask run</em> will not change the view we see. We have not yet told our <em>.html</em> file how to handle the new <em>output</em> variable. We are using <a href="https://jinja.palletsprojects.com/en/2.11.x/">jinja2's</a> templating language to show the information on our application by looping over the output variable.</p>
+<div class="codehilite"><pre><span></span><code><span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Reddit App Example<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">table</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">thead</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">th</span><span class="p">&gt;</span>Title<span class="p">&lt;/</span><span class="nt">th</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">th</span><span class="p">&gt;</span>Author<span class="p">&lt;/</span><span class="nt">th</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">th</span><span class="p">&gt;</span>Ups<span class="p">&lt;/</span><span class="nt">th</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">th</span><span class="p">&gt;</span>Link<span class="p">&lt;/</span><span class="nt">th</span><span class="p">&gt;</span>
+            <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">thead</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">tbody</span><span class="p">&gt;</span>
+            {% for post in output.data.children %}
+            <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>{{ post.data.title }}<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>{{ post.data.author }}<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>{{ post.data.ups }}<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;{{ post.data.url }}&quot;</span><span class="p">&gt;</span>click<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+            <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+            {% endfor %}
+        <span class="p">&lt;/</span><span class="nt">tbody</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">table</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</code></pre></div>
+
+
+<p>As you can see, we use <em>{% for post in output.data.children%}</em> to loop over each post. We return the title (<em>post.data.title</em>), author (<em>post.data.author</em>), ups (<em>post.data.ups</em>) and the link tot reddit's page so we can see all the comments (<em>post.data.url</em>)</p>
+<p>The output can be found <a href="/examples/flask-python-application.html">here</a>.</p>
+<p>This is a quick-and-dirty example of how I would start to make a custom application for reddit. Using Reddit's API, you are able to let users authenticate with their reddit account, and with that you can even make post statements to let users upvote a post, create a new threat or create a comment on an existing one!</p></p>
+                </div>
+                <div class="col-md-4 sidebar">
+                    <div class="sidebar-box">
+                        <h3>Making a custom Reddit application</h3>
+                        <img src="/static/img/blogposts/74.png" alt="Image" class="round-image img-fluid">
+                        <p><p>Using Flask and Requests together with some HTML to build an front-end application for a sub-reddit of your choice!</p></p>
+                    </div>
+                    <div class="sidebar-box">
+                        <div class="categories">
+                            <h3>Latest posts</h3>
+                            
+                            <li><a href="/post/137/Build-your-own-Application---Deployment-on-Heroku.html">Build your own Application - Deployment on Heroku</a></li>
+                            
+                            <li><a href="/post/136/Google-is-tracking-you%2C-and-you-can-pitch-in-to-analyse-the-data%21.html">Google is tracking you, and you can pitch in to analyse the data!</a></li>
+                            
+                            <li><a href="/post/113/-Hosting-a-SQL-Database-for-your-Python-projects-with-Digital-Ocean.html"> Hosting a SQL Database for your Python projects with Digital Ocean</a></li>
+                            
+                        </div>
+                    </div>
+                    <div class="sidebar-box">
+                        <h3>Python Everything</h3>
+                        <p>We at Python Everything try to provide you with your daily Python inspiration! Our post are ment to inspire you and ensure that you start coding in Python yourself.</p>
+                        <p><a href="/about.html" class="btn btn-primary btn-sm">Read More</a></p>
+                    </div>
+                    <!--
+                    <div class="sidebar-box">
+                        <h3>Paragraph</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus itaque, autem necessitatibus voluptate quod mollitia delectus aut, sunt placeat nam vero culpa sapiente consectetur similique, inventore eos fugit cupiditate numquam!</p>
+                    </div>
+                    -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+
+
+    <!-- ======= Footer ======= -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h3>About Python Everything</h3>
+                    <p>We're python enthousiasts, who want to ensure you are getting the same smile on you face everytime your python script runs successfully.</p>
+                </div>
+                <div class="col-md-7 ml-auto">
+                    <div class="row site-section pt-0">
+                        <div class="col-md-4 mb-4 mb-md-0">
+                            <h3>Navigation</h3>
+                            <ul class="list-unstyled">
+                                <li><a href="/">Home</a></li>
+                                <li><a href="/explore/1.html">Expore</a></li>
+                                <li><a href="/#contact">Get in touch</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row justify-content-center text-center">
+                <div class="col-md-7">
+                    <p class="copyright">&copy; Copyright Python Everything. All Rights Reserved</p>
+                    <div class="credits">
+                        Designed by <a href="/">Python Everything</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+    <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+
+    <!-- Vendor JS Files -->
+    <script src="/static/vendor/jquery/jquery.min.js"></script>
+    <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/vendor/jquery.easing/jquery.easing.min.js"></script>
+    <script src="/static/vendor/aos/aos.js"></script>
+    <script src="/static/vendor/owl.carousel/owl.carousel.min.js"></script>
+    <script src="/static/vendor/jquery-sticky/jquery.sticky.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="/static/js/main.js"></script>
+
+</body>
+
+</html>

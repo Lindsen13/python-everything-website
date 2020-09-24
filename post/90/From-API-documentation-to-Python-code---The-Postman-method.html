@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-149203155-2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-149203155-2');
+    </script>
+    <!-- Favicons -->
+
+    <link href="/static/img/favicon/android-chrome-512x512.png" rel="icon">
+    <link href="/static/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/vendor/markdown-converter/styles.css" rel="stylesheet">
+
+    <link href="/static/vendor/icofont/icofont.min.css" rel="stylesheet">
+    <link href="/static/vendor/aos/aos.css" rel="stylesheet">
+    <link href="/static/vendor/line-awesome/css/line-awesome.min.css" rel="stylesheet">
+    <link href="/static/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="/static/css/style.css" rel="stylesheet">
+
+    <meta name="robots" content="index, follow">
+
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"> 
+<title>Python Everything - From API documentation to Python code - The Postman method</title>
+<meta name="description" content="How to generate code for APIs in seconds with Postman and Python - When working with Python, or any programming language for that matter, APIs a..."> 
+</head>
+
+<body>
+
+    <!-- ======= Mobile Menu ======= -->
+    <div class="site-mobile-menu site-navbar-target">
+        <div class="site-mobile-menu-header">
+            <div class="site-mobile-menu-close mt-3">
+                <span class="icofont-close js-menu-toggle"></span>
+            </div>
+        </div>
+        <div class="site-mobile-menu-body"></div>
+    </div>
+
+    <!-- ======= Header ======= -->
+    <header class="site-navbar js-sticky-header site-navbar-target" role="banner">
+
+        <div class="container">
+            <div class="row align-items-center">
+
+                <div class="col-6 col-lg-2">
+                    <h1 class="mb-0 site-logo"><a href="/" class="mb-0">Python Everything</a></h1>
+                </div>
+
+                <div class="col-12 col-md-10 d-none d-lg-block">
+                    <nav class="site-navigation position-relative text-right" role="navigation">
+
+                        <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
+                            <li class="active"><a href="/" class="nav-link">Home</a></li>
+                            <li><a href="/explore/1.html" class="nav-link">Explore</a></li>
+                            <li><a href="/authors.html" class="nav-link">Collaborators</a></li>
+                            <li><a href="/#contact" class="nav-link">Get in touch</a></li>
+                        </ul>
+                    </nav>
+                </div>
+
+                <div class="col-6 d-inline-block d-lg-none ml-md-0 py-3" style="position: relative; top: 3px;">
+
+                    <a href="#" class="burger site-menu-toggle js-menu-toggle" data-toggle="collapse" data-target="#main-navbar">
+                        <span></span>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+    </header>
+
+    
+
+<main id="main">
+
+    <section class="hero-section inner-page">
+        <div class="wave">
+
+            <svg width="1920px" height="265px" viewBox="0 0 1920 265" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+          <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+            <g id="Apple-TV" transform="translate(0.000000, -402.000000)" fill="#FFFFFF">
+              <path d="M0,439.134243 C175.04074,464.89273 327.944386,477.771974 458.710937,477.771974 C654.860765,477.771974 870.645295,442.632362 1205.9828,410.192501 C1429.54114,388.565926 1667.54687,411.092417 1920,477.771974 L1920,667 L1017.15166,667 L0,667 L0,439.134243 Z" id="Path"></path>
+            </g>
+          </g>
+        </svg>
+
+        </div>
+
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-12">
+                    <div class="row justify-content-center">
+                        <div class="col-md-10 text-center hero-text">
+                            <h1 data-aos="fade-up" data-aos-delay=""><h1>From API documentation to Python code - The Postman method</h1></h1>
+                            <p class="mb-5" data-aos="fade-up" data-aos-delay="100">2020-08-12 &bullet; By <a href="#" class="text-white">Ivo</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <section class="site-section mb-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 blog-content">
+
+                    <p class="lead mb-5"><p>How to generate code for <strong>API</strong>s in seconds with <strong>Postman</strong> and <strong>Python</strong></p></p>
+                    <p><p>When working with Python, or any programming language for that matter, APIs are always a theme that has to be dealt with. My go to tool to check my API calls is <a href="https://www.postman.com/">Postman</a>.</p>
+<p>This short post will explain how to get from Postman to running Python code. Let's assume we would like to fetch the <a href="https://fixer.io/">Fixer.io</a> with their API (just like we did for our <a href="https://python-everything.com/post/76/Aligning-currency-conversions-in-your-organisation-with-APIs-and-Python%21.html">ETL series</a>). To do so, we follow their <a href="https://fixer.io/documentation">documentation</a>, and replicate the API calls with <a href="https://www.postman.com/">Postman</a>. This will result in the following:</p>
+<p><img alt="Postman layout with info inserted" src="https://python-everything.com/static/blogpost_content/working with apis.png" /></p>
+<p>Now we have the API running in <a href="https://www.postman.com/">Postman</a>. If we want to convert it to Python code, we only have press the 'code' button, search for Python and choose our prefered library. I always use the <em>Requests</em> library, but you are free to choose the <em>http.client</em> library instead.</p>
+<p><img alt="Postman Python code" src="https://python-everything.com/static/blogpost_content/working with apis.png" /></p>
+<p>We only have to copy-paste this into our Python script and we are good to go! </p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;http://data.fixer.io/api/latest?access_key=API_KEY&amp;base=EUR&amp;symbols=USD&quot;</span>
+
+<span class="n">payload</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+<span class="s1">&#39;Accept&#39;</span><span class="p">:</span> <span class="s1">&#39;application/json&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s2">&quot;GET&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">payload</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf8&#39;</span><span class="p">))</span>
+</code></pre></div>
+
+
+<p>Which gives us:</p>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span>
+    <span class="s2">&quot;success&quot;</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="s2">&quot;timestamp&quot;</span><span class="o">:</span> <span class="mi">1597253945</span><span class="p">,</span>
+    <span class="s2">&quot;base&quot;</span><span class="o">:</span> <span class="s2">&quot;EUR&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;date&quot;</span><span class="o">:</span> <span class="s2">&quot;2020-08-12&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;rates&quot;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;USD&quot;</span><span class="o">:</span> <span class="mf">1.17875</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+
+<p>Thanks for reading!</p></p>
+                </div>
+                <div class="col-md-4 sidebar">
+                    <div class="sidebar-box">
+                        <h3>From API documentation to Python code - The Postman method</h3>
+                        <img src="/static/img/blogposts/90.png" alt="Image" class="round-image img-fluid">
+                        <p><p>How to generate code for <strong>API</strong>s in seconds with <strong>Postman</strong> and <strong>Python</strong></p></p>
+                    </div>
+                    <div class="sidebar-box">
+                        <div class="categories">
+                            <h3>Latest posts</h3>
+                            
+                            <li><a href="/post/137/Build-your-own-Application---Deployment-on-Heroku.html">Build your own Application - Deployment on Heroku</a></li>
+                            
+                            <li><a href="/post/136/Google-is-tracking-you%2C-and-you-can-pitch-in-to-analyse-the-data%21.html">Google is tracking you, and you can pitch in to analyse the data!</a></li>
+                            
+                            <li><a href="/post/113/-Hosting-a-SQL-Database-for-your-Python-projects-with-Digital-Ocean.html"> Hosting a SQL Database for your Python projects with Digital Ocean</a></li>
+                            
+                        </div>
+                    </div>
+                    <div class="sidebar-box">
+                        <h3>Python Everything</h3>
+                        <p>We at Python Everything try to provide you with your daily Python inspiration! Our post are ment to inspire you and ensure that you start coding in Python yourself.</p>
+                        <p><a href="/about.html" class="btn btn-primary btn-sm">Read More</a></p>
+                    </div>
+                    <!--
+                    <div class="sidebar-box">
+                        <h3>Paragraph</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus itaque, autem necessitatibus voluptate quod mollitia delectus aut, sunt placeat nam vero culpa sapiente consectetur similique, inventore eos fugit cupiditate numquam!</p>
+                    </div>
+                    -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+
+
+    <!-- ======= Footer ======= -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h3>About Python Everything</h3>
+                    <p>We're python enthousiasts, who want to ensure you are getting the same smile on you face everytime your python script runs successfully.</p>
+                </div>
+                <div class="col-md-7 ml-auto">
+                    <div class="row site-section pt-0">
+                        <div class="col-md-4 mb-4 mb-md-0">
+                            <h3>Navigation</h3>
+                            <ul class="list-unstyled">
+                                <li><a href="/">Home</a></li>
+                                <li><a href="/explore/1.html">Expore</a></li>
+                                <li><a href="/#contact">Get in touch</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row justify-content-center text-center">
+                <div class="col-md-7">
+                    <p class="copyright">&copy; Copyright Python Everything. All Rights Reserved</p>
+                    <div class="credits">
+                        Designed by <a href="/">Python Everything</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+    <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+
+    <!-- Vendor JS Files -->
+    <script src="/static/vendor/jquery/jquery.min.js"></script>
+    <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/vendor/jquery.easing/jquery.easing.min.js"></script>
+    <script src="/static/vendor/aos/aos.js"></script>
+    <script src="/static/vendor/owl.carousel/owl.carousel.min.js"></script>
+    <script src="/static/vendor/jquery-sticky/jquery.sticky.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="/static/js/main.js"></script>
+
+</body>
+
+</html>
