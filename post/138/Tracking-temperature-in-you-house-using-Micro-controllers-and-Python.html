@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-149203155-2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-149203155-2');
+    </script>
+    <!-- Favicons -->
+
+    <link href="/static/img/favicon/android-chrome-512x512.png" rel="icon">
+    <link href="/static/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/vendor/markdown-converter/styles.css" rel="stylesheet">
+
+    <link href="/static/vendor/icofont/icofont.min.css" rel="stylesheet">
+    <link href="/static/vendor/aos/aos.css" rel="stylesheet">
+    <link href="/static/vendor/line-awesome/css/line-awesome.min.css" rel="stylesheet">
+    <link href="/static/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="/static/css/style.css" rel="stylesheet">
+
+    <meta name="robots" content="index, follow">
+
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"> 
+<title>Python Everything - Tracking temperature in you house using Micro controllers and Python</title>
+<meta name="description" content="Using our MySQL database, Python and Arduino to make a IoT device that tracks the temperature in our room - This time, I will have to extend the programming beyond only Python and bash...."> 
+</head>
+
+<body>
+
+    <!-- ======= Mobile Menu ======= -->
+    <div class="site-mobile-menu site-navbar-target">
+        <div class="site-mobile-menu-header">
+            <div class="site-mobile-menu-close mt-3">
+                <span class="icofont-close js-menu-toggle"></span>
+            </div>
+        </div>
+        <div class="site-mobile-menu-body"></div>
+    </div>
+
+    <!-- ======= Header ======= -->
+    <header class="site-navbar js-sticky-header site-navbar-target" role="banner">
+
+        <div class="container">
+            <div class="row align-items-center">
+
+                <div class="col-6 col-lg-2">
+                    <h1 class="mb-0 site-logo"><a href="/" class="mb-0">Python Everything</a></h1>
+                </div>
+
+                <div class="col-12 col-md-10 d-none d-lg-block">
+                    <nav class="site-navigation position-relative text-right" role="navigation">
+
+                        <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
+                            <li class="active"><a href="/" class="nav-link">Home</a></li>
+                            <li><a href="/explore/1.html" class="nav-link">Explore</a></li>
+                            <li><a href="/authors.html" class="nav-link">Collaborators</a></li>
+                            <li><a href="/#contact" class="nav-link">Get in touch</a></li>
+                        </ul>
+                    </nav>
+                </div>
+
+                <div class="col-6 d-inline-block d-lg-none ml-md-0 py-3" style="position: relative; top: 3px;">
+
+                    <a href="#" class="burger site-menu-toggle js-menu-toggle" data-toggle="collapse" data-target="#main-navbar">
+                        <span></span>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+    </header>
+
+    
+
+<main id="main">
+
+    <section class="hero-section inner-page">
+        <div class="wave">
+
+            <svg width="1920px" height="265px" viewBox="0 0 1920 265" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+          <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+            <g id="Apple-TV" transform="translate(0.000000, -402.000000)" fill="#FFFFFF">
+              <path d="M0,439.134243 C175.04074,464.89273 327.944386,477.771974 458.710937,477.771974 C654.860765,477.771974 870.645295,442.632362 1205.9828,410.192501 C1429.54114,388.565926 1667.54687,411.092417 1920,477.771974 L1920,667 L1017.15166,667 L0,667 L0,439.134243 Z" id="Path"></path>
+            </g>
+          </g>
+        </svg>
+
+        </div>
+
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-12">
+                    <div class="row justify-content-center">
+                        <div class="col-md-10 text-center hero-text">
+                            <h1 data-aos="fade-up" data-aos-delay=""><h1>Tracking temperature in you house using Micro controllers and Python</h1></h1>
+                            <p class="mb-5" data-aos="fade-up" data-aos-delay="100">2020-09-28 &bullet; By <a href="#" class="text-white">Ivo</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <section class="site-section mb-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 blog-content">
+
+                    <p class="lead mb-5"><h2>Using our MySQL database, Python and Arduino to make a IoT device that tracks the temperature in our room</h2></p>
+                    <p><p>This time, I will have to extend the programming beyond only Python and bash. The reason for it, is because I would like to show what I have made with Arduino. Arduino is <em>an open-source electronics platform based on easy-to-use hardware and software</em> (<a href="https://www.arduino.cc/">source</a>). Lets use it to create system that:</p>
+<ol>
+<li>Measures the temperature in our room every 5 minutes</li>
+<li>Calls a Google Cloud Function whith the current temperature</li>
+<li>Store the value in our MySQL database</li>
+</ol>
+<p>I have chosen to include step 2, because this allows me to do most of the code in Python, I only need a small part of code for the Arduino. Lets see what we used for that!</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">#include</span> <span class="cpf">&lt;OneWire.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;DallasTemperature.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;ESP8266WiFi.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;ESP8266HTTPClient.h&gt;</span><span class="cp"></span>
+
+<span class="c1">// Info pin comes in at D3 (=0 for wemos)</span>
+<span class="cp">#define ONE_WIRE_PIN 0</span>
+
+<span class="c1">// Variables for temperature unit</span>
+<span class="n">OneWire</span> <span class="nf">oneWire</span><span class="p">(</span><span class="n">ONE_WIRE_PIN</span><span class="p">);</span>
+<span class="n">DallasTemperature</span> <span class="nf">sensors</span><span class="p">(</span><span class="o">&amp;</span><span class="n">oneWire</span><span class="p">);</span>
+
+<span class="c1">// Variables for Wifi connection</span>
+<span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">ssid</span> <span class="o">=</span> <span class="s">&quot;WiFimodem-5C2A&quot;</span><span class="p">;</span>
+<span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">password</span> <span class="o">=</span> <span class="s">&quot;czy2ejz3tz&quot;</span><span class="p">;</span>
+
+<span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span> <span class="p">{</span>
+<span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">115200</span><span class="p">);</span>
+<span class="c1">//Connect to wifi</span>
+<span class="n">delay</span><span class="p">(</span><span class="mi">2000</span><span class="p">);</span>
+<span class="n">WiFi</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="n">ssid</span><span class="p">,</span> <span class="n">password</span><span class="p">);</span>
+
+<span class="k">while</span> <span class="p">(</span><span class="n">WiFi</span><span class="p">.</span><span class="n">status</span><span class="p">()</span> <span class="o">!=</span> <span class="n">WL_CONNECTED</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">delay</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">WiFi connected&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span> <span class="p">{</span>
+<span class="c1">// Get current temperature and create URL</span>
+<span class="n">sensors</span><span class="p">.</span><span class="n">requestTemperatures</span><span class="p">();</span>
+<span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">sensors</span><span class="p">.</span><span class="n">getTempCByIndex</span><span class="p">(</span><span class="mi">0</span><span class="p">));</span>
+<span class="kt">float</span> <span class="n">sensorValue</span> <span class="o">=</span> <span class="n">sensors</span><span class="p">.</span><span class="n">getTempCByIndex</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="n">String</span> <span class="n">url</span> <span class="o">=</span> <span class="s">&quot;http://url-to-my.end/point?location=living_room&amp;type=temperature&amp;value=&quot;</span> <span class="o">+</span> <span class="n">String</span><span class="p">(</span><span class="n">sensorValue</span><span class="p">);</span>
+
+<span class="c1">// Make HTTP Request to my Google Cloud Function</span>
+<span class="n">HTTPClient</span> <span class="n">http</span><span class="p">;</span> 
+<span class="n">http</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="n">url</span><span class="p">);</span>
+<span class="kt">int</span> <span class="n">status_code</span> <span class="o">=</span> <span class="n">http</span><span class="p">.</span><span class="n">GET</span><span class="p">();</span>
+<span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">status_code</span><span class="p">);</span>
+<span class="n">String</span> <span class="n">response</span> <span class="o">=</span> <span class="n">http</span><span class="p">.</span><span class="n">getString</span><span class="p">();</span>
+<span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">response</span><span class="p">);</span>
+
+<span class="c1">// Done processing, lets reinitiate the script in 60 minutes.</span>
+<span class="n">delay</span><span class="p">(</span><span class="mi">300000</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+
+<p>As you can see, lots of it looks somehow familiar to Python. First, we load in the required libraries. In this case, we use libraries that allow the hardware I am using, which is a wemos <em>ESP8266</em>. This is not the original Arduino, it is a cheap and small alternative. Next to this, I am using a Dellas <em>DS18B20</em> temperature module. One interesting library which we add is ESP8266HTTPClient, which allows us to make HTTP requests, just like Pyhton's <em>requests</em> library.</p>
+<p>After that, we assign some variables, most of them quite self-explaining. At one point we arrive in the <em>loop</em> function, which will be executed infinitely. Here, we measure the temperature:</p>
+<div class="codehilite"><pre><span></span><code><span class="err">sensors.requestTemperatures();</span>
+<span class="err">float sensorValue = sensors.getTempCByIndex(0);</span>
+</code></pre></div>
+
+
+<p>Next, we construct a url with the <em>sensorValue</em> variable:</p>
+<div class="codehilite"><pre><span></span><code><span class="err">String url = &quot;http://url-to-my.end/point?location=living_room&amp;type=temperature&amp;value=&quot; + String(sensorValue);</span>
+</code></pre></div>
+
+
+<p>Which is then used to make a http request:</p>
+<div class="codehilite"><pre><span></span><code><span class="err">HTTPClient http; </span>
+<span class="err">http.begin(url);</span>
+<span class="err">int status_code = http.GET();</span>
+<span class="err">String response = http.getString();</span>
+</code></pre></div>
+
+
+<p>After which we go to sleep for 5 minutes (note that the value is in milliseconds)</p>
+<div class="codehilite"><pre><span></span><code><span class="err">delay(300000);</span>
+</code></pre></div>
+
+
+<p>That's basically all there is! Now we have to make sure the API endpoint calls a google cloud function which handles storing the data. For this, we first set up a file with our database credentials (credentials.json in this case):</p>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span>
+    <span class="s2">&quot;db&quot;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;host&quot;</span><span class="o">:</span> <span class="s2">&quot;hostname&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;username&quot;</span><span class="o">:</span> <span class="s2">&quot;username&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;password&quot;</span><span class="o">:</span> <span class="s2">&quot;password&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;db&quot;</span><span class="o">:</span> <span class="s2">&quot;database&quot;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+
+<p>Furthermore, we load in the credentials in our config.py file</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">json</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;config.json&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">json_file</span><span class="p">:</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">json_file</span><span class="p">)</span>
+
+<span class="c1"># Define database credentials</span>
+<span class="n">db</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;host&quot;</span><span class="p">:</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;db&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;host&#39;</span><span class="p">),</span>
+    <span class="s2">&quot;username&quot;</span><span class="p">:</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;db&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;username&#39;</span><span class="p">),</span>
+    <span class="s2">&quot;password&quot;</span><span class="p">:</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;db&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;password&#39;</span><span class="p">),</span>
+    <span class="s2">&quot;db&quot;</span><span class="p">:</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;db&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;db&#39;</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+
+
+<p>With this, we can start building our data model in MySQL (a table that stores our data). We store this in our <em>model.py</em> file.</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">sqlalchemy.ext.declarative</span> <span class="kn">import</span> <span class="n">declarative_base</span>
+<span class="kn">from</span> <span class="nn">sqlalchemy.orm</span> <span class="kn">import</span> <span class="n">sessionmaker</span>
+<span class="kn">from</span> <span class="nn">sqlalchemy.pool</span> <span class="kn">import</span> <span class="n">NullPool</span>
+
+<span class="kn">from</span> <span class="nn">config</span> <span class="kn">import</span> <span class="n">db</span>
+
+<span class="n">DeclarativeBase</span> <span class="o">=</span> <span class="n">declarative_base</span><span class="p">()</span>
+
+<span class="n">db_url</span> <span class="o">=</span> <span class="s2">&quot;mysql+pymysql://</span><span class="si">%s</span><span class="s2">:</span><span class="si">%s</span><span class="s2">@</span><span class="si">%s</span><span class="s2">/</span><span class="si">%s</span><span class="s2">?charset=UTF8MB4&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;username&#39;</span><span class="p">),</span> <span class="n">db</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;password&#39;</span><span class="p">),</span> <span class="n">db</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;host&#39;</span><span class="p">),</span> <span class="n">db</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;db&#39;</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">db_connect</span><span class="p">():</span>
+    <span class="sd">&#39;&#39;&#39;Create connection to database&#39;&#39;&#39;</span>
+    <span class="k">return</span> <span class="n">create_engine</span><span class="p">(</span><span class="n">db_url</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">,</span> <span class="n">poolclass</span><span class="o">=</span><span class="n">NullPool</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">create_db_session</span><span class="p">(</span><span class="n">engine</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Create session with database&#39;&#39;&#39;</span>
+    <span class="n">Session</span> <span class="o">=</span> <span class="n">sessionmaker</span><span class="p">(</span><span class="n">bind</span><span class="o">=</span><span class="n">engine</span><span class="p">,</span> <span class="n">autoflush</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">session</span> <span class="o">=</span> <span class="n">Session</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">session</span>
+
+<span class="n">Base</span> <span class="o">=</span> <span class="n">declarative_base</span><span class="p">()</span>
+<span class="n">metadata</span> <span class="o">=</span> <span class="n">Base</span><span class="o">.</span><span class="n">metadata</span>
+
+<span class="k">class</span> <span class="nc">dsi_IOTdevices</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Table for dsi_IOTdevices</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">__tablename__</span> <span class="o">=</span> <span class="s1">&#39;dsi_IOTdevices&#39;</span>
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">autoincrement</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">created</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">DateTime</span><span class="p">,</span> <span class="n">server_default</span><span class="o">=</span><span class="n">func</span><span class="o">.</span><span class="n">now</span><span class="p">())</span>
+    <span class="n">location</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">(</span><span class="mi">255</span><span class="p">),</span> <span class="n">nullable</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="nb">type</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">(</span><span class="mi">255</span><span class="p">),</span> <span class="n">nullable</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Float</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Creating connection&#39;</span><span class="p">)</span>
+    <span class="n">engine</span> <span class="o">=</span> <span class="n">db_connect</span><span class="p">()</span>
+    <span class="n">session</span> <span class="o">=</span> <span class="n">create_db_session</span><span class="p">(</span><span class="n">engine</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Dropping table&#39;</span><span class="p">)</span>
+    <span class="n">dsi_IOTdevices</span><span class="o">.</span><span class="n">__table__</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">engine</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Done dropping table&#39;</span><span class="p">)</span>
+    <span class="n">Base</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">create_all</span><span class="p">(</span><span class="n">engine</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Done creating table&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+
+<p>Note that the first time you call this file, you cannot execute <em>dsi_IOTdevices.<strong>table</strong>.drop(engine)</em>, so you have to comment that our for the first time you run it.</p>
+<p>Now we have our IoT device in place, and our table to store the data. Now we need to create a function that takes a location ('living_room'), a type ('temperature') and a value ('25.34'). Note that the structure of the table allows us to add more IoT devices in the future, perhaps one that measures the humidity or the amount of light.</p>
+<p>Our <em>script.py</em> file will contain the following:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">pymysql</span>
+<span class="kn">from</span> <span class="nn">config</span> <span class="kn">import</span> <span class="n">db</span> <span class="k">as</span> <span class="n">db_credentials</span>
+
+<span class="k">def</span> <span class="nf">create_query</span><span class="p">(</span><span class="n">location</span><span class="p">,</span> <span class="nb">type</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;INSERT INTO dsi_IOTdevices (location, type, value) VALUES (&quot;</span><span class="si">{</span><span class="n">location</span><span class="si">}</span><span class="s1">&quot;,&quot;</span><span class="si">{</span><span class="nb">type</span><span class="si">}</span><span class="s1">&quot;, &quot;</span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s1">&quot;)&#39;</span>
+
+<span class="k">def</span> <span class="nf">create_connection</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">pymysql</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="n">db_credentials</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;host&quot;</span><span class="p">),</span>
+                        <span class="n">user</span><span class="o">=</span><span class="n">db_credentials</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;username&quot;</span><span class="p">),</span>
+                        <span class="n">password</span><span class="o">=</span><span class="n">db_credentials</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;password&quot;</span><span class="p">),</span>
+                        <span class="n">db</span><span class="o">=</span><span class="n">db_credentials</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;db&quot;</span><span class="p">),</span>
+                        <span class="n">charset</span><span class="o">=</span><span class="s1">&#39;utf8mb4&#39;</span><span class="p">,</span>
+                        <span class="n">cursorclass</span><span class="o">=</span><span class="n">pymysql</span><span class="o">.</span><span class="n">cursors</span><span class="o">.</span><span class="n">DictCursor</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">store_data</span><span class="p">(</span><span class="n">query</span><span class="p">):</span>
+    <span class="n">connection</span> <span class="o">=</span> <span class="n">create_connection</span><span class="p">()</span>
+    <span class="k">with</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span> <span class="k">as</span> <span class="n">cursor</span><span class="p">:</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+    <span class="n">connection</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+    <span class="n">connection</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">location</span><span class="p">,</span> <span class="nb">type</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="n">create_query</span><span class="p">(</span><span class="n">location</span><span class="p">,</span> <span class="nb">type</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+    <span class="n">store_data</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+    <span class="k">return</span> <span class="s1">&#39;Success&#39;</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">(</span><span class="s1">&#39;test-location&#39;</span><span class="p">,</span><span class="s1">&#39;temperature&#39;</span><span class="p">,</span><span class="mi">25</span><span class="p">)</span>
+</code></pre></div>
+
+
+<p>The magic function is the <em>main()</em> function. It will create a query, stores the data and returns 'success'. We can run the file to see if everything is working:</p>
+<div class="codehilite"><pre><span></span><code>python3 script.py
+</code></pre></div>
+
+
+<p>Which returns 'success' for me, and in my MySQL database I can see that the test row is added.</p>
+<p>To prepare deployment to Google Cloud Platform, we have to create a file that handles a requests from a URL, and in calls the <em>main()</em> function. I place this in our <em>main.py</em> file.</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">script</span> <span class="kn">import</span> <span class="n">main</span>
+
+<span class="k">def</span> <span class="nf">process_request</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">args</span><span class="p">:</span>
+        <span class="n">location</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">args</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;location&#39;</span><span class="p">)</span>
+        <span class="nb">type</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">args</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;type&#39;</span><span class="p">)</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">args</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">)</span>
+        <span class="n">stored_message</span> <span class="o">=</span> <span class="n">main</span><span class="p">(</span><span class="n">location</span><span class="p">,</span> <span class="nb">type</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;info retrieved: </span><span class="si">{</span><span class="n">location</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="nb">type</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">. Storage: </span><span class="si">{</span><span class="n">stored_message</span><span class="si">}</span><span class="s2">.&quot;</span>
+        <span class="k">return</span> <span class="n">output</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;No parameters provided&quot;</span>
+</code></pre></div>
+
+
+<p>Next, we have to define a <em>requirements.txt</em> file:</p>
+<div class="codehilite"><pre><span></span><code>pip3 freeze &gt; requirements.txt
+</code></pre></div>
+
+
+<p>which should look like the following:</p>
+<p><em>PyMySQL==0.10.1&amp;</em>
+<em>SQLAlchemy==1.3.19</em></p>
+<p>And lastly, we have to create a bash command that will upload our code to GCP, and provides us with a url that we can invoke to store the data:</p>
+<div class="codehilite"><pre><span></span><code>gcloud functions deploy ArduinoEndpoint <span class="se">\</span>
+--entry-point ArduinoEndpoint <span class="se">\</span>
+--runtime python37 <span class="se">\</span>
+--trigger-http <span class="se">\</span>
+--allow-unauthenticated <span class="se">\</span>
+--entry-point process_request <span class="se">\</span>
+--project personaliot
+</code></pre></div>
+
+
+<p>Note that I had to go in the browser to allow some APIs to be used, since my <em>ArduinoEndpoint</em> project is set up fresh. If I would add a function, it should most likely work straight out of the box. Deployment may take up to 2 minutes, as you should see in your terminal when running the bash command above.</p>
+<p>Once that's done, it will return some information, among others the <em>httpsTrigger</em>. This is the url which allows us to store the data. We can test if it works with cUrl:</p>
+<div class="codehilite"><pre><span></span><code><span class="err">curl --location --request GET &#39;http://url-to-my.end/point?location=test&amp;type=temperature&amp;value=25.43&#39;</span>
+</code></pre></div>
+
+
+<p>Or we can make the request with Python:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;http://url-to-my.end/point?location=test&amp;type=temperature&amp;value=25.43&#39;</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+</code></pre></div>
+
+
+<p>Let's insert the url in our Arduino script, and we should be good to go!</p>
+<p><img alt="Arduino micro controller with a temperature sensor" src="https://python-everything.com/static/blogpost_content/iot_arduino/arduino_temperature_measure.png" /></p>
+<p>Next up is building a couple more of them, and spread them across my house!</p></p>
+                </div>
+                <div class="col-md-4 sidebar">
+                    <div class="sidebar-box">
+                        <h3>Tracking temperature in you house using Micro controllers and Python</h3>
+                        <img src="/static/img/blogposts/138.png" alt="Image" class="round-image img-fluid">
+                        <p><h2>Using our MySQL database, Python and Arduino to make a IoT device that tracks the temperature in our room</h2></p>
+                    </div>
+                    <div class="sidebar-box">
+                        <div class="categories">
+                            <h3>Latest posts</h3>
+                            
+                            <li><a href="/post/138/Tracking-temperature-in-you-house-using-Micro-controllers-and-Python.html">Tracking temperature in you house using Micro controllers and Python</a></li>
+                            
+                            <li><a href="/post/137/Build-your-own-Application---Deployment-on-Heroku.html">Build your own Application - Deployment on Heroku</a></li>
+                            
+                            <li><a href="/post/136/Google-is-tracking-you%2C-and-you-can-pitch-in-to-analyse-the-data%21.html">Google is tracking you, and you can pitch in to analyse the data!</a></li>
+                            
+                        </div>
+                    </div>
+                    <div class="sidebar-box">
+                        <h3>Python Everything</h3>
+                        <p>We at Python Everything try to provide you with your daily Python inspiration! Our post are ment to inspire you and ensure that you start coding in Python yourself.</p>
+                        <p><a href="/about.html" class="btn btn-primary btn-sm">Read More</a></p>
+                    </div>
+                    <!--
+                    <div class="sidebar-box">
+                        <h3>Paragraph</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus itaque, autem necessitatibus voluptate quod mollitia delectus aut, sunt placeat nam vero culpa sapiente consectetur similique, inventore eos fugit cupiditate numquam!</p>
+                    </div>
+                    -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+
+
+    <!-- ======= Footer ======= -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h3>About Python Everything</h3>
+                    <p>We're python enthousiasts, who want to ensure you are getting the same smile on you face everytime your python script runs successfully.</p>
+                </div>
+                <div class="col-md-7 ml-auto">
+                    <div class="row site-section pt-0">
+                        <div class="col-md-4 mb-4 mb-md-0">
+                            <h3>Navigation</h3>
+                            <ul class="list-unstyled">
+                                <li><a href="/">Home</a></li>
+                                <li><a href="/explore/1.html">Expore</a></li>
+                                <li><a href="/#contact">Get in touch</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row justify-content-center text-center">
+                <div class="col-md-7">
+                    <p class="copyright">&copy; Copyright Python Everything. All Rights Reserved</p>
+                    <div class="credits">
+                        Designed by <a href="/">Python Everything</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+    <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+
+    <!-- Vendor JS Files -->
+    <script src="/static/vendor/jquery/jquery.min.js"></script>
+    <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/vendor/jquery.easing/jquery.easing.min.js"></script>
+    <script src="/static/vendor/aos/aos.js"></script>
+    <script src="/static/vendor/owl.carousel/owl.carousel.min.js"></script>
+    <script src="/static/vendor/jquery-sticky/jquery.sticky.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="/static/js/main.js"></script>
+
+</body>
+
+</html>
