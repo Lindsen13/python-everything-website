@@ -38,8 +38,8 @@
 
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport"> 
-<title>Python Everything - Animated plotting of data with less than 10 lines of code!</title>
-<meta name="description" content="Using Pandas Alive and YFinance to show Apple&#39;s stock data over the last 2 decades   - The other day, I was listening to my favourite podcast &lt;a href=&#34;https://pytho..."> 
+<title>Python Everything - A simple dashboard based on the data from my Arduino project</title>
+<meta name="description" content="Using Tableau and my previous IoT devices build with Ardunio and Google Cloud Functions to create amazing dashboard - Remember, in one of my &lt;a href=&#34;https://python-everything.com/post/138/Tracki..."> 
 </head>
 
 <body>
@@ -110,8 +110,8 @@
                 <div class="col-12">
                     <div class="row justify-content-center">
                         <div class="col-md-10 text-center hero-text">
-                            <h1 data-aos="fade-up" data-aos-delay=""><h1>Animated plotting of data with less than 10 lines of code!</h1></h1>
-                            <p class="mb-5" data-aos="fade-up" data-aos-delay="100">2020-09-01 &bullet; By <a href="#" class="text-white">Ivo</a></p>
+                            <h1 data-aos="fade-up" data-aos-delay=""><h1>A simple dashboard based on the data from my Arduino project</h1></h1>
+                            <p class="mb-5" data-aos="fade-up" data-aos-delay="100">2020-11-05 &bullet; By <a href="#" class="text-white">Ivo</a></p>
                         </div>
                     </div>
                 </div>
@@ -125,98 +125,57 @@
             <div class="row">
                 <div class="col-md-8 blog-content">
 
-                    <p class="lead mb-5"><p>Using <strong>Pandas Alive</strong> and <strong>YFinance</strong> to show Apple's stock data over the last 2 decades  </p></p>
-                    <p><p>The other day, I was listening to my favourite podcast <a href="https://pythonbytes.fm/">Python Bytes</a> from <a href="https://twitter.com/mkennedy">Michael Kennedy</a> and <a href="https://twitter.com/brianokken">Brian Okken</a>. They mentioned in <a href="https://pythonbytes.fm/episodes/show/196/version-your-sql-schemas-with-git-automatically-migrate-them">one of their episode</a> a package called <strong>Pandas_Alive</strong>. The name itself made me very curious.</p>
-<h2>Lets use Pandas Alive to generate a nice gif for a dataset!</h2>
-<p>First of all, lets install the dependencies (and yes, you should do this in a virtual environment!)</p>
-<div class="codehilite"><pre><span></span><code>pip3 install pandas
-pip3 install yfinance
-pip3 install pandas_datareader
-pip3 install pandas_alive
-</code></pre></div>
+                    <p class="lead mb-5"><p>Using Tableau and my previous IoT devices build with Ardunio and Google Cloud Functions to create amazing dashboard</p></p>
+                    <p><p>Remember, in one of my <a href="https://python-everything.com/post/138/Tracking-temperature-in-you-house-using-Micro-controllers-and-Python.html">last posts</a> I made a simple device that tracks the temperature in the room. I have right now 3 of them running, all writing data to the same SQL database with the help of Google Cloud functions.</p>
+<p>In this post, I'd quickly would like to show what I did with this data. Although I did not have to use any Python code, it's still something which is pretty cool.</p>
+<h2>A simple dashboard with Tableau Public</h2>
+<p>I made a simple dashboard with this data, and uploaded it to Tableau public. Now I can always see what the temperature is in my house, for different areas.</p>
+<div class='tableauPlaceholder' id='viz1604583634749' style='position: relative'><noscript><a
+            href='https:&#47;&#47;python-everything.com&#47;'><img alt=' '
+                src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Te&#47;TemperatureDevelopmentatHome&#47;Temperatureinfo&#47;1_rss.png'
+                style='border: none' /></a></noscript><object class='tableauViz' style='display:none;'>
+        <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
+        <param name='embed_code_version' value='3' />
+        <param name='site_root' value='' />
+        <param name='name' value='TemperatureDevelopmentatHome&#47;Temperatureinfo' />
+        <param name='tabs' value='no' />
+        <param name='toolbar' value='yes' />
+        <param name='static_image'
+            value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Te&#47;TemperatureDevelopmentatHome&#47;Temperatureinfo&#47;1.png' />
+        <param name='animate_transition' value='yes' />
+        <param name='display_static_image' value='yes' />
+        <param name='display_spinner' value='yes' />
+        <param name='display_overlay' value='yes' />
+        <param name='display_count' value='yes' />
+        <param name='language' value='en-GB' /></object></div>
+<script type='text/javascript'>
+    var divElement = document.getElementById('viz1604583634749');
+    var vizElement = divElement.getElementsByTagName('object')[0];
+    vizElement.style.width = '100%';
+    vizElement.style.height = '1927px';
+    /*if (divElement.offsetWidth > 800) {
+        vizElement.style.width = '1000px';
+        vizElement.style.height = '827px';
+    } else if (divElement.offsetWidth > 500) {
+        vizElement.style.width = '1000px';
+        vizElement.style.height = '827px';
+    } else {
+        vizElement.style.width = '100%';
+        vizElement.style.height = '1927px';
+    }*/
+    var scriptElement = document.createElement('script');
+    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+    vizElement.parentNode.insertBefore(scriptElement, vizElement);
+</script>
 
-
-<p>To stay in the theme of the last couple of posts, lets fetch some data from Yahoo Finance. Note that I have stole this code from (Ran Aroussi's Yahoo Finance package)[https://github.com/ranaroussi/yfinance].</p>
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">pandas_datareader</span> <span class="kn">import</span> <span class="n">data</span> <span class="k">as</span> <span class="n">pdr</span>
-<span class="kn">import</span> <span class="nn">yfinance</span> <span class="k">as</span> <span class="nn">yf</span>
-
-<span class="n">yf</span><span class="o">.</span><span class="n">pdr_override</span><span class="p">()</span>
-
-<span class="n">data</span> <span class="o">=</span> <span class="n">yf</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s2">&quot;AAPL&quot;</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="s2">&quot;2000-01-01&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;2020-08-01&quot;</span><span class="p">,</span> <span class="n">interval</span><span class="o">=</span><span class="s2">&quot;1mo&quot;</span><span class="p">)</span>
-</code></pre></div>
-
-
-<p>This returns</p>
-<table>
-<thead>
-<tr>
-<th>Date</th>
-<th>Open</th>
-<th>High</th>
-<th>Low</th>
-<th>CLose</th>
-<th>Adj Close</th>
-<th>Volume</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>2000-01-01</td>
-<td>0.936384</td>
-<td>1.084821</td>
-<td>0.772321</td>
-<td>0.926339</td>
-<td>0.800486</td>
-<td>1.255518e+10</td>
-</tr>
-<tr>
-<td>2000-02-01</td>
-<td>0.928571</td>
-<td>1.084821</td>
-<td>0.866071</td>
-<td>1.023438</td>
-<td>0.884392</td>
-<td>7.319782e+09</td>
-</tr>
-<tr>
-<td>2000-03-01</td>
-<td>1.058594</td>
-<td>1.342634</td>
-<td>1.017857</td>
-<td>1.212612</td>
-<td>1.047865</td>
-<td>8.698357e+09</td>
-</tr>
-</tbody>
-</table>
-<p>Now we need to make sure we do nu put all our data into the function that will create a <strong>gif</strong> for us, since that would take way to long to compute. So we summarise our data on a yearly level, and return a column that shows the first day of January of each year:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">data</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">])</span>
-<span class="n">data</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">year</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;-01-01&#39;</span><span class="p">)</span>
-<span class="n">data</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">])</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;Date&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
-</code></pre></div>
-
-
-<p>Now we would like to select the 'Open' price only:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">output</span> <span class="o">=</span> <span class="n">data</span><span class="p">[[</span><span class="s1">&#39;Open&#39;</span><span class="p">]]</span>
-</code></pre></div>
-
-
-<h2>Let's create the viz!</h2>
-<p>We can throw the <strong>output</strong> variable to our <strong>pandas_alive</strong> library:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">output</span><span class="o">.</span><span class="n">plot_animated</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;examples/example-line-chart.gif&#39;</span><span class="p">,</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;line&#39;</span><span class="p">,</span><span class="n">period_label</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;x&#39;</span><span class="p">:</span><span class="mf">0.1</span><span class="p">,</span><span class="s1">&#39;y&#39;</span><span class="p">:</span><span class="mf">0.9</span><span class="p">})</span>
-</code></pre></div>
-
-
-<p>Which returns in:</p>
-<p><img alt="Investment Application Example" src="https://python-everything.com/static/blogpost_content/pandas_alive/example_chart.gif" /></p>
-<p>Looks pretty neat, right!</p></p>
+<p>You can see that I have placed an arduino in my living room, in  my workshop and in my 3d printing enclosure. You can click on the different signs on the right to switch between the three locations. So much fun to see my personal behavior back in this data!</p>
+<p>As always, thanks for reading!</p></p>
                 </div>
                 <div class="col-md-4 sidebar">
                     <div class="sidebar-box">
-                        <h3>Animated plotting of data with less than 10 lines of code!</h3>
-                        <img src="/static/img/blogposts/106.png" alt="Image" class="round-image img-fluid">
-                        <p><p>Using <strong>Pandas Alive</strong> and <strong>YFinance</strong> to show Apple's stock data over the last 2 decades  </p></p>
+                        <h3>A simple dashboard based on the data from my Arduino project</h3>
+                        <img src="/static/img/blogposts/140.png" alt="Image" class="round-image img-fluid">
+                        <p><p>Using Tableau and my previous IoT devices build with Ardunio and Google Cloud Functions to create amazing dashboard</p></p>
                     </div>
                     <div class="sidebar-box">
                         <div class="categories">

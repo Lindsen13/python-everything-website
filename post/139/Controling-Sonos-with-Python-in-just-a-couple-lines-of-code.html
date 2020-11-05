@@ -130,97 +130,85 @@
 <p>I am currently working from home a bit more then I wanted (hence this blog). Part of my job is taking zoom or team calls spontaneously, where I have to stop the music before picking up the call. How cool would it be to be able to both pause and play music on my Sonos system with a simple script? This is how it's done!</p>
 <h2>Getting started to remotely adjust my Sonos system</h2>
 <p>Lets first install the SoCo package</p>
-<div class="codehilite"><pre><span></span><code>pip3 install soco
-</code></pre></div>
-
+<pre class="codehilite"><code class="language-bash">pip3 install soco
+</code></pre>
 
 <p>And lets make a file that will be home of our code</p>
-<div class="codehilite"><pre><span></span><code>touch script.py
-</code></pre></div>
-
+<pre class="codehilite"><code class="language-bash">touch script.py
+</code></pre>
 
 <p>In this file, we will import the <strong>soco</strong> library and the <strong>sys</strong> library. The latter is so we can pass arguments in the command line to be handled with the script.</p>
-<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">soco</span>
-<span class="kn">import</span> <span class="nn">sys</span>
-</code></pre></div>
-
+<pre class="codehilite"><code class="language-python">import soco
+import sys
+</code></pre>
 
 <p>First thing is to find all the Sonos groups on your system. For me, I am interested in the first group which is returned, the one closest to my workspace. Therefore, I specify the first element of the list of Sonos groups.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">sonos_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">soco</span><span class="o">.</span><span class="n">discover</span><span class="p">())</span>
-<span class="n">sonos</span> <span class="o">=</span> <span class="n">sonos_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-</code></pre></div>
-
+<pre class="codehilite"><code class="language-python">sonos_list = list(soco.discover())
+sonos = sonos_list[0]
+</code></pre>
 
 <p>Now we have a <strong>sonos</strong> variable that allows us to control many things! I quickly wrote the following:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;play&#39;</span><span class="p">:</span>
-    <span class="n">sonos</span><span class="o">.</span><span class="n">play</span><span class="p">()</span>
-<span class="k">elif</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;pause&#39;</span><span class="p">:</span>
-    <span class="n">sonos</span><span class="o">.</span><span class="n">pause</span><span class="p">()</span>
-<span class="k">elif</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;next&#39;</span><span class="p">:</span>
-    <span class="n">sonos</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
-<span class="k">elif</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;previous&#39;</span><span class="p">:</span>
-    <span class="n">sonos</span><span class="o">.</span><span class="n">previous</span><span class="p">()</span>
-<span class="k">elif</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;vol_up&#39;</span><span class="p">:</span>
-    <span class="n">sonos</span><span class="o">.</span><span class="n">volume</span> <span class="o">+=</span> <span class="mi">10</span>
-<span class="k">elif</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;vol_down&#39;</span><span class="p">:</span>
-    <span class="n">sonos</span><span class="o">.</span><span class="n">volume</span> <span class="o">-=</span> <span class="mi">10</span>
-</code></pre></div>
-
+<pre class="codehilite"><code class="language-python">if sys.argv[1] == 'play':
+    sonos.play()
+elif sys.argv[1] == 'pause':
+    sonos.pause()
+elif sys.argv[1] == 'next':
+    sonos.next()
+elif sys.argv[1] == 'previous':
+    sonos.previous()
+elif sys.argv[1] == 'vol_up':
+    sonos.volume += 10
+elif sys.argv[1] == 'vol_down':
+    sonos.volume -= 10
+</code></pre>
 
 <p>Get it? Running:</p>
-<div class="codehilite"><pre><span></span><code>python3 script.py play
-</code></pre></div>
-
+<pre class="codehilite"><code class="language-bash">python3 script.py play
+</code></pre>
 
 <p>Will play the current track</p>
-<div class="codehilite"><pre><span></span><code>python3 script.py pause
-</code></pre></div>
-
+<pre class="codehilite"><code class="language-bash">python3 script.py pause
+</code></pre>
 
 <p>Will pause the current track</p>
-<div class="codehilite"><pre><span></span><code>python3 script.py next
-</code></pre></div>
-
+<pre class="codehilite"><code class="language-bash">python3 script.py next
+</code></pre>
 
 <p>Will play the next track</p>
-<div class="codehilite"><pre><span></span><code>python3 script.py previous
-</code></pre></div>
-
+<pre class="codehilite"><code class="language-bash">python3 script.py previous
+</code></pre>
 
 <p>Will play the previous track (for all the guilty pleasures which you want to repeat)</p>
-<div class="codehilite"><pre><span></span><code>python3 script.py vol_up
-</code></pre></div>
-
+<pre class="codehilite"><code class="language-bash">python3 script.py vol_up
+</code></pre>
 
 <p>Will increase 1/10th of the volume</p>
-<div class="codehilite"><pre><span></span><code>python3 script.py vol_down
-</code></pre></div>
-
+<pre class="codehilite"><code class="language-bash">python3 script.py vol_down
+</code></pre>
 
 <p>Will decrease 1/10th of the volume</p>
 <p>I did not expect it to be so simple! What I did, is made a workflow with Alfred. What this is exactly, and how you can do it as well can be found <a href="https://python-everything.com/post/93/Running-Python-script-with-Alfred%2C-the-productivity-booster%21.html">here</a></p>
 <p><img alt="gif for Sonos control with Alfred" src="https://python-everything.com/static/blogpost_content/sonso_controler/sonos_pause.gif" /></p>
 <p>Full code:</p>
-<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">soco</span>
-<span class="kn">import</span> <span class="nn">sys</span>
+<pre class="codehilite"><code class="language-python">import soco
+import sys
 
-<span class="n">sonos_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">soco</span><span class="o">.</span><span class="n">discover</span><span class="p">())</span>
-<span class="n">sonos</span> <span class="o">=</span> <span class="n">sonos_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+sonos_list = list(soco.discover())
+sonos = sonos_list[0]
 
-<span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;play&#39;</span><span class="p">:</span>
-    <span class="n">sonos</span><span class="o">.</span><span class="n">play</span><span class="p">()</span>
-<span class="k">elif</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;pause&#39;</span><span class="p">:</span>
-    <span class="n">sonos</span><span class="o">.</span><span class="n">pause</span><span class="p">()</span>
-<span class="k">elif</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;next&#39;</span><span class="p">:</span>
-    <span class="n">sonos</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
-<span class="k">elif</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;previous&#39;</span><span class="p">:</span>
-    <span class="n">sonos</span><span class="o">.</span><span class="n">previous</span><span class="p">()</span>
-<span class="k">elif</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;vol_up&#39;</span><span class="p">:</span>
-    <span class="n">sonos</span><span class="o">.</span><span class="n">volume</span> <span class="o">+=</span> <span class="mi">10</span>
-<span class="k">elif</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;vol_down&#39;</span><span class="p">:</span>
-    <span class="n">sonos</span><span class="o">.</span><span class="n">volume</span> <span class="o">-=</span> <span class="mi">10</span>
-</code></pre></div>
-
+if sys.argv[1] == 'play':
+    sonos.play()
+elif sys.argv[1] == 'pause':
+    sonos.pause()
+elif sys.argv[1] == 'next':
+    sonos.next()
+elif sys.argv[1] == 'previous':
+    sonos.previous()
+elif sys.argv[1] == 'vol_up':
+    sonos.volume += 10
+elif sys.argv[1] == 'vol_down':
+    sonos.volume -= 10
+</code></pre>
 
 <p>Have a look at <a href="https://github.com/SoCo">Soco's Guithub page</a> if you'd like to learn more about the functionalities.</p></p>
                 </div>
@@ -234,11 +222,11 @@
                         <div class="categories">
                             <h3>Latest posts</h3>
                             
+                            <li><a href="/post/140/A-simple-dashboard-based-on-the-data-from-my-Arduino-project.html">A simple dashboard based on the data from my Arduino project</a></li>
+                            
                             <li><a href="/post/139/Controling-Sonos-with-Python-in-just-a-couple-lines-of-code.html">Controling Sonos with Python in just a couple lines of code</a></li>
                             
                             <li><a href="/post/138/Tracking-temperature-in-you-house-using-Micro-controllers-and-Python.html">Tracking temperature in you house using Micro controllers and Python</a></li>
-                            
-                            <li><a href="/post/137/Build-your-own-Application---Deployment-on-Heroku.html">Build your own Application - Deployment on Heroku</a></li>
                             
                         </div>
                     </div>
