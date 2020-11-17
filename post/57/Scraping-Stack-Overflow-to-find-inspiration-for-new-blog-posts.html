@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-149203155-2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-149203155-2');
+    </script>
+    <!-- Favicons -->
+
+    <link href="/static/img/favicon/android-chrome-512x512.png" rel="icon">
+    <link href="/static/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/vendor/markdown-converter/styles.css" rel="stylesheet">
+
+    <link href="/static/vendor/icofont/icofont.min.css" rel="stylesheet">
+    <link href="/static/vendor/aos/aos.css" rel="stylesheet">
+    <link href="/static/vendor/line-awesome/css/line-awesome.min.css" rel="stylesheet">
+    <link href="/static/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="/static/css/style.css" rel="stylesheet">
+
+    <meta name="robots" content="index, follow">
+
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"> 
+<title>Python Everything - Scraping Stack Overflow to find inspiration for new blog posts</title>
+<meta name="description" content="How Request and BeautifulSoup can help you to find inspiration for new blog posts! - While wondering what people might be interested in reading, it crossed my min..."> 
+</head>
+
+<body>
+
+    <!-- ======= Mobile Menu ======= -->
+    <div class="site-mobile-menu site-navbar-target">
+        <div class="site-mobile-menu-header">
+            <div class="site-mobile-menu-close mt-3">
+                <span class="icofont-close js-menu-toggle"></span>
+            </div>
+        </div>
+        <div class="site-mobile-menu-body"></div>
+    </div>
+
+    <!-- ======= Header ======= -->
+    <header class="site-navbar js-sticky-header site-navbar-target" role="banner">
+
+        <div class="container">
+            <div class="row align-items-center">
+
+                <div class="col-6 col-lg-2">
+                    <h1 class="mb-0 site-logo"><a href="/" class="mb-0">Python Everything</a></h1>
+                </div>
+
+                <div class="col-12 col-md-10 d-none d-lg-block">
+                    <nav class="site-navigation position-relative text-right" role="navigation">
+
+                        <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
+                            <li class="active"><a href="/" class="nav-link">Home</a></li>
+                            <li><a href="/explore/1.html" class="nav-link">Explore</a></li>
+                            <li><a href="/authors.html" class="nav-link">Collaborators</a></li>
+                            <li><a href="/#contact" class="nav-link">Get in touch</a></li>
+                        </ul>
+                    </nav>
+                </div>
+
+                <div class="col-6 d-inline-block d-lg-none ml-md-0 py-3" style="position: relative; top: 3px;">
+
+                    <a href="#" class="burger site-menu-toggle js-menu-toggle" data-toggle="collapse" data-target="#main-navbar">
+                        <span></span>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+    </header>
+
+    
+
+<main id="main">
+
+    <section class="hero-section inner-page">
+        <div class="wave">
+
+            <svg width="1920px" height="265px" viewBox="0 0 1920 265" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+          <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+            <g id="Apple-TV" transform="translate(0.000000, -402.000000)" fill="#FFFFFF">
+              <path d="M0,439.134243 C175.04074,464.89273 327.944386,477.771974 458.710937,477.771974 C654.860765,477.771974 870.645295,442.632362 1205.9828,410.192501 C1429.54114,388.565926 1667.54687,411.092417 1920,477.771974 L1920,667 L1017.15166,667 L0,667 L0,439.134243 Z" id="Path"></path>
+            </g>
+          </g>
+        </svg>
+
+        </div>
+
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-12">
+                    <div class="row justify-content-center">
+                        <div class="col-md-10 text-center hero-text">
+                            <h1 data-aos="fade-up" data-aos-delay=""><h1>Scraping Stack Overflow to find inspiration for new blog posts</h1></h1>
+                            <p class="mb-5" data-aos="fade-up" data-aos-delay="100">2020-07-16 &bullet; By <a href="#" class="text-white">Ivo</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <section class="site-section mb-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 blog-content">
+
+                    <p class="lead mb-5"><p>How <strong>Request</strong> and <strong>BeautifulSoup</strong> can help you to find inspiration for new blog posts!</p></p>
+                    <p><p>While wondering what people might be interested in reading, it crossed my mind that developers using Python go to Stack Overflow to get an answer on their questions. This must sound rather familiar since you are reading this as a Python enthusiast yourself!</p>
+<p>Potentially, a list of the latest 500 questions on Stack Overflow in the Python section might help to generate some inspiration for some posts. How about we leverage the Python library <strong>Request</strong> and <strong>BeautifulSoup</strong> to scrape this data!</p>
+<p>As always, let's initiate a new project:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># create a directory called &#39;Stack-Overflow-Scraper&#39;</span>
+mkdir Stack-Overflow-Scraper
+<span class="c1"># Navigate into the directory</span>
+<span class="nb">cd</span> Stack-Overflow-Scraper
+<span class="c1"># Create a virtual environment</span>
+python3 -m venv env
+<span class="c1"># Activate the virtual environment</span>
+<span class="nb">source</span> env/bin/activate
+<span class="c1"># Install the &#39;BeautifulSoup&#39; package.</span>
+pip install beautifulsoup4
+<span class="c1"># Install the &#39;Requests&#39; package.</span>
+pip install requests
+<span class="c1"># Create a python file</span>
+touch stack_scraper_example.py
+</code></pre></div>
+
+
+<p>Now we would like to retrieve all the titles from <a href="https://stackoverflow.com/questions/tagged/python?tab=Newestpagesize=50page=1">https://stackoverflow.com/questions/tagged/python?tab=Newestpagesize=50page=1</a>, and the next 9 pages as well (using page=1 to 10).</p>
+<p>Let's first get a nice dynamic way on constructing the url. In the future we might want to alter the parameters of the url, so I'd like to put them in dynamically.</p>
+<div class="codehilite"><pre><span></span><code><span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://stackoverflow.com/questions/tagged/python?&#39;</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">11</span><span class="p">):</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;tab&#39;</span><span class="p">:</span><span class="s1">&#39;Newest&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;pagesize&#39;</span><span class="p">:</span><span class="s1">&#39;50&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;page&#39;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">params</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">url</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1">=</span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s1">&#39;</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+</code></pre></div>
+
+
+<p>This will print 10 url's for us, where the page is increased with 1 for every url. Furthermore, we can change the <em>params</em> dictionary easily to change the url in the future (tab=active will only show active, new threats for example).</p>
+<p>For each url, we would like to go to the site, and copy all the titles of the questions. We can do that with the following:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">output_list</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">output</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">output</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
+    <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">output</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="s1">&#39;html.parser&#39;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="n">class_</span><span class="o">=</span><span class="s1">&#39;summary&#39;</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">title</span> <span class="ow">in</span> <span class="n">element</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">class_</span><span class="o">=</span><span class="s1">&#39;question-hyperlink&#39;</span><span class="p">):</span>
+            <span class="n">final_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+</code></pre></div>
+
+
+<p>I will try to explain what is going on here:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">output</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+</code></pre></div>
+
+
+<p>The request.get() functions retrieves information from the given url.</p>
+<div class="codehilite"><pre><span></span><code><span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">output</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="s1">&#39;html.parser&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+
+<p>the BeautifulSoup() function converts a html page (retrieved with the .text method of the request.get() function) into a BeautifulSoup object, which we can query rather easily. Without this, we would have needed regex to retrieve everything we want.</p>
+<div class="codehilite"><pre><span></span><code><span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="n">class_</span><span class="o">=</span><span class="s1">&#39;summary&#39;</span><span class="p">):</span>
+</code></pre></div>
+
+
+<p>Now we try to find all elements on the site which has the class <em>summary</em>. Note that class is written with an underscore. This is done to avoid any issues with Python's classes.</p>
+<div class="codehilite"><pre><span></span><code><span class="n">element</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">class_</span><span class="o">=</span><span class="s1">&#39;question-hyperlink&#39;</span><span class="p">):</span>
+</code></pre></div>
+
+
+<p>The last piece of code gets all the question titles from each element with a <em>summary</em> class. Note that we use the find() function here instead of the find_all() function, since we expect only one outcome and we do not want to get a list of outcomes. We just want the outcome!</p>
+<p>Putting this all together in a nice loop, gives the following:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://stackoverflow.com/questions/tagged/python?&#39;</span>
+<span class="n">final_list</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">11</span><span class="p">):</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;tab&#39;</span><span class="p">:</span><span class="s1">&#39;Newest&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;pagesize&#39;</span><span class="p">:</span><span class="s1">&#39;50&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;page&#39;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">params</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">url</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1">=</span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s1">&#39;</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">output</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
+        <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">output</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="s1">&#39;html.parser&#39;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="n">class_</span><span class="o">=</span><span class="s1">&#39;summary&#39;</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">title</span> <span class="ow">in</span> <span class="n">element</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">class_</span><span class="o">=</span><span class="s1">&#39;question-hyperlink&#39;</span><span class="p">):</span>
+                <span class="n">final_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">final_list</span><span class="p">)</span>
+</code></pre></div>
+
+
+<p>Which results (at the time I ran it) into the following outcome (at least, a snippet of it):</p>
+<div class="codehilite"><pre><span></span><code><span class="p">[</span><span class="s2">&quot;Not able to compare two dataframes&quot;</span><span class="p">,</span>
+<span class="s2">&quot;Record speakers output with PyAudio and PortAudio&quot;</span><span class="p">,</span>
+<span class="s2">&quot;python codecs can&#39;t encode to cp1252…but notepad++ can?&quot;</span><span class="p">,</span>
+<span class="s2">&quot;Numpy How to assign values of a column of a matrix with another vector?&quot;</span><span class="p">,</span>
+<span class="s2">&quot;How to run darknet.py and rebuild the darknet.sln when i modify the code if install darknet in windows 10 through vcpkg?&quot;</span><span class="p">,</span>
+<span class="o">....</span><span class="p">,</span>
+<span class="s2">&quot;Pytorch convert a pd.DataFrame which is variable length sequence to tensor&quot;</span><span class="p">,</span>
+<span class="s2">&quot;Tkinter Balloon Tooltip&quot;</span><span class="p">,</span>
+<span class="s2">&quot;Find the maximum of R,G,B in a ndarray according to their group stored in a different ndarray&quot;</span><span class="p">,</span>
+<span class="s2">&quot;Read csv file by changeable columns using pandas&quot;</span><span class="p">,</span>
+<span class="s2">&quot;How to automate recurring dates so as to automatically add one month after current date?[Python-Django]&quot;</span><span class="p">]</span>
+</code></pre></div>
+
+
+<p>Great! Now the only thing left for us is to manually go through all 500 post titles, and decide what to write about ;-)</p></p>
+                </div>
+                <div class="col-md-4 sidebar">
+                    <div class="sidebar-box">
+                        <h3>Scraping Stack Overflow to find inspiration for new blog posts</h3>
+                        <img src="/static/img/blogposts/57.png" alt="Image" class="round-image img-fluid">
+                        <p><p>How <strong>Request</strong> and <strong>BeautifulSoup</strong> can help you to find inspiration for new blog posts!</p></p>
+                    </div>
+                    <div class="sidebar-box">
+                        <div class="categories">
+                            <h3>Latest posts</h3>
+                            
+                            <li><a href="/post/141/Extending-my-temperature-tracking-with-Python.html">Extending my temperature tracking with Python</a></li>
+                            
+                            <li><a href="/post/140/A-simple-dashboard-based-on-the-data-from-my-Arduino-project.html">A simple dashboard based on the data from my Arduino project</a></li>
+                            
+                            <li><a href="/post/139/Controling-Sonos-with-Python-in-just-a-couple-lines-of-code.html">Controling Sonos with Python in just a couple lines of code</a></li>
+                            
+                        </div>
+                    </div>
+                    <div class="sidebar-box">
+                        <h3>Python Everything</h3>
+                        <p>We at Python Everything try to provide you with your daily Python inspiration! Our post are ment to inspire you and ensure that you start coding in Python yourself.</p>
+                        <p><a href="/about.html" class="btn btn-primary btn-sm">Read More</a></p>
+                    </div>
+                    <!--
+                    <div class="sidebar-box">
+                        <h3>Paragraph</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus itaque, autem necessitatibus voluptate quod mollitia delectus aut, sunt placeat nam vero culpa sapiente consectetur similique, inventore eos fugit cupiditate numquam!</p>
+                    </div>
+                    -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+
+
+    <!-- ======= Footer ======= -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h3>About Python Everything</h3>
+                    <p>We're python enthousiasts, who want to ensure you are getting the same smile on you face everytime your python script runs successfully.</p>
+                </div>
+                <div class="col-md-7 ml-auto">
+                    <div class="row site-section pt-0">
+                        <div class="col-md-4 mb-4 mb-md-0">
+                            <h3>Navigation</h3>
+                            <ul class="list-unstyled">
+                                <li><a href="/">Home</a></li>
+                                <li><a href="/explore/1.html">Expore</a></li>
+                                <li><a href="/#contact">Get in touch</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row justify-content-center text-center">
+                <div class="col-md-7">
+                    <p class="copyright">&copy; Copyright Python Everything. All Rights Reserved</p>
+                    <div class="credits">
+                        Designed by <a href="/">Python Everything</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+    <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+
+    <!-- Vendor JS Files -->
+    <script src="/static/vendor/jquery/jquery.min.js"></script>
+    <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/vendor/jquery.easing/jquery.easing.min.js"></script>
+    <script src="/static/vendor/aos/aos.js"></script>
+    <script src="/static/vendor/owl.carousel/owl.carousel.min.js"></script>
+    <script src="/static/vendor/jquery-sticky/jquery.sticky.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="/static/js/main.js"></script>
+
+</body>
+
+</html>

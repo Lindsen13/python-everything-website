@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-149203155-2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-149203155-2');
+    </script>
+    <!-- Favicons -->
+
+    <link href="/static/img/favicon/android-chrome-512x512.png" rel="icon">
+    <link href="/static/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/vendor/markdown-converter/styles.css" rel="stylesheet">
+
+    <link href="/static/vendor/icofont/icofont.min.css" rel="stylesheet">
+    <link href="/static/vendor/aos/aos.css" rel="stylesheet">
+    <link href="/static/vendor/line-awesome/css/line-awesome.min.css" rel="stylesheet">
+    <link href="/static/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="/static/css/style.css" rel="stylesheet">
+
+    <meta name="robots" content="index, follow">
+
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"> 
+<title>Python Everything - Build your own Application - Predictive Modelling</title>
+<meta name="description" content="Using Python&#39;s Sklearn and numpy to create a prediction model with out data. - See the final result here..."> 
+</head>
+
+<body>
+
+    <!-- ======= Mobile Menu ======= -->
+    <div class="site-mobile-menu site-navbar-target">
+        <div class="site-mobile-menu-header">
+            <div class="site-mobile-menu-close mt-3">
+                <span class="icofont-close js-menu-toggle"></span>
+            </div>
+        </div>
+        <div class="site-mobile-menu-body"></div>
+    </div>
+
+    <!-- ======= Header ======= -->
+    <header class="site-navbar js-sticky-header site-navbar-target" role="banner">
+
+        <div class="container">
+            <div class="row align-items-center">
+
+                <div class="col-6 col-lg-2">
+                    <h1 class="mb-0 site-logo"><a href="/" class="mb-0">Python Everything</a></h1>
+                </div>
+
+                <div class="col-12 col-md-10 d-none d-lg-block">
+                    <nav class="site-navigation position-relative text-right" role="navigation">
+
+                        <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
+                            <li class="active"><a href="/" class="nav-link">Home</a></li>
+                            <li><a href="/explore/1.html" class="nav-link">Explore</a></li>
+                            <li><a href="/authors.html" class="nav-link">Collaborators</a></li>
+                            <li><a href="/#contact" class="nav-link">Get in touch</a></li>
+                        </ul>
+                    </nav>
+                </div>
+
+                <div class="col-6 d-inline-block d-lg-none ml-md-0 py-3" style="position: relative; top: 3px;">
+
+                    <a href="#" class="burger site-menu-toggle js-menu-toggle" data-toggle="collapse" data-target="#main-navbar">
+                        <span></span>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+    </header>
+
+    
+
+<main id="main">
+
+    <section class="hero-section inner-page">
+        <div class="wave">
+
+            <svg width="1920px" height="265px" viewBox="0 0 1920 265" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+          <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+            <g id="Apple-TV" transform="translate(0.000000, -402.000000)" fill="#FFFFFF">
+              <path d="M0,439.134243 C175.04074,464.89273 327.944386,477.771974 458.710937,477.771974 C654.860765,477.771974 870.645295,442.632362 1205.9828,410.192501 C1429.54114,388.565926 1667.54687,411.092417 1920,477.771974 L1920,667 L1017.15166,667 L0,667 L0,439.134243 Z" id="Path"></path>
+            </g>
+          </g>
+        </svg>
+
+        </div>
+
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-12">
+                    <div class="row justify-content-center">
+                        <div class="col-md-10 text-center hero-text">
+                            <h1 data-aos="fade-up" data-aos-delay=""><h1>Build your own Application - Predictive Modelling</h1></h1>
+                            <p class="mb-5" data-aos="fade-up" data-aos-delay="100">2020-09-11 &bullet; By <a href="#" class="text-white">Ivo</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <section class="site-section mb-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 blog-content">
+
+                    <p class="lead mb-5"><p>Using <strong>Python's Sklearn</strong> and <strong>numpy</strong> to create a <strong>prediction</strong> model with out data.</p></p>
+                    <p><h3>See the final result <a href="https://car-price-app.herokuapp.com/">here</a></h3>
+<p>This is the second out of four posts for my new series. If you haven't read my first post, please do so <a href="https://python-everything.com/post/108/Build-your-own-Application---Scraping-data.html">here</a>. I will show you how you can make a custom application that includes predictive modelling! The creation of this small <strong>SAAS</strong> app is split up in the following parts:</p>
+<ul>
+<li>part 1: <a href="https://python-everything.com/post/108/Build-your-own-Application---Scraping-data.html">Scraping data</a></li>
+<li>part 2: <a href="https://python-everything.com/post/109/Build-your-own-Application---Predictive-Modelling.html">Predictive modelling</a></li>
+<li>part 3: <a href="https://python-everything.com/post/110/Build-your-own-Application---Web-interface.html">Web interface</a></li>
+<li>part 4: <a href="https://python-everything.com/post/137/Build-your-own-Application---Deployment-on-Heroku.html">Deployment</a></li>
+</ul>
+<p>Just as I mentioned in my previous post, you can find the final result <a href="https://car-price-app.herokuapp.com/">here</a>. It is a web interface that takes several characteristics of a car. Based on the characteristics, a prediction is made for the value of the car. </p>
+<h2>Adding to our environment</h2>
+<p>Last time, we left with a <strong>collect_data.py</strong> file and a <strong>util.py</strong> file. We will extend the <strong>util.py</strong> file with some functions that we call to create a prediction model!</p>
+<p>Before we do so, I'd like to point out that my prediction model is poorly chosen, and is not fine-tuned at all. This post and the application is merely a showcase to show what's possible. We are creating a forecast model, which we will load in our front-end application to create a forecast based on the user's input. If we have a very sophisticated AI model, or merely a simple regression, it does not matter much for the process. This will remain roughly the same.</p>
+<p>We are creating two functions:</p>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">create_model</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    code here, and a names variable which consist of the variables which the model takes if we call it to create a prediction</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">names</span>
+</code></pre></div>
+
+
+<p>and</p>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">create_prediction</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">names</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    code to convert a dictionary with values, a model and a list of variable names into a prediction</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">prediction</span>
+</code></pre></div>
+
+
+<h2>Lets see how we make our predictive model</h2>
+<p>Lets take care of our <strong>create_model()</strong> function first. </p>
+<div class="codehilite"><pre><span></span><code><span class="n">db_file</span> <span class="o">=</span> <span class="s1">&#39;instance/database.db&#39;</span>
+<span class="n">conn</span> <span class="o">=</span> <span class="n">create_connection</span><span class="p">(</span><span class="n">db_file</span><span class="p">)</span>
+<span class="n">cur</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+<span class="n">rows</span> <span class="o">=</span> <span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM cars;&quot;</span><span class="p">)</span>
+<span class="n">rows</span> <span class="o">=</span> <span class="n">cur</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+</code></pre></div>
+
+
+<p>This will create a connection to our database, executes a query that retrieves all the info, and fetches the info. Next up, let's convert this to a Pandas Data frame, so it's easier to work with for us.</p>
+<div class="codehilite"><pre><span></span><code><span class="n">df</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">columns</span> <span class="o">=</span><span class="p">[</span>
+    <span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;date&#39;</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span><span class="s1">&#39;price&#39;</span><span class="p">,</span><span class="s1">&#39;brand&#39;</span><span class="p">,</span><span class="s1">&#39;type&#39;</span><span class="p">,</span><span class="s1">&#39;year&#39;</span><span class="p">,</span><span class="s1">&#39;km&#39;</span><span class="p">,</span><span class="s1">&#39;fuell&#39;</span><span class="p">,</span><span class="s1">&#39;gearbox&#39;</span>
+    <span class="p">])</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;price&#39;</span><span class="p">,</span><span class="s1">&#39;brand&#39;</span><span class="p">,</span><span class="s1">&#39;year&#39;</span><span class="p">,</span><span class="s1">&#39;km&#39;</span><span class="p">,</span><span class="s1">&#39;fuell&#39;</span><span class="p">,</span><span class="s1">&#39;gearbox&#39;</span><span class="p">]]</span>
+</code></pre></div>
+
+
+<p>Furthermore, we have to make some adjustments to clean the data:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">df</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="p">[:</span><span class="mi">4</span><span class="p">])</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;km&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;km&#39;</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;coerce&#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;price&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;price&#39;</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;coerce&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+
+<p>Now we have a Pandas data frame with all the required info. We will use a linear regression model to make our predictions. For this, we cannot use any categorical values. Luckily, Pandas has a <strong>get_dummies()</strong> function that converts all categorical (string) values into dummies. This means that rather than having a column with the brands, we will have a column for each possible brand, and a 1 or a 0 if it's the brand of the car.</p>
+<div class="codehilite"><pre><span></span><code><span class="n">df</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</code></pre></div>
+
+
+<p>Before we get started with our model, we have to make sure there are no empty values in our data frame:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+</code></pre></div>
+
+
+<p>Great! Now we will make a regression model. For this, we need an array of the value we want to predict (price, which we will cal y) and an array of variables</p>
+<div class="codehilite"><pre><span></span><code><span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;price&#39;</span><span class="p">])</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;price&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</code></pre></div>
+
+
+<p>With this, we can create a regression model</p>
+<div class="codehilite"><pre><span></span><code><span class="n">model</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</code></pre></div>
+
+
+<p>At this point, you most likely want to check how good your model is working. Since this series is just a showcase on how you could make a web app with predictive capabilities, I will not go over this.</p>
+<p>Great! All we have to do is create a list of all variables in our model (all column names of the <strong>df</strong> data frame) and store the model so we can call it later.</p>
+<div class="codehilite"><pre><span></span><code><span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+<span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;finalized_model.sav&#39;</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">))</span>
+</code></pre></div>
+
+
+<p>Putting this together gives:</p>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">create_model</span><span class="p">():</span>
+    <span class="n">db_file</span> <span class="o">=</span> <span class="s1">&#39;instance/database.db&#39;</span>
+    <span class="n">conn</span> <span class="o">=</span> <span class="n">create_connection</span><span class="p">(</span><span class="n">db_file</span><span class="p">)</span>
+    <span class="n">cur</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+    <span class="n">rows</span> <span class="o">=</span> <span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM cars;&quot;</span><span class="p">)</span>
+    <span class="n">rows</span> <span class="o">=</span> <span class="n">cur</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">columns</span> <span class="o">=</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;date&#39;</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span><span class="s1">&#39;price&#39;</span><span class="p">,</span><span class="s1">&#39;brand&#39;</span><span class="p">,</span><span class="s1">&#39;type&#39;</span><span class="p">,</span><span class="s1">&#39;year&#39;</span><span class="p">,</span><span class="s1">&#39;km&#39;</span><span class="p">,</span><span class="s1">&#39;fuell&#39;</span><span class="p">,</span><span class="s1">&#39;gearbox&#39;</span><span class="p">])</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;price&#39;</span><span class="p">,</span><span class="s1">&#39;brand&#39;</span><span class="p">,</span><span class="s1">&#39;year&#39;</span><span class="p">,</span><span class="s1">&#39;km&#39;</span><span class="p">,</span><span class="s1">&#39;fuell&#39;</span><span class="p">,</span><span class="s1">&#39;gearbox&#39;</span><span class="p">]]</span>
+    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="p">[:</span><span class="mi">4</span><span class="p">])</span>
+    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;km&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;km&#39;</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;coerce&#39;</span><span class="p">)</span>
+    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;price&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;price&#39;</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;coerce&#39;</span><span class="p">)</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+
+    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;price&#39;</span><span class="p">])</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;price&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+
+    <span class="n">model</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    <span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+    <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;instance/finalized_model.sav&#39;</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">names</span>
+</code></pre></div>
+
+
+<h2>Accessing our Predictive model and generating a prediction</h2>
+<p>Now we have our <strong>finalized_model.sav</strong> model, we can work on our <strong>create_prediction()</strong> function. We will first create a data frame with the <strong>names</strong> variable, and all values set to 0.</p>
+<div class="codehilite"><pre><span></span><code><span class="n">df_predict</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]],</span><span class="n">columns</span><span class="o">=</span><span class="n">names</span><span class="p">)</span>
+</code></pre></div>
+
+
+<p>All our column names consist of a combination of the key and value for each element in our <strong>data</strong> dictionary. Therefore, we create a list with column names we want to populate, and afterwards populate our <strong>df_predict</strong> data frame.</p>
+<div class="codehilite"><pre><span></span><code><span class="n">data_clean</span> <span class="o">=</span> <span class="p">[</span><span class="n">k</span><span class="o">+</span><span class="s1">&#39;_&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">items</span><span class="p">()]</span>
+<span class="n">df_predict</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="s1">&#39;year&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;year&#39;</span><span class="p">)</span>
+<span class="n">df_predict</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="s1">&#39;km&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;km&#39;</span><span class="p">)</span>
+<span class="n">df_predict</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">data_clean</span><span class="p">[</span><span class="mi">2</span><span class="p">]]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">df_predict</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">data_clean</span><span class="p">[</span><span class="mi">3</span><span class="p">]]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">df_predict</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">data_clean</span><span class="p">[</span><span class="mi">4</span><span class="p">]]</span> <span class="o">=</span> <span class="mi">1</span>
+</code></pre></div>
+
+
+<p>If we want to retrieve the predicted value (the price), we can use the following:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">df_predict</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
+</code></pre></div>
+
+
+<p>Lets put this into a function:</p>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">create_prediction</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">names</span><span class="p">):</span>
+    <span class="n">df_predict</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]],</span><span class="n">columns</span><span class="o">=</span><span class="n">names</span><span class="p">)</span>
+    <span class="n">data_clean</span> <span class="o">=</span> <span class="p">[</span><span class="n">k</span><span class="o">+</span><span class="s1">&#39;_&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">items</span><span class="p">()]</span>
+
+    <span class="n">df_predict</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="s1">&#39;year&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;year&#39;</span><span class="p">)</span>
+    <span class="n">df_predict</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="s1">&#39;km&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;km&#39;</span><span class="p">)</span>
+    <span class="n">df_predict</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">data_clean</span><span class="p">[</span><span class="mi">2</span><span class="p">]]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">df_predict</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">data_clean</span><span class="p">[</span><span class="mi">3</span><span class="p">]]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">df_predict</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">data_clean</span><span class="p">[</span><span class="mi">4</span><span class="p">]]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="nb">print</span><span class="p">([</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">df_predict</span><span class="o">.</span><span class="n">columns</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">df_predict</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
+</code></pre></div>
+
+
+<p>Furthermore, I want to be able to run the <strong>util.py</strong> file to create the model, and to return a prediction for an entry. Therefore, I add the following to the end of the <strong>util.py</strong> file</p>
+<p>if <strong>name</strong> == '<strong>main</strong>':
+    data = {
+        'year':2011,
+        'km':1000,
+        'brand':'audi',
+        'fuell':'Benzine',
+        'gearbox':'Automatisch'
+    }
+    names = create_model()
+    model = pickle.load(open('instance/finalized_model.sav', 'rb'))
+    output = create_prediction(data, model, names)
+    print(output)</p>
+<p>Every time we run the <strong>util.py</strong> file, the model is run, the model is stored and a prediction is made for the <strong>data</strong> dictionary.</p>
+<p><em>Note: I am aware that my model has some strange inputs: it's Dutch. I have scraped a Dutch website, hence I have to put in Dutch words. The example above inserts an Audi from 2011 with 1000 km on the clock, running on benzin and has a manual gearbox.</em></p>
+<p>Your <strong>util.py</strong> is now more than just a storage for variables and functions. It will look like this:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+<span class="kn">import</span> <span class="nn">pickle</span>
+<span class="kn">from</span> <span class="nn">db</span> <span class="kn">import</span> <span class="n">create_connection</span>
+
+<span class="k">def</span> <span class="nf">convert_date</span><span class="p">(</span><span class="n">output</span><span class="p">):</span>
+    <span class="n">monthyear</span> <span class="o">=</span> <span class="n">output</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">class_</span><span class="o">=</span><span class="s1">&#39;css-tr15v5&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
+    <span class="n">year</span> <span class="o">=</span> <span class="n">monthyear</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">month</span> <span class="o">=</span> <span class="n">monthyear</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">month</span> <span class="o">==</span><span class="s1">&#39;Jan&#39;</span><span class="p">:</span>
+        <span class="n">month</span> <span class="o">=</span> <span class="s1">&#39;01&#39;</span>
+    <span class="k">elif</span> <span class="n">month</span> <span class="o">==</span><span class="s1">&#39;Feb&#39;</span><span class="p">:</span>
+        <span class="n">month</span> <span class="o">=</span> <span class="s1">&#39;02&#39;</span>
+    <span class="k">elif</span> <span class="n">month</span> <span class="o">==</span><span class="s1">&#39;Mrt&#39;</span><span class="p">:</span>
+        <span class="n">month</span> <span class="o">=</span> <span class="s1">&#39;03&#39;</span>
+    <span class="k">elif</span> <span class="n">month</span> <span class="o">==</span><span class="s1">&#39;Apr&#39;</span><span class="p">:</span>
+        <span class="n">month</span> <span class="o">=</span> <span class="s1">&#39;04&#39;</span>
+    <span class="k">elif</span> <span class="n">month</span> <span class="o">==</span><span class="s1">&#39;Mei&#39;</span><span class="p">:</span>
+        <span class="n">month</span> <span class="o">=</span> <span class="s1">&#39;05&#39;</span>
+    <span class="k">elif</span> <span class="n">month</span> <span class="o">==</span><span class="s1">&#39;Jun&#39;</span><span class="p">:</span>
+        <span class="n">month</span> <span class="o">=</span> <span class="s1">&#39;06&#39;</span>
+    <span class="k">elif</span> <span class="n">month</span> <span class="o">==</span><span class="s1">&#39;Jul&#39;</span><span class="p">:</span>
+        <span class="n">month</span> <span class="o">=</span> <span class="s1">&#39;07&#39;</span>
+    <span class="k">elif</span> <span class="n">month</span> <span class="o">==</span><span class="s1">&#39;Aug&#39;</span><span class="p">:</span>
+        <span class="n">month</span> <span class="o">=</span> <span class="s1">&#39;08&#39;</span>
+    <span class="k">elif</span> <span class="n">month</span> <span class="o">==</span><span class="s1">&#39;Sep&#39;</span><span class="p">:</span>
+        <span class="n">month</span> <span class="o">=</span> <span class="s1">&#39;09&#39;</span>
+    <span class="k">elif</span> <span class="n">month</span> <span class="o">==</span><span class="s1">&#39;Okt&#39;</span><span class="p">:</span>
+        <span class="n">month</span> <span class="o">=</span> <span class="s1">&#39;10&#39;</span>
+    <span class="k">elif</span> <span class="n">month</span> <span class="o">==</span><span class="s1">&#39;Nov&#39;</span><span class="p">:</span>
+        <span class="n">month</span> <span class="o">=</span> <span class="s1">&#39;11&#39;</span>
+    <span class="k">elif</span> <span class="n">month</span> <span class="o">==</span><span class="s1">&#39;Dec&#39;</span><span class="p">:</span>
+        <span class="n">month</span> <span class="o">=</span> <span class="s1">&#39;12&#39;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">month</span> <span class="o">=</span> <span class="s1">&#39;12&#39;</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s1">-</span><span class="si">{</span><span class="n">month</span><span class="si">}</span><span class="s1">-01&#39;</span>
+
+
+<span class="n">cars</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;BMW&#39;</span><span class="p">,</span><span class="s1">&#39;Audi&#39;</span><span class="p">,</span><span class="s1">&#39;Volkswagen&#39;</span><span class="p">,</span><span class="s1">&#39;Mercedes Benz&#39;</span><span class="p">,</span><span class="s1">&#39;Peugeot&#39;</span><span class="p">,</span><span class="s1">&#39;Opel&#39;</span><span class="p">,</span><span class="s1">&#39;Renault&#39;</span><span class="p">,</span><span class="s1">&#39;Toyota&#39;</span><span class="p">,</span><span class="s1">&#39;Ford&#39;</span><span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">create_model</span><span class="p">():</span>
+    <span class="n">db_file</span> <span class="o">=</span> <span class="s1">&#39;instance/database.db&#39;</span>
+    <span class="n">conn</span> <span class="o">=</span> <span class="n">create_connection</span><span class="p">(</span><span class="n">db_file</span><span class="p">)</span>
+    <span class="n">cur</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+    <span class="n">rows</span> <span class="o">=</span> <span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM cars;&quot;</span><span class="p">)</span>
+    <span class="n">rows</span> <span class="o">=</span> <span class="n">cur</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">columns</span> <span class="o">=</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;date&#39;</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span><span class="s1">&#39;price&#39;</span><span class="p">,</span><span class="s1">&#39;brand&#39;</span><span class="p">,</span><span class="s1">&#39;type&#39;</span><span class="p">,</span><span class="s1">&#39;year&#39;</span><span class="p">,</span><span class="s1">&#39;km&#39;</span><span class="p">,</span><span class="s1">&#39;fuell&#39;</span><span class="p">,</span><span class="s1">&#39;gearbox&#39;</span><span class="p">])</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;price&#39;</span><span class="p">,</span><span class="s1">&#39;brand&#39;</span><span class="p">,</span><span class="s1">&#39;year&#39;</span><span class="p">,</span><span class="s1">&#39;km&#39;</span><span class="p">,</span><span class="s1">&#39;fuell&#39;</span><span class="p">,</span><span class="s1">&#39;gearbox&#39;</span><span class="p">]]</span>
+    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="p">[:</span><span class="mi">4</span><span class="p">])</span>
+    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;km&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;km&#39;</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;coerce&#39;</span><span class="p">)</span>
+    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;price&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;price&#39;</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;coerce&#39;</span><span class="p">)</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+
+    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;price&#39;</span><span class="p">])</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;price&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+
+    <span class="n">model</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    <span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+    <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;instance/finalized_model.sav&#39;</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">names</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">names</span>
+
+<span class="k">def</span> <span class="nf">create_prediction</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">names</span><span class="p">):</span>
+    <span class="n">df_predict</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]],</span><span class="n">columns</span><span class="o">=</span><span class="n">names</span><span class="p">)</span>
+    <span class="n">data_clean</span> <span class="o">=</span> <span class="p">[</span><span class="n">k</span><span class="o">+</span><span class="s1">&#39;_&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">items</span><span class="p">()]</span>
+
+    <span class="n">df_predict</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="s1">&#39;year&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;year&#39;</span><span class="p">)</span>
+    <span class="n">df_predict</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="s1">&#39;km&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;km&#39;</span><span class="p">)</span>
+    <span class="n">df_predict</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">data_clean</span><span class="p">[</span><span class="mi">2</span><span class="p">]]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">df_predict</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">data_clean</span><span class="p">[</span><span class="mi">3</span><span class="p">]]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">df_predict</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">data_clean</span><span class="p">[</span><span class="mi">4</span><span class="p">]]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="nb">print</span><span class="p">([</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">df_predict</span><span class="o">.</span><span class="n">columns</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">df_predict</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;year&#39;</span><span class="p">:</span><span class="mi">2011</span><span class="p">,</span>
+        <span class="s1">&#39;km&#39;</span><span class="p">:</span><span class="mi">1000</span><span class="p">,</span>
+        <span class="s1">&#39;brand&#39;</span><span class="p">:</span><span class="s1">&#39;audi&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;fuell&#39;</span><span class="p">:</span><span class="s1">&#39;Benzine&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;gearbox&#39;</span><span class="p">:</span><span class="s1">&#39;Automatisch&#39;</span>
+    <span class="p">}</span>
+    <span class="n">names</span> <span class="o">=</span> <span class="n">create_model</span><span class="p">()</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s1">&#39;instance/finalized_model.sav&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">))</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="n">create_prediction</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">names</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+</code></pre></div>
+
+
+<p>You can download the code from my <a href="https://github.com/Lindsen13/Custom-Application">Github</a> as well!</p>
+<p><a href="https://python-everything.com/post/110/Build-your-own-Application---Web-interface.html">Next</a> time, I will show how to use Flask and Bootstrap to make a simple HTML page that takes the user's input and generates the prediction with our <strong>create_prediction</strong> function.</p></p>
+                </div>
+                <div class="col-md-4 sidebar">
+                    <div class="sidebar-box">
+                        <h3>Build your own Application - Predictive Modelling</h3>
+                        <img src="/static/img/blogposts/109.png" alt="Image" class="round-image img-fluid">
+                        <p><p>Using <strong>Python's Sklearn</strong> and <strong>numpy</strong> to create a <strong>prediction</strong> model with out data.</p></p>
+                    </div>
+                    <div class="sidebar-box">
+                        <div class="categories">
+                            <h3>Latest posts</h3>
+                            
+                            <li><a href="/post/141/Extending-my-temperature-tracking-with-Python.html">Extending my temperature tracking with Python</a></li>
+                            
+                            <li><a href="/post/140/A-simple-dashboard-based-on-the-data-from-my-Arduino-project.html">A simple dashboard based on the data from my Arduino project</a></li>
+                            
+                            <li><a href="/post/139/Controling-Sonos-with-Python-in-just-a-couple-lines-of-code.html">Controling Sonos with Python in just a couple lines of code</a></li>
+                            
+                        </div>
+                    </div>
+                    <div class="sidebar-box">
+                        <h3>Python Everything</h3>
+                        <p>We at Python Everything try to provide you with your daily Python inspiration! Our post are ment to inspire you and ensure that you start coding in Python yourself.</p>
+                        <p><a href="/about.html" class="btn btn-primary btn-sm">Read More</a></p>
+                    </div>
+                    <!--
+                    <div class="sidebar-box">
+                        <h3>Paragraph</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus itaque, autem necessitatibus voluptate quod mollitia delectus aut, sunt placeat nam vero culpa sapiente consectetur similique, inventore eos fugit cupiditate numquam!</p>
+                    </div>
+                    -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+
+
+    <!-- ======= Footer ======= -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h3>About Python Everything</h3>
+                    <p>We're python enthousiasts, who want to ensure you are getting the same smile on you face everytime your python script runs successfully.</p>
+                </div>
+                <div class="col-md-7 ml-auto">
+                    <div class="row site-section pt-0">
+                        <div class="col-md-4 mb-4 mb-md-0">
+                            <h3>Navigation</h3>
+                            <ul class="list-unstyled">
+                                <li><a href="/">Home</a></li>
+                                <li><a href="/explore/1.html">Expore</a></li>
+                                <li><a href="/#contact">Get in touch</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row justify-content-center text-center">
+                <div class="col-md-7">
+                    <p class="copyright">&copy; Copyright Python Everything. All Rights Reserved</p>
+                    <div class="credits">
+                        Designed by <a href="/">Python Everything</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+    <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+
+    <!-- Vendor JS Files -->
+    <script src="/static/vendor/jquery/jquery.min.js"></script>
+    <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/vendor/jquery.easing/jquery.easing.min.js"></script>
+    <script src="/static/vendor/aos/aos.js"></script>
+    <script src="/static/vendor/owl.carousel/owl.carousel.min.js"></script>
+    <script src="/static/vendor/jquery-sticky/jquery.sticky.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="/static/js/main.js"></script>
+
+</body>
+
+</html>

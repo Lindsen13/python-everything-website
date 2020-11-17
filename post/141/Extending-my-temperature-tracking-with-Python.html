@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-149203155-2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-149203155-2');
+    </script>
+    <!-- Favicons -->
+
+    <link href="/static/img/favicon/android-chrome-512x512.png" rel="icon">
+    <link href="/static/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/vendor/markdown-converter/styles.css" rel="stylesheet">
+
+    <link href="/static/vendor/icofont/icofont.min.css" rel="stylesheet">
+    <link href="/static/vendor/aos/aos.css" rel="stylesheet">
+    <link href="/static/vendor/line-awesome/css/line-awesome.min.css" rel="stylesheet">
+    <link href="/static/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="/static/css/style.css" rel="stylesheet">
+
+    <meta name="robots" content="index, follow">
+
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"> 
+<title>Python Everything - Extending my temperature tracking with Python</title>
+<meta name="description" content="Using python to fetch temperatures from my 3D printer to check if it&#39;s running! - in &lt;a href=&#34;https://python-everything.com/post/138/Tracking-temperature-in-yo..."> 
+</head>
+
+<body>
+
+    <!-- ======= Mobile Menu ======= -->
+    <div class="site-mobile-menu site-navbar-target">
+        <div class="site-mobile-menu-header">
+            <div class="site-mobile-menu-close mt-3">
+                <span class="icofont-close js-menu-toggle"></span>
+            </div>
+        </div>
+        <div class="site-mobile-menu-body"></div>
+    </div>
+
+    <!-- ======= Header ======= -->
+    <header class="site-navbar js-sticky-header site-navbar-target" role="banner">
+
+        <div class="container">
+            <div class="row align-items-center">
+
+                <div class="col-6 col-lg-2">
+                    <h1 class="mb-0 site-logo"><a href="/" class="mb-0">Python Everything</a></h1>
+                </div>
+
+                <div class="col-12 col-md-10 d-none d-lg-block">
+                    <nav class="site-navigation position-relative text-right" role="navigation">
+
+                        <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
+                            <li class="active"><a href="/" class="nav-link">Home</a></li>
+                            <li><a href="/explore/1.html" class="nav-link">Explore</a></li>
+                            <li><a href="/authors.html" class="nav-link">Collaborators</a></li>
+                            <li><a href="/#contact" class="nav-link">Get in touch</a></li>
+                        </ul>
+                    </nav>
+                </div>
+
+                <div class="col-6 d-inline-block d-lg-none ml-md-0 py-3" style="position: relative; top: 3px;">
+
+                    <a href="#" class="burger site-menu-toggle js-menu-toggle" data-toggle="collapse" data-target="#main-navbar">
+                        <span></span>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+    </header>
+
+    
+
+<main id="main">
+
+    <section class="hero-section inner-page">
+        <div class="wave">
+
+            <svg width="1920px" height="265px" viewBox="0 0 1920 265" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+          <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+            <g id="Apple-TV" transform="translate(0.000000, -402.000000)" fill="#FFFFFF">
+              <path d="M0,439.134243 C175.04074,464.89273 327.944386,477.771974 458.710937,477.771974 C654.860765,477.771974 870.645295,442.632362 1205.9828,410.192501 C1429.54114,388.565926 1667.54687,411.092417 1920,477.771974 L1920,667 L1017.15166,667 L0,667 L0,439.134243 Z" id="Path"></path>
+            </g>
+          </g>
+        </svg>
+
+        </div>
+
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-12">
+                    <div class="row justify-content-center">
+                        <div class="col-md-10 text-center hero-text">
+                            <h1 data-aos="fade-up" data-aos-delay=""><h1>Extending my temperature tracking with Python</h1></h1>
+                            <p class="mb-5" data-aos="fade-up" data-aos-delay="100">2020-11-17 &bullet; By <a href="#" class="text-white">Ivo</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <section class="site-section mb-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 blog-content">
+
+                    <p class="lead mb-5"><p>Using python to fetch temperatures from my 3D printer to check if it's running!</p></p>
+                    <p><p>in <a href="https://python-everything.com/post/138/Tracking-temperature-in-you-house-using-Micro-controllers-and-Python.html">this</a> blogpost, I am talking about how I build a system with Arduino's to measure the temperature all around my house. In the meantime, I have build around 5 of those: placed in my living room, bathroom, outdoor and even in the attic.</p>
+<p>I want to extend this even further, and luckily my SQL table is very suitable to store multiple locations, even multiple type of measurements. It has the following structure:</p>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>created</th>
+<th>location</th>
+<th>type</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>2020-07-29 11:49:38</td>
+<td>living_room</td>
+<td>temperature</td>
+<td>19.38</td>
+</tr>
+<tr>
+<td>2</td>
+<td>2020-07-29 11:49:52</td>
+<td>kitchen</td>
+<td>temperature</td>
+<td>20.10</td>
+</tr>
+<tr>
+<td>....</td>
+<td>....</td>
+<td>....</td>
+<td>....</td>
+<td>....</td>
+</tr>
+<tr>
+<td>98711</td>
+<td>2020-09-23 16:58:59</td>
+<td>attic</td>
+<td>temperature</td>
+<td>10.54</td>
+</tr>
+<tr>
+<td>98712</td>
+<td>2020-09-23 16:59:12</td>
+<td>3d_printer</td>
+<td>temperature</td>
+<td>48.23</td>
+</tr>
+</tbody>
+</table>
+<p><br/>
+As you can see, multiple locations and types of measures can be added, without having the need to change the structure of the table.</p>
+<h2>Let's have a look how I fetch my 3d printer's temperature!</h2>
+<p>I am using <a href="https://octoprint.org/">Octoprint</a> to contorl my 3d printer (I do not want to go to the cold attic at night when I want to start a new print..!). Octoprint uses Python. More specifically, it runs a flask server that is used to make API calls to fetch data and execute commands. Luckily, the <a href="https://docs.octoprint.org/">docs</a> are quite easy to follow. Within no time, I had a working API call ready, that fetches the temperature of my 3d printer. Not only the temperature of the nozzle (the thing which melts the plastic and puts in on the working surface) but also the heated bed (working surface) can be measured. Here's how I did it:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">json</span> 
+<span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">api_key</span> <span class="o">=</span> <span class="s2">&quot;API_KEY&quot;</span>
+<span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;http://192.168.0.29/api/printer?apikey=</span><span class="si">{</span><span class="n">api_key</span><span class="si">}</span><span class="s2">&quot;</span>
+
+<span class="n">payload</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">headers</span><span class="o">=</span> <span class="p">{}</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+
+<span class="n">bed_temperature</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;temperature&quot;</span><span class="p">][</span><span class="s2">&quot;bed&quot;</span><span class="p">][</span><span class="s2">&quot;actual&quot;</span><span class="p">]</span>
+<span class="n">nozzle_temperature</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;temperature&quot;</span><span class="p">][</span><span class="s2">&quot;tool0&quot;</span><span class="p">][</span><span class="s2">&quot;actual&quot;</span><span class="p">]</span>
+</code></pre></div>
+
+<p>Quite simple! The temperature is one thing we can use from the API call, but there is more information returned;</p>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span>
+    <span class="nt">&quot;temperature&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;tool0&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;actual&quot;</span><span class="p">:</span> <span class="mf">214.8821</span><span class="p">,</span>
+            <span class="nt">&quot;target&quot;</span><span class="p">:</span> <span class="mf">220.0</span><span class="p">,</span>
+            <span class="nt">&quot;offset&quot;</span><span class="p">:</span> <span class="mi">0</span>
+        <span class="p">},</span>
+        <span class="nt">&quot;tool1&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;actual&quot;</span><span class="p">:</span> <span class="mf">25.3</span><span class="p">,</span>
+            <span class="nt">&quot;target&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+            <span class="nt">&quot;offset&quot;</span><span class="p">:</span> <span class="mi">0</span>
+        <span class="p">},</span>
+        <span class="nt">&quot;bed&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;actual&quot;</span><span class="p">:</span> <span class="mf">50.221</span><span class="p">,</span>
+            <span class="nt">&quot;target&quot;</span><span class="p">:</span> <span class="mf">70.0</span><span class="p">,</span>
+            <span class="nt">&quot;offset&quot;</span><span class="p">:</span> <span class="mi">5</span>
+        <span class="p">},</span>
+        <span class="nt">&quot;history&quot;</span><span class="p">:</span> <span class="p">[{</span>
+                <span class="nt">&quot;time&quot;</span><span class="p">:</span> <span class="mi">1395651928</span><span class="p">,</span>
+                <span class="nt">&quot;tool0&quot;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="nt">&quot;actual&quot;</span><span class="p">:</span> <span class="mf">214.8821</span><span class="p">,</span>
+                    <span class="nt">&quot;target&quot;</span><span class="p">:</span> <span class="mf">220.0</span>
+                <span class="p">},</span>
+                <span class="nt">&quot;tool1&quot;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="nt">&quot;actual&quot;</span><span class="p">:</span> <span class="mf">25.3</span><span class="p">,</span>
+                    <span class="nt">&quot;target&quot;</span><span class="p">:</span> <span class="kc">null</span>
+                <span class="p">},</span>
+                <span class="nt">&quot;bed&quot;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="nt">&quot;actual&quot;</span><span class="p">:</span> <span class="mf">50.221</span><span class="p">,</span>
+                    <span class="nt">&quot;target&quot;</span><span class="p">:</span> <span class="mf">70.0</span>
+                <span class="p">}</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="nt">&quot;time&quot;</span><span class="p">:</span> <span class="mi">1395651926</span><span class="p">,</span>
+                <span class="nt">&quot;tool0&quot;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="nt">&quot;actual&quot;</span><span class="p">:</span> <span class="mf">212.32</span><span class="p">,</span>
+                    <span class="nt">&quot;target&quot;</span><span class="p">:</span> <span class="mf">220.0</span>
+                <span class="p">},</span>
+                <span class="nt">&quot;tool1&quot;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="nt">&quot;actual&quot;</span><span class="p">:</span> <span class="mf">25.1</span><span class="p">,</span>
+                    <span class="nt">&quot;target&quot;</span><span class="p">:</span> <span class="kc">null</span>
+                <span class="p">},</span>
+                <span class="nt">&quot;bed&quot;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="nt">&quot;actual&quot;</span><span class="p">:</span> <span class="mf">49.1123</span><span class="p">,</span>
+                    <span class="nt">&quot;target&quot;</span><span class="p">:</span> <span class="mf">70.0</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">]</span>
+    <span class="p">},</span>
+    <span class="nt">&quot;sd&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;ready&quot;</span><span class="p">:</span> <span class="kc">true</span>
+    <span class="p">},</span>
+    <span class="nt">&quot;state&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;Operational&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;flags&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;operational&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="nt">&quot;paused&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+            <span class="nt">&quot;printing&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+            <span class="nt">&quot;cancelling&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+            <span class="nt">&quot;pausing&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+            <span class="nt">&quot;sdReady&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="nt">&quot;error&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+            <span class="nt">&quot;ready&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="nt">&quot;closedOrError&quot;</span><span class="p">:</span> <span class="kc">false</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>For example the target temperature, the state of the printer, the state of the SD card, and even more. For now, this will do for me! I can use my <a href="https://python-everything.com/post/138/Tracking-temperature-in-you-house-using-Micro-controllers-and-Python.html">Google Cloud Function</a> to make an API call that stored the data in my <a href="https://python-everything.com/post/113/-Hosting-a-SQL-Database-for-your-Python-projects-with-Digital-Ocean.html"> SQL database</a>.</p>
+<p>Thanks for reading!</p></p>
+                </div>
+                <div class="col-md-4 sidebar">
+                    <div class="sidebar-box">
+                        <h3>Extending my temperature tracking with Python</h3>
+                        <img src="/static/img/blogposts/141.png" alt="Image" class="round-image img-fluid">
+                        <p><p>Using python to fetch temperatures from my 3D printer to check if it's running!</p></p>
+                    </div>
+                    <div class="sidebar-box">
+                        <div class="categories">
+                            <h3>Latest posts</h3>
+                            
+                            <li><a href="/post/141/Extending-my-temperature-tracking-with-Python.html">Extending my temperature tracking with Python</a></li>
+                            
+                            <li><a href="/post/140/A-simple-dashboard-based-on-the-data-from-my-Arduino-project.html">A simple dashboard based on the data from my Arduino project</a></li>
+                            
+                            <li><a href="/post/139/Controling-Sonos-with-Python-in-just-a-couple-lines-of-code.html">Controling Sonos with Python in just a couple lines of code</a></li>
+                            
+                        </div>
+                    </div>
+                    <div class="sidebar-box">
+                        <h3>Python Everything</h3>
+                        <p>We at Python Everything try to provide you with your daily Python inspiration! Our post are ment to inspire you and ensure that you start coding in Python yourself.</p>
+                        <p><a href="/about.html" class="btn btn-primary btn-sm">Read More</a></p>
+                    </div>
+                    <!--
+                    <div class="sidebar-box">
+                        <h3>Paragraph</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus itaque, autem necessitatibus voluptate quod mollitia delectus aut, sunt placeat nam vero culpa sapiente consectetur similique, inventore eos fugit cupiditate numquam!</p>
+                    </div>
+                    -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+
+
+    <!-- ======= Footer ======= -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h3>About Python Everything</h3>
+                    <p>We're python enthousiasts, who want to ensure you are getting the same smile on you face everytime your python script runs successfully.</p>
+                </div>
+                <div class="col-md-7 ml-auto">
+                    <div class="row site-section pt-0">
+                        <div class="col-md-4 mb-4 mb-md-0">
+                            <h3>Navigation</h3>
+                            <ul class="list-unstyled">
+                                <li><a href="/">Home</a></li>
+                                <li><a href="/explore/1.html">Expore</a></li>
+                                <li><a href="/#contact">Get in touch</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row justify-content-center text-center">
+                <div class="col-md-7">
+                    <p class="copyright">&copy; Copyright Python Everything. All Rights Reserved</p>
+                    <div class="credits">
+                        Designed by <a href="/">Python Everything</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+    <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+
+    <!-- Vendor JS Files -->
+    <script src="/static/vendor/jquery/jquery.min.js"></script>
+    <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/vendor/jquery.easing/jquery.easing.min.js"></script>
+    <script src="/static/vendor/aos/aos.js"></script>
+    <script src="/static/vendor/owl.carousel/owl.carousel.min.js"></script>
+    <script src="/static/vendor/jquery-sticky/jquery.sticky.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="/static/js/main.js"></script>
+
+</body>
+
+</html>

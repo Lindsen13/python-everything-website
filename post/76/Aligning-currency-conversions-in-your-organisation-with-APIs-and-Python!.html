@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-149203155-2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-149203155-2');
+    </script>
+    <!-- Favicons -->
+
+    <link href="/static/img/favicon/android-chrome-512x512.png" rel="icon">
+    <link href="/static/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/vendor/markdown-converter/styles.css" rel="stylesheet">
+
+    <link href="/static/vendor/icofont/icofont.min.css" rel="stylesheet">
+    <link href="/static/vendor/aos/aos.css" rel="stylesheet">
+    <link href="/static/vendor/line-awesome/css/line-awesome.min.css" rel="stylesheet">
+    <link href="/static/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="/static/css/style.css" rel="stylesheet">
+
+    <meta name="robots" content="index, follow">
+
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"> 
+<title>Python Everything - Aligning currency conversions in your organisation with APIs and Python!</title>
+<meta name="description" content="How the Request package and a free to use API can help you retrieve up-to-date exchanges rates - For some upcoming blog posts, I&#39;d like to show my interpretation of an ETL sy..."> 
+</head>
+
+<body>
+
+    <!-- ======= Mobile Menu ======= -->
+    <div class="site-mobile-menu site-navbar-target">
+        <div class="site-mobile-menu-header">
+            <div class="site-mobile-menu-close mt-3">
+                <span class="icofont-close js-menu-toggle"></span>
+            </div>
+        </div>
+        <div class="site-mobile-menu-body"></div>
+    </div>
+
+    <!-- ======= Header ======= -->
+    <header class="site-navbar js-sticky-header site-navbar-target" role="banner">
+
+        <div class="container">
+            <div class="row align-items-center">
+
+                <div class="col-6 col-lg-2">
+                    <h1 class="mb-0 site-logo"><a href="/" class="mb-0">Python Everything</a></h1>
+                </div>
+
+                <div class="col-12 col-md-10 d-none d-lg-block">
+                    <nav class="site-navigation position-relative text-right" role="navigation">
+
+                        <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
+                            <li class="active"><a href="/" class="nav-link">Home</a></li>
+                            <li><a href="/explore/1.html" class="nav-link">Explore</a></li>
+                            <li><a href="/authors.html" class="nav-link">Collaborators</a></li>
+                            <li><a href="/#contact" class="nav-link">Get in touch</a></li>
+                        </ul>
+                    </nav>
+                </div>
+
+                <div class="col-6 d-inline-block d-lg-none ml-md-0 py-3" style="position: relative; top: 3px;">
+
+                    <a href="#" class="burger site-menu-toggle js-menu-toggle" data-toggle="collapse" data-target="#main-navbar">
+                        <span></span>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+    </header>
+
+    
+
+<main id="main">
+
+    <section class="hero-section inner-page">
+        <div class="wave">
+
+            <svg width="1920px" height="265px" viewBox="0 0 1920 265" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+          <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+            <g id="Apple-TV" transform="translate(0.000000, -402.000000)" fill="#FFFFFF">
+              <path d="M0,439.134243 C175.04074,464.89273 327.944386,477.771974 458.710937,477.771974 C654.860765,477.771974 870.645295,442.632362 1205.9828,410.192501 C1429.54114,388.565926 1667.54687,411.092417 1920,477.771974 L1920,667 L1017.15166,667 L0,667 L0,439.134243 Z" id="Path"></path>
+            </g>
+          </g>
+        </svg>
+
+        </div>
+
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-12">
+                    <div class="row justify-content-center">
+                        <div class="col-md-10 text-center hero-text">
+                            <h1 data-aos="fade-up" data-aos-delay=""><h1>Aligning currency conversions in your organisation with APIs and Python!</h1></h1>
+                            <p class="mb-5" data-aos="fade-up" data-aos-delay="100">2020-07-23 &bullet; By <a href="#" class="text-white">Ivo</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <section class="site-section mb-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 blog-content">
+
+                    <p class="lead mb-5"><p>How the <strong>Request</strong> package and a free to use API can help you retrieve up-to-date exchanges rates</p></p>
+                    <p><p>For some upcoming blog posts, I'd like to show my interpretation of an ETL system with Python. <em>ETL</em> stands for <em>Extract</em>, <em>Transform</em> and <em>Load</em>. The idea of an ETL system is to extract data from multiple sources, transform and add business knowledge so the data can be used by end-users. Aspects like data governance and data democracy is one of the aims of an ETL system.</p>
+<p>Before showing how an ETL system could be developed with Python, I'd like to show how we can use APIs to extract data. For this example, we will use one of my favourite APIs: <a href="https://fixer.io/">Fixer.io</a>. This website allows you to start playing around with APIs in minutes. Just create an account, get an API key and you are good to go!</p>
+<p>We will be using the <em>Requests</em> Library from Python. Let's set up our development system as always:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># create a directory called &#39;api_fixer_extract&#39;</span>
+mkdir api_fixer_extract
+<span class="c1"># Navigate into the directory</span>
+<span class="nb">cd</span> api_fixer_extract
+<span class="c1"># Create a virtual environment</span>
+python3 -m venv env
+<span class="c1"># Activate the virtual environment</span>
+<span class="nb">source</span> env/bin/activate
+<span class="c1"># Install the &#39;Requests&#39; package.</span>
+pip install requests
+<span class="c1"># Create a python file for the script</span>
+touch script.py
+<span class="c1"># Create a python file for the configuration info</span>
+touch config.py
+</code></pre></div>
+
+
+<p>We will open the config.py file and add our API key and the API endpoint to this file.</p>
+<div class="codehilite"><pre><span></span><code><span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;http://data.fixer.io/api/latest&#39;</span>
+<span class="n">api_key</span> <span class="o">=</span> <span class="n">API_KEY</span>
+</code></pre></div>
+
+
+<p>Now we will open the script.py file and load the dependencies:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">from</span> <span class="nn">config</span> <span class="kn">import</span> <span class="n">url</span><span class="p">,</span> <span class="n">api_key</span>
+</code></pre></div>
+
+
+<p>The first import is known to us, we have done this plenty of time. The second one seems a bit different: we import 2 strings from a file which we made ourself. It is important that the script.py and config.py file are in the same folder, else it won't work. Let's make the API endpoint and create a API call to fixer.io.</p>
+<div class="codehilite"><pre><span></span><code><span class="n">endpoint</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s1">?access_key=</span><span class="si">{</span><span class="n">api_key</span><span class="si">}</span><span class="s1">&#39;</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">endpoint</span><span class="p">)</span>
+</code></pre></div>
+
+
+<p>We're using Python's f-string to create the endpoint, and the request.get() method to make the API call. To check if it worked, we can execute the following:</p>
+<div class="codehilite"><pre><span></span><code><span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">success</span><span class="err">!</span><span class="p">)</span>
+</code></pre></div>
+
+
+<p>And we can access the information from request method with the .json() function:</p>
+<div class="codehilite"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>
+</code></pre></div>
+
+
+<p>Which looks like this:</p>
+<div class="codehilite"><pre><span></span><code><span class="err">{&#39;success&#39;: True, &#39;timestamp&#39;: 1595488445, &#39;base&#39;: &#39;EUR&#39;, &#39;date&#39;: &#39;2020-07-23&#39;, &#39;rates&#39;: {&#39;AED&#39;: 4.255444, &#39;AFN&#39;: 89.319982...</span>
+</code></pre></div>
+
+
+<p>This is a dictionary, which allows us to use the .get() method. For example, to see the timestamp of extracting the data, we can call:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">timestamp</span><span class="p">)</span>
+</code></pre></div>
+
+
+<p>It is also possible to call:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">&#39;timestamp&#39;</span><span class="p">]</span>
+</code></pre></div>
+
+
+<p>But the first method ensures that we always get a result (either None or the value we want to get).</p>
+<p>All the information we are after, can be found with the 'rates' key.</p>
+<div class="codehilite"><pre><span></span><code><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">&#39;rates&#39;</span><span class="p">]</span>
+</code></pre></div>
+
+
+<p>To access each currency and exchange rate, we can loop over the 'rates' key, and use the .items() method to retrieve a tuple structured as <em>(currency, value,)</em>:</p>
+<div class="codehilite"><pre><span></span><code><span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;rates&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">currency</span> <span class="o">=</span> <span class="n">element</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="n">element</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Currency </span><span class="si">{</span><span class="n">currency</span><span class="si">}</span><span class="s1"> has an exchange rate of </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+
+<p>Now lets try to put all the above together and create a list of dictionaries, ready to be used in a future application:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">from</span> <span class="nn">config</span> <span class="kn">import</span> <span class="n">url</span><span class="p">,</span> <span class="n">api_key</span>
+
+<span class="n">endpoint</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s1">?access_key=</span><span class="si">{</span><span class="n">api_key</span><span class="si">}</span><span class="s1">&#39;</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">endpoint</span><span class="p">)</span>
+
+<span class="n">output</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;success&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;rates&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">currency_info</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s1">&#39;currency&#39;</span><span class="p">:</span><span class="n">element</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                <span class="s1">&#39;value&#39;</span><span class="p">:</span><span class="n">element</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                <span class="s1">&#39;base&#39;</span><span class="p">:</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;base&#39;</span><span class="p">),</span>
+                <span class="s1">&#39;date&#39;</span><span class="p">:</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;date&#39;</span><span class="p">)</span>
+                <span class="s1">&#39;timestamp&#39;</span><span class="p">:</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;timestamp&#39;</span><span class="p">)</span>
+            <span class="p">}</span>
+            <span class="n">output</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">currency_info</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+</code></pre></div>
+
+
+<p>Congratulations! We now have the information we need to make sure we can align currency exchanges across your organisation. The only thing we have to do, is to store this information in a nicely structured database. Curious how? Keep an eye out for my future blog posts!</p></p>
+                </div>
+                <div class="col-md-4 sidebar">
+                    <div class="sidebar-box">
+                        <h3>Aligning currency conversions in your organisation with APIs and Python!</h3>
+                        <img src="/static/img/blogposts/76.png" alt="Image" class="round-image img-fluid">
+                        <p><p>How the <strong>Request</strong> package and a free to use API can help you retrieve up-to-date exchanges rates</p></p>
+                    </div>
+                    <div class="sidebar-box">
+                        <div class="categories">
+                            <h3>Latest posts</h3>
+                            
+                            <li><a href="/post/141/Extending-my-temperature-tracking-with-Python.html">Extending my temperature tracking with Python</a></li>
+                            
+                            <li><a href="/post/140/A-simple-dashboard-based-on-the-data-from-my-Arduino-project.html">A simple dashboard based on the data from my Arduino project</a></li>
+                            
+                            <li><a href="/post/139/Controling-Sonos-with-Python-in-just-a-couple-lines-of-code.html">Controling Sonos with Python in just a couple lines of code</a></li>
+                            
+                        </div>
+                    </div>
+                    <div class="sidebar-box">
+                        <h3>Python Everything</h3>
+                        <p>We at Python Everything try to provide you with your daily Python inspiration! Our post are ment to inspire you and ensure that you start coding in Python yourself.</p>
+                        <p><a href="/about.html" class="btn btn-primary btn-sm">Read More</a></p>
+                    </div>
+                    <!--
+                    <div class="sidebar-box">
+                        <h3>Paragraph</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus itaque, autem necessitatibus voluptate quod mollitia delectus aut, sunt placeat nam vero culpa sapiente consectetur similique, inventore eos fugit cupiditate numquam!</p>
+                    </div>
+                    -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+
+
+    <!-- ======= Footer ======= -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h3>About Python Everything</h3>
+                    <p>We're python enthousiasts, who want to ensure you are getting the same smile on you face everytime your python script runs successfully.</p>
+                </div>
+                <div class="col-md-7 ml-auto">
+                    <div class="row site-section pt-0">
+                        <div class="col-md-4 mb-4 mb-md-0">
+                            <h3>Navigation</h3>
+                            <ul class="list-unstyled">
+                                <li><a href="/">Home</a></li>
+                                <li><a href="/explore/1.html">Expore</a></li>
+                                <li><a href="/#contact">Get in touch</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row justify-content-center text-center">
+                <div class="col-md-7">
+                    <p class="copyright">&copy; Copyright Python Everything. All Rights Reserved</p>
+                    <div class="credits">
+                        Designed by <a href="/">Python Everything</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+    <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+
+    <!-- Vendor JS Files -->
+    <script src="/static/vendor/jquery/jquery.min.js"></script>
+    <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/vendor/jquery.easing/jquery.easing.min.js"></script>
+    <script src="/static/vendor/aos/aos.js"></script>
+    <script src="/static/vendor/owl.carousel/owl.carousel.min.js"></script>
+    <script src="/static/vendor/jquery-sticky/jquery.sticky.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="/static/js/main.js"></script>
+
+</body>
+
+</html>

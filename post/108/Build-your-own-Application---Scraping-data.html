@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-149203155-2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-149203155-2');
+    </script>
+    <!-- Favicons -->
+
+    <link href="/static/img/favicon/android-chrome-512x512.png" rel="icon">
+    <link href="/static/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/vendor/markdown-converter/styles.css" rel="stylesheet">
+
+    <link href="/static/vendor/icofont/icofont.min.css" rel="stylesheet">
+    <link href="/static/vendor/aos/aos.css" rel="stylesheet">
+    <link href="/static/vendor/line-awesome/css/line-awesome.min.css" rel="stylesheet">
+    <link href="/static/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="/static/css/style.css" rel="stylesheet">
+
+    <meta name="robots" content="index, follow">
+
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"> 
+<title>Python Everything - Build your own Application - Scraping data</title>
+<meta name="description" content="Using Python&#39;s Requests and BeautifulSoup to scrape data for our Predictive model. - Build your own Application with Python, Web Scraping, Predictive modelling a..."> 
+</head>
+
+<body>
+
+    <!-- ======= Mobile Menu ======= -->
+    <div class="site-mobile-menu site-navbar-target">
+        <div class="site-mobile-menu-header">
+            <div class="site-mobile-menu-close mt-3">
+                <span class="icofont-close js-menu-toggle"></span>
+            </div>
+        </div>
+        <div class="site-mobile-menu-body"></div>
+    </div>
+
+    <!-- ======= Header ======= -->
+    <header class="site-navbar js-sticky-header site-navbar-target" role="banner">
+
+        <div class="container">
+            <div class="row align-items-center">
+
+                <div class="col-6 col-lg-2">
+                    <h1 class="mb-0 site-logo"><a href="/" class="mb-0">Python Everything</a></h1>
+                </div>
+
+                <div class="col-12 col-md-10 d-none d-lg-block">
+                    <nav class="site-navigation position-relative text-right" role="navigation">
+
+                        <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
+                            <li class="active"><a href="/" class="nav-link">Home</a></li>
+                            <li><a href="/explore/1.html" class="nav-link">Explore</a></li>
+                            <li><a href="/authors.html" class="nav-link">Collaborators</a></li>
+                            <li><a href="/#contact" class="nav-link">Get in touch</a></li>
+                        </ul>
+                    </nav>
+                </div>
+
+                <div class="col-6 d-inline-block d-lg-none ml-md-0 py-3" style="position: relative; top: 3px;">
+
+                    <a href="#" class="burger site-menu-toggle js-menu-toggle" data-toggle="collapse" data-target="#main-navbar">
+                        <span></span>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+    </header>
+
+    
+
+<main id="main">
+
+    <section class="hero-section inner-page">
+        <div class="wave">
+
+            <svg width="1920px" height="265px" viewBox="0 0 1920 265" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+          <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+            <g id="Apple-TV" transform="translate(0.000000, -402.000000)" fill="#FFFFFF">
+              <path d="M0,439.134243 C175.04074,464.89273 327.944386,477.771974 458.710937,477.771974 C654.860765,477.771974 870.645295,442.632362 1205.9828,410.192501 C1429.54114,388.565926 1667.54687,411.092417 1920,477.771974 L1920,667 L1017.15166,667 L0,667 L0,439.134243 Z" id="Path"></path>
+            </g>
+          </g>
+        </svg>
+
+        </div>
+
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-12">
+                    <div class="row justify-content-center">
+                        <div class="col-md-10 text-center hero-text">
+                            <h1 data-aos="fade-up" data-aos-delay=""><h1>Build your own Application - Scraping data</h1></h1>
+                            <p class="mb-5" data-aos="fade-up" data-aos-delay="100">2020-09-10 &bullet; By <a href="#" class="text-white">Ivo</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <section class="site-section mb-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 blog-content">
+
+                    <p class="lead mb-5"><p>Using <strong>Python's Requests</strong> and <strong>BeautifulSoup</strong> to scrape data for our <strong>Predictive model</strong>.</p></p>
+                    <p><h3>Build your own Application with Python, Web Scraping, Predictive modelling and Bootstrap - Scraping data</h3>
+<p>Using <strong>Python's Requests</strong> and <strong>BeautifulSoup</strong> to scrape datat for our <strong>Predictive model</strong>.</p>
+<h3>See the final result <a href="https://car-price-app.herokuapp.com/">here</a></h3>
+<p>This will be the first out of four posts for my new series. I will show you how you can make a custom application that includes predictive modelling! The creation of this small <strong>SAAS</strong> app will be split up in the following parts:</p>
+<ul>
+<li>part 1: <a href="https://python-everything.com/post/108/Build-your-own-Application---Scraping-data.html">Scraping data</a></li>
+<li>part 2: <a href="https://python-everything.com/post/109/Build-your-own-Application---Predictive-Modelling.html">Predictive modelling</a></li>
+<li>part 3: <a href="https://python-everything.com/post/110/Build-your-own-Application---Web-interface.html">Web interface</a></li>
+<li>part 4: <a href="https://python-everything.com/post/137/Build-your-own-Application---Deployment-on-Heroku.html">Deployment</a></li>
+</ul>
+<p>You can find the final result <a href="https://car-price-app.herokuapp.com/">here</a>. It is a web interface that takes several characteristics of a car. Based on the characteristics, a prediction is made for the value of the car. </p>
+<h2>Setting up our environment</h2>
+<p>At the end of this series, you will have a directory that looks like the following:</p>
+<div class="codehilite"><pre><span></span><code><span class="err">.</span>
+<span class="err">├────db.py</span>
+<span class="err">├────util.py</span>
+<span class="err">├────collect_data.py</span>
+<span class="err">├────flask_app.py</span>
+<span class="err">├────wsgi.py</span>
+<span class="err">├────requirements.txt</span>
+<span class="err">├────Procfile</span>
+<span class="err">├────static</span>
+<span class="err">│ ├────css</span>
+<span class="err">│ │ ├────main.css</span>
+<span class="err">│ │ └────util.css</span>
+<span class="err">│ ├────images</span>
+<span class="err">│ │ ├────img-01.png</span>
+<span class="err">│ │ └────icons</span>
+<span class="err">│ │   └────favicon.ico</span>
+<span class="err">│ ├────js</span>
+<span class="err">│ ├────fonts</span>
+<span class="err">│ │ └────montserrat</span>
+<span class="err">│ └────vendor</span>
+<span class="err">│   ├────animate</span>
+<span class="err">│   │ └────animate.css</span>
+<span class="err">│   └────bootstrap</span>
+<span class="err">│     ├────css</span>
+<span class="err">│     │ └────AllBootstrapCssFiles.css</span>
+<span class="err">│     ├────js</span>
+<span class="err">│     │ └────AllBootstrapJSFiles.css</span>
+<span class="err">│     └────SomeMoreBootstrapFolders</span>
+<span class="err">│       └────AllOtherBootstrapFiles.unk</span>
+<span class="err">├────instance</span>
+<span class="err">│       ├────finalized_model.sav</span>
+<span class="err">│       ├────output.csv</span>
+<span class="err">│       └────database.db</span>
+<span class="err">├────templates</span>
+<span class="err">│       └────index.html</span>
+<span class="err">└────env</span>
+<span class="err">        └────AllEnvFolders</span>
+</code></pre></div>
+
+
+<p>First of all, we will open a terminal and set up a project.</p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Create a folder for the project</span>
+mkdir MyAmazingApplication
+<span class="c1"># Navigate into the folder</span>
+<span class="nb">cd</span> MyAmazingApplication
+<span class="c1"># Create a virtual Environment</span>
+python3 -m venv env
+<span class="c1"># Activate virtual Environment</span>
+<span class="nb">source</span> env/bin/activate
+<span class="c1"># Install all packages with pip3</span>
+pip3 install requests bs4 pandas pickle
+<span class="c1"># Create a script for our utility functions</span>
+touch util.py
+<span class="c1"># Create a script for our database funcitons</span>
+touch db.py
+<span class="c1"># Create a script for our scraping functions</span>
+touch collect_data.py
+<span class="c1"># Create a directory for al our data</span>
+mkdir instance
+</code></pre></div>
+
+
+<p>Great, now the initial part of our project is set up!</p>
+<h2>Initiating a SQLite Database with Python's SQLite3 package</h2>
+<p>We need some data before we can train a model. I found a <a href="https://www.autotrader.nl/">Dutch site</a> that has currently almost 200k cars listed. Their website is very nicely structured, which is ideally for our purpose! But before we can store our data, we need to have a database in place. Lets open the <strong>db.py</strong> file and get started with out database.</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">sqlite3</span>
+<span class="kn">from</span> <span class="nn">sqlite3</span> <span class="kn">import</span> <span class="n">Error</span>
+</code></pre></div>
+
+
+<p>First of all, we will create a function that tries to create a connection to a specified db_file:</p>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">create_connection</span><span class="p">(</span><span class="n">db_file</span><span class="p">):</span>
+    <span class="n">conn</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">db_file</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">conn</span>
+    <span class="k">except</span> <span class="n">Error</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">conn</span>
+</code></pre></div>
+
+
+<p>Next to this, we will define a function that takes a connection and a query, and executes the query. Note that this function is only for sql statements that does not return anything (examples are <strong>INSERT</strong> and <strong>CREATE</strong>)</p>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">execute_query</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">create_table_sql</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">c</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">create_table_sql</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">Error</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+</code></pre></div>
+
+
+<p>Now we can use these two functions to create our table:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">database</span> <span class="o">=</span> <span class="s2">&quot;instance/database.db&quot;</span>
+<span class="n">sql_query1</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot; DROP TABLE cars&quot;&quot;&quot;</span>
+<span class="n">conn</span> <span class="o">=</span> <span class="n">create_connection</span><span class="p">(</span><span class="n">database</span><span class="p">)</span>
+<span class="n">execute_query</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">sql_query1</span><span class="p">)</span>
+</code></pre></div>
+
+
+<p>We specify a database name, and drop the table <strong>cars</strong> in there. This will return an error for us, but in the future we might want to re-initiate the database, and therefore we have to drop it. If you'd like, you can also play around with a query like <strong>DROP TABLE IF EXISTS cars</strong>.</p>
+<p>Furthermore, we also have to create a table:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">sql_query2</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot; CREATE TABLE cars (</span>
+<span class="s2">                id integer PRIMARY KEY AUTOINCREMENT,</span>
+<span class="s2">                date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,</span>
+<span class="s2">                name text NOT NULL,</span>
+<span class="s2">                price text,</span>
+<span class="s2">                brand text,</span>
+<span class="s2">                type text,</span>
+<span class="s2">                year text,</span>
+<span class="s2">                km text,</span>
+<span class="s2">                fuell text,</span>
+<span class="s2">                gearbox text</span>
+<span class="s2">            ); &quot;&quot;&quot;</span>
+
+<span class="n">execute_query</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">sql_query2</span><span class="p">)</span>
+</code></pre></div>
+
+
+<p>And the above two can be combined in a nice function, including a statement that checks if everything goes to plan:</p>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">database</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;instance/database.db&quot;</span>
+    <span class="n">sql_query1</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot; DROP TABLE cars&quot;&quot;&quot;</span>
+    <span class="n">conn</span> <span class="o">=</span> <span class="n">create_connection</span><span class="p">(</span><span class="n">database</span><span class="p">)</span>
+    <span class="n">sql_query2</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot; CREATE TABLE cars (</span>
+<span class="s2">                    id integer PRIMARY KEY AUTOINCREMENT,</span>
+<span class="s2">                    date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,</span>
+<span class="s2">                    name text NOT NULL,</span>
+<span class="s2">                    price text,</span>
+<span class="s2">                    brand text,</span>
+<span class="s2">                    type text,</span>
+<span class="s2">                    year text,</span>
+<span class="s2">                    km text,</span>
+<span class="s2">                    fuell text,</span>
+<span class="s2">                    gearbox text</span>
+<span class="s2">                ); &quot;&quot;&quot;</span>
+
+    <span class="c1"># create tables</span>
+    <span class="k">if</span> <span class="n">conn</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">execute_query</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">sql_query1</span><span class="p">)</span>
+        <span class="n">execute_query</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">sql_query2</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error! cannot create the database connection.&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+
+<p>If we want to insert data into our new table, we can use the following:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">sql</span> <span class="o">=</span> <span class="s1">&#39;INSERT INTO cars(name, price, brand, type, year, km, fuell, gearbox) VALUES(?,?,?,?,?,?,?,?);&#39;</span>
+<span class="n">cur</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+<span class="n">cur</span><span class="o">.</span><span class="n">executemany</span><span class="p">(</span><span class="n">sql</span><span class="p">,</span> <span class="n">project</span><span class="p">)</span>
+<span class="n">conn</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+</code></pre></div>
+
+
+<p>Note, that we are using <strong>executemany()</strong> instead of <strong>execute()</strong>. This is done, so we can parse multiple rows of data at once (for performance reasons). Wrapping the above in a function:</p>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">insert_data</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">project</span><span class="p">):</span>
+    <span class="n">sql</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;INSERT INTO cars(name, price, brand, type, year, km, fuell, gearbox)</span>
+<span class="s1">            VALUES(?,?,?,?,?,?,?,?);&#39;&#39;&#39;</span>
+    <span class="n">cur</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+    <span class="n">cur</span><span class="o">.</span><span class="n">executemany</span><span class="p">(</span><span class="n">sql</span><span class="p">,</span> <span class="n">project</span><span class="p">)</span>
+    <span class="n">conn</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">cur</span><span class="o">.</span><span class="n">lastrowid</span>
+</code></pre></div>
+
+
+<p>Now we have a file with four functions, which we can import (which we will be doing, especially the <strong>insert_data()</strong>!). We also want to be able to run the script and call all the functions, therefore we add the following:</p>
+<div class="codehilite"><pre><span></span><code><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</code></pre></div>
+
+
+<p>Running the file (with <strong>python3 db.py</strong>), will execute the <strong>main()</strong> function. This will empty the database and creates the required table.</p>
+<p>All together:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">sqlite3</span>
+<span class="kn">from</span> <span class="nn">sqlite3</span> <span class="kn">import</span> <span class="n">Error</span>
+
+
+<span class="k">def</span> <span class="nf">create_connection</span><span class="p">(</span><span class="n">db_file</span><span class="p">):</span>
+    <span class="n">conn</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">db_file</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">conn</span>
+    <span class="k">except</span> <span class="n">Error</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">conn</span>
+
+
+<span class="k">def</span> <span class="nf">execute_query</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">create_table_sql</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">c</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">create_table_sql</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">Error</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">database</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;instance/database.db&quot;</span>
+    <span class="n">sql_query1</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot; DROP TABLE cars&quot;&quot;&quot;</span>
+    <span class="n">conn</span> <span class="o">=</span> <span class="n">create_connection</span><span class="p">(</span><span class="n">database</span><span class="p">)</span>
+    <span class="n">sql_query2</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot; CREATE TABLE cars (</span>
+<span class="s2">                    id integer PRIMARY KEY AUTOINCREMENT,</span>
+<span class="s2">                    date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,</span>
+<span class="s2">                    name text NOT NULL,</span>
+<span class="s2">                    price text,</span>
+<span class="s2">                    brand text,</span>
+<span class="s2">                    type text,</span>
+<span class="s2">                    year text,</span>
+<span class="s2">                    km text,</span>
+<span class="s2">                    fuell text,</span>
+<span class="s2">                    gearbox text</span>
+<span class="s2">                ); &quot;&quot;&quot;</span>
+
+    <span class="c1"># create tables</span>
+    <span class="k">if</span> <span class="n">conn</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">execute_query</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">sql_query1</span><span class="p">)</span>
+        <span class="n">execute_query</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">sql_query2</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error! cannot create the database connection.&quot;</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">insert_data</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">project</span><span class="p">):</span>
+    <span class="n">sql</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;INSERT INTO cars(name, price, brand, type, year, km, fuell, gearbox)</span>
+<span class="s1">            VALUES(?,?,?,?,?,?,?,?);&#39;&#39;&#39;</span>
+    <span class="n">cur</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+    <span class="n">cur</span><span class="o">.</span><span class="n">executemany</span><span class="p">(</span><span class="n">sql</span><span class="p">,</span> <span class="n">project</span><span class="p">)</span>
+    <span class="n">conn</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">cur</span><span class="o">.</span><span class="n">lastrowid</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</code></pre></div>
+
+
+<h2>Next up: Scraping data four our Forecasting model.</h2>
+<p>Let's open op our <strong>collect_data.py()</strong> file. The first thing, is to import the libraries we need.</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+<span class="kn">import</span> <span class="nn">pandas</span>
+</code></pre></div>
+
+
+<p>Next to this, we need to import some function from our <strong>db.py</strong> file:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">db</span> <span class="kn">import</span> <span class="n">create_connection</span><span class="p">,</span> <span class="n">insert_data</span><span class="p">,</span> <span class="n">main</span> <span class="k">as</span> <span class="n">clear_database</span>
+</code></pre></div>
+
+
+<p>Note that we import the <strong>main()</strong> function as <strong>clear_database</strong>, just to make it a bit more clear what the function does (outside the context of <strong>db.py</strong> it's difficult to guess whats behind it!)</p>
+<p>Next, we want to specify the car brands we are interested in:</p>
+<div class="codehilite"><pre><span></span><code><span class="err">cars = [&#39;BMW&#39;,&#39;Audi&#39;,&#39;Volkswagen&#39;,&#39;Mercedes Benz&#39;,&#39;Peugeot&#39;,&#39;Opel&#39;,&#39;Renault&#39;,&#39;Toyota&#39;,&#39;Ford&#39;]</span>
+</code></pre></div>
+
+
+<p>Since this list will be extended in the future, I like to put it in the <strong>util.py</strong> file. By doing this, we have to import the <strong>cars</strong> variable as well from our <strong>collect_data.py</strong> file:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">util</span> <span class="kn">import</span> <span class="n">cars</span>
+</code></pre></div>
+
+
+<p>We will clear the database, and create a new connection:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">clear_database</span><span class="p">()</span>
+<span class="n">db_file</span> <span class="o">=</span> <span class="s1">&#39;instance/database.db&#39;</span>
+<span class="n">conn</span> <span class="o">=</span> <span class="n">create_connection</span><span class="p">(</span><span class="n">db_file</span><span class="p">)</span>
+</code></pre></div>
+
+
+<p>Next up, we will loop over the cars, clean the names and specify the url we want to scrape:</p>
+<div class="codehilite"><pre><span></span><code><span class="k">for</span> <span class="n">car</span> <span class="ow">in</span> <span class="n">cars</span><span class="p">:</span>
+    <span class="n">car</span> <span class="o">=</span> <span class="n">car</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;https://www.autotrader.nl/auto/</span><span class="si">{</span><span class="n">car</span><span class="si">}</span><span class="s1">/&#39;</span>
+</code></pre></div>
+
+
+<p>For each url, we want to capture the types of cars available on <a href="https://www.autotrader.nl/">autotrader</a>:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">output</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">output</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="s1">&#39;html.parser&#39;</span><span class="p">)</span>
+<span class="n">types</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="nb">type</span> <span class="ow">in</span> <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;ul&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">6</span><span class="p">]</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;li&#39;</span><span class="p">):</span>
+    <span class="n">types</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">type</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;types detected for </span><span class="si">{</span><span class="n">car</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">types</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+
+<p>Note that I've made a small print statement, just to keep track on where we are while running the script. Next up is to loop over the type of each car, and within that loop over the years between 1995 and 2020. Furthermore, we have to make sure we can use the <strong>type</strong> variable in the url. To do so, we have to replace all comma's with a dash, all explanation marks with nothing, and Fords' ka/ka+ model has to be replaced with ka-ka-plus. </p>
+<div class="codehilite"><pre><span></span><code><span class="k">for</span> <span class="nb">type</span> <span class="ow">in</span> <span class="n">types</span><span class="p">:</span>
+    <span class="nb">type</span> <span class="o">=</span> <span class="nb">type</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;!&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;ka/ka+&#39;</span><span class="p">,</span><span class="s1">&#39;ka-ka-plus&#39;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1995</span><span class="p">,</span><span class="mi">2021</span><span class="p">):</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;https://www.autotrader.nl/auto/</span><span class="si">{</span><span class="n">car</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="nb">type</span><span class="si">}</span><span class="s1">/?fregfrom=</span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s1">&amp;fregto=</span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s1">&#39;</span>
+</code></pre></div>
+
+
+<p>We could add all the url's into a list where we will loop over later. We can also continue in the loop, and process the url's straight away. That's what we will do.  We have to find the total number of pages for the brand, type and year combination we are looking at.</p>
+<div class="codehilite"><pre><span></span><code><span class="n">output</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">output</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="s1">&#39;html.parser&#39;</span><span class="p">)</span>
+<span class="n">max_page</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">class_</span><span class="o">=</span><span class="s1">&#39;page-nave__desktop&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;li&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</code></pre></div>
+
+
+<p>This returns a integer with the max page value. (Where the maximum is 20, which means that <a href="https://www.autotrader.nl/">autotrader</a> only returns 400 cars by default.)</p>
+<p>Next up, is to loop over each page, and populate our <strong>cars_query</strong> list with a tuple of the variables we need. The reason why we use a tuple, is so we can insert the data easily into the SQLite database.</p>
+<p>One of the variables that <a href="https://www.autotrader.nl/">autotrader</a> returns, is a month-year combination in dutch. We have to convert this to a normal, date. To do so, I defined a function which I have added to the <strong>util.py</strong> file. Don't forget to also add it to the <strong>collect_data.py</strong> file as an import</p>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">convert_date</span><span class="p">(</span><span class="n">output</span><span class="p">):</span>
+    <span class="n">monthyear</span> <span class="o">=</span> <span class="n">output</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">class_</span><span class="o">=</span><span class="s1">&#39;css-tr15v5&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
+    <span class="n">year</span> <span class="o">=</span> <span class="n">monthyear</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">month</span> <span class="o">=</span> <span class="n">monthyear</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">month</span> <span class="o">==</span><span class="s1">&#39;Jan&#39;</span><span class="p">:</span>
+        <span class="n">month</span> <span class="o">=</span> <span class="s1">&#39;01&#39;</span>
+    <span class="k">elif</span> <span class="n">month</span> <span class="o">==</span><span class="s1">&#39;Feb&#39;</span><span class="p">:</span>
+        <span class="n">month</span> <span class="o">=</span> <span class="s1">&#39;02&#39;</span>
+    <span class="k">elif</span> <span class="n">month</span> <span class="o">==</span><span class="s1">&#39;Mrt&#39;</span><span class="p">:</span>
+        <span class="n">month</span> <span class="o">=</span> <span class="s1">&#39;03&#39;</span>
+    <span class="k">elif</span> <span class="n">month</span> <span class="o">==</span><span class="s1">&#39;Apr&#39;</span><span class="p">:</span>
+        <span class="n">month</span> <span class="o">=</span> <span class="s1">&#39;04&#39;</span>
+    <span class="k">elif</span> <span class="n">month</span> <span class="o">==</span><span class="s1">&#39;Mei&#39;</span><span class="p">:</span>
+        <span class="n">month</span> <span class="o">=</span> <span class="s1">&#39;05&#39;</span>
+    <span class="k">elif</span> <span class="n">month</span> <span class="o">==</span><span class="s1">&#39;Jun&#39;</span><span class="p">:</span>
+        <span class="n">month</span> <span class="o">=</span> <span class="s1">&#39;06&#39;</span>
+    <span class="k">elif</span> <span class="n">month</span> <span class="o">==</span><span class="s1">&#39;Jul&#39;</span><span class="p">:</span>
+        <span class="n">month</span> <span class="o">=</span> <span class="s1">&#39;07&#39;</span>
+    <span class="k">elif</span> <span class="n">month</span> <span class="o">==</span><span class="s1">&#39;Aug&#39;</span><span class="p">:</span>
+        <span class="n">month</span> <span class="o">=</span> <span class="s1">&#39;08&#39;</span>
+    <span class="k">elif</span> <span class="n">month</span> <span class="o">==</span><span class="s1">&#39;Sep&#39;</span><span class="p">:</span>
+        <span class="n">month</span> <span class="o">=</span> <span class="s1">&#39;09&#39;</span>
+    <span class="k">elif</span> <span class="n">month</span> <span class="o">==</span><span class="s1">&#39;Okt&#39;</span><span class="p">:</span>
+        <span class="n">month</span> <span class="o">=</span> <span class="s1">&#39;10&#39;</span>
+    <span class="k">elif</span> <span class="n">month</span> <span class="o">==</span><span class="s1">&#39;Nov&#39;</span><span class="p">:</span>
+        <span class="n">month</span> <span class="o">=</span> <span class="s1">&#39;11&#39;</span>
+    <span class="k">elif</span> <span class="n">month</span> <span class="o">==</span><span class="s1">&#39;Dec&#39;</span><span class="p">:</span>
+        <span class="n">month</span> <span class="o">=</span> <span class="s1">&#39;12&#39;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">month</span> <span class="o">=</span> <span class="s1">&#39;12&#39;</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s1">-</span><span class="si">{</span><span class="n">month</span><span class="si">}</span><span class="s1">-01&#39;</span>
+</code></pre></div>
+
+
+<p>And
+    ::python
+    from util import convert_date</p>
+<p>This allows us to call <strong>convert_date()</strong> in the loop we're building:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">cars_query</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">max_page</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;https://www.autotrader.nl/auto/</span><span class="si">{</span><span class="n">car</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="nb">type</span><span class="si">}</span><span class="s1">/?fregfrom=</span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s1">&amp;fregto=</span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s1">&amp;page=</span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s1">&#39;</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">output</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="s1">&#39;html.parser&#39;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">output</span> <span class="ow">in</span> <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="n">class_</span><span class="o">=</span><span class="s1">&#39;css-kshabm&#39;</span><span class="p">):</span>
+        <span class="n">new_car</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;name&#39;</span><span class="p">:</span><span class="n">output</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">class_</span><span class="o">=</span><span class="s1">&#39;css-63oe3q&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> 
+            <span class="s1">&#39;price&#39;</span><span class="p">:</span><span class="n">output</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">class_</span><span class="o">=</span><span class="s1">&#39;price&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;span&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;€ &#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;,-&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">),</span>
+            <span class="s1">&#39;brand&#39;</span><span class="p">:</span><span class="n">car</span><span class="p">,</span>
+            <span class="s1">&#39;type&#39;</span><span class="p">:</span><span class="nb">type</span><span class="p">,</span>
+            <span class="s1">&#39;year&#39;</span><span class="p">:</span><span class="n">convert_date</span><span class="p">(</span><span class="n">output</span><span class="p">),</span>
+            <span class="s1">&#39;km&#39;</span><span class="p">:</span><span class="n">output</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;span&#39;</span><span class="p">)[</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; km&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">),</span>
+            <span class="s1">&#39;fuell&#39;</span><span class="p">:</span><span class="n">output</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">class_</span><span class="o">=</span><span class="s1">&#39;css-ort0ib&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;li&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">,</span>
+            <span class="s1">&#39;gearbox&#39;</span><span class="p">:</span><span class="n">output</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">class_</span><span class="o">=</span><span class="s1">&#39;css-ort0ib&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;li&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">text</span>
+            <span class="p">}</span>
+        <span class="n">cars_query</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">tuple</span><span class="p">([</span><span class="n">value</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">new_car</span><span class="o">.</span><span class="n">items</span><span class="p">()]))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;scraped </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">p</span><span class="p">)</span><span class="si">}</span><span class="s1"> pages for </span><span class="si">{</span><span class="n">car</span><span class="si">}</span><span class="s1">. (</span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+<span class="n">output</span> <span class="o">=</span> <span class="n">insert_data</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">cars_query</span><span class="p">)</span>
+</code></pre></div>
+
+
+<p>A small trick which I am doing here, is to convert the <strong>new_car</strong> dictionary into a tuple with a list comprehension:</p>
+<div class="codehilite"><pre><span></span><code><span class="nb">tuple</span><span class="p">([</span><span class="n">value</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">new_car</span><span class="o">.</span><span class="n">items</span><span class="p">()])</span>
+</code></pre></div>
+
+
+<p>What this does, is creating a list of the values if the <strong>new_car</strong> dictionary, and convert it into a tuple. The only thing left to do, is add some try-except clauses to make sure the entire loop doesn't break if we encounter one odd case:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+<span class="kn">import</span> <span class="nn">pandas</span>
+<span class="kn">from</span> <span class="nn">db</span> <span class="kn">import</span> <span class="n">create_connection</span><span class="p">,</span> <span class="n">insert_data</span><span class="p">,</span> <span class="n">main</span> <span class="k">as</span> <span class="n">clear_database</span>
+<span class="kn">from</span> <span class="nn">util</span> <span class="kn">import</span> <span class="n">convert_date</span><span class="p">,</span> <span class="n">cars</span>
+
+<span class="n">clear_database</span><span class="p">()</span>
+
+<span class="n">db_file</span> <span class="o">=</span> <span class="s1">&#39;instance/database.db&#39;</span>
+<span class="n">conn</span> <span class="o">=</span> <span class="n">create_connection</span><span class="p">(</span><span class="n">db_file</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">car</span> <span class="ow">in</span> <span class="n">cars</span><span class="p">:</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">car</span> <span class="o">=</span> <span class="n">car</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;https://www.autotrader.nl/auto/</span><span class="si">{</span><span class="n">car</span><span class="si">}</span><span class="s1">/&#39;</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+        <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">output</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="s1">&#39;html.parser&#39;</span><span class="p">)</span>
+        <span class="n">types</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="nb">type</span> <span class="ow">in</span> <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;ul&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">6</span><span class="p">]</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;li&#39;</span><span class="p">):</span>
+            <span class="n">types</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">type</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;types detected for </span><span class="si">{</span><span class="n">car</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">types</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="nb">type</span> <span class="ow">in</span> <span class="n">types</span><span class="p">:</span>
+            <span class="nb">type</span> <span class="o">=</span> <span class="nb">type</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;!&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;ka/ka+&#39;</span><span class="p">,</span><span class="s1">&#39;ka-ka-plus&#39;</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1995</span><span class="p">,</span><span class="mi">2021</span><span class="p">):</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;https://www.autotrader.nl/auto/</span><span class="si">{</span><span class="n">car</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="nb">type</span><span class="si">}</span><span class="s1">/?fregfrom=</span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s1">&amp;fregto=</span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s1">&#39;</span>
+                    <span class="n">output</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+                    <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">output</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="s1">&#39;html.parser&#39;</span><span class="p">)</span>
+                    <span class="n">max_page</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">class_</span><span class="o">=</span><span class="s1">&#39;page-nave__desktop&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;li&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+                    <span class="n">cars_query</span> <span class="o">=</span> <span class="p">[]</span>
+                    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">max_page</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+                        <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;https://www.autotrader.nl/auto/</span><span class="si">{</span><span class="n">car</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="nb">type</span><span class="si">}</span><span class="s1">/?fregfrom=</span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s1">&amp;fregto=</span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s1">&amp;page=</span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s1">&#39;</span>
+                        <span class="n">output</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+                        <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">output</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="s1">&#39;html.parser&#39;</span><span class="p">)</span>
+                        <span class="k">for</span> <span class="n">output</span> <span class="ow">in</span> <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="n">class_</span><span class="o">=</span><span class="s1">&#39;css-kshabm&#39;</span><span class="p">):</span>
+                            <span class="n">new_car</span> <span class="o">=</span> <span class="p">{</span>
+                                <span class="s1">&#39;name&#39;</span><span class="p">:</span><span class="n">output</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">class_</span><span class="o">=</span><span class="s1">&#39;css-63oe3q&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> 
+                                <span class="s1">&#39;price&#39;</span><span class="p">:</span><span class="n">output</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">class_</span><span class="o">=</span><span class="s1">&#39;price&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;span&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;€ &#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;,-&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">),</span>
+                                <span class="s1">&#39;brand&#39;</span><span class="p">:</span><span class="n">car</span><span class="p">,</span>
+                                <span class="s1">&#39;type&#39;</span><span class="p">:</span><span class="nb">type</span><span class="p">,</span>
+                                <span class="s1">&#39;year&#39;</span><span class="p">:</span><span class="n">convert_date</span><span class="p">(</span><span class="n">output</span><span class="p">),</span>
+                                <span class="s1">&#39;km&#39;</span><span class="p">:</span><span class="n">output</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;span&#39;</span><span class="p">)[</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; km&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">),</span>
+                                <span class="s1">&#39;fuell&#39;</span><span class="p">:</span><span class="n">output</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">class_</span><span class="o">=</span><span class="s1">&#39;css-ort0ib&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;li&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">,</span>
+                                <span class="s1">&#39;gearbox&#39;</span><span class="p">:</span><span class="n">output</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">class_</span><span class="o">=</span><span class="s1">&#39;css-ort0ib&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;li&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">text</span>
+                                <span class="p">}</span>
+                            <span class="n">cars_query</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">tuple</span><span class="p">([</span><span class="n">value</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">new_car</span><span class="o">.</span><span class="n">items</span><span class="p">()]))</span>
+                        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;scraped </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">p</span><span class="p">)</span><span class="si">}</span><span class="s1"> pages for </span><span class="si">{</span><span class="n">car</span><span class="si">}</span><span class="s1">. (</span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+                    <span class="n">output</span> <span class="o">=</span> <span class="n">insert_data</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">cars_query</span><span class="p">)</span>
+                <span class="k">except</span><span class="p">:</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Couldnt process all info for </span><span class="si">{</span><span class="n">car</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s1">.&#39;</span><span class="p">)</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="k">continue</span>
+</code></pre></div>
+
+
+<p>If you'd like to look into the data, you can create a .csv file and browse it with the following:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">cur</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+<span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM cars;&quot;</span><span class="p">)</span>
+<span class="n">rows</span> <span class="o">=</span> <span class="n">cur</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">columns</span> <span class="o">=</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;date&#39;</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span><span class="s1">&#39;price&#39;</span><span class="p">,</span><span class="s1">&#39;brand&#39;</span><span class="p">,</span><span class="s1">&#39;type&#39;</span><span class="p">,</span><span class="s1">&#39;year&#39;</span><span class="p">,</span><span class="s1">&#39;km&#39;</span><span class="p">,</span><span class="s1">&#39;fuell&#39;</span><span class="p">,</span><span class="s1">&#39;gearbox&#39;</span><span class="p">])</span>
+<span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;instance/output.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</code></pre></div>
+
+
+<p>Note that this is only optional.</p>
+<p>Great, now we have 2 files in place: our <strong>db.py</strong> file which allows us to create and maintain a SQLite database, and a <strong>collect_data.py</strong> file which will scrape over a hundred thousand different cars within only a small hour (at least, that's the case for me).</p>
+<p>You can download the code from my <a href="https://github.com/Lindsen13/Custom-Application">Github</a> as well!</p>
+<p><a href="https://python-everything.com/post/109/Build-your-own-Application---Predictive-Modelling.html">Next time</a>, I will explain and show how we can make a predictive model on the data we have collected.</p></p>
+                </div>
+                <div class="col-md-4 sidebar">
+                    <div class="sidebar-box">
+                        <h3>Build your own Application - Scraping data</h3>
+                        <img src="/static/img/blogposts/108.png" alt="Image" class="round-image img-fluid">
+                        <p><p>Using <strong>Python's Requests</strong> and <strong>BeautifulSoup</strong> to scrape data for our <strong>Predictive model</strong>.</p></p>
+                    </div>
+                    <div class="sidebar-box">
+                        <div class="categories">
+                            <h3>Latest posts</h3>
+                            
+                            <li><a href="/post/141/Extending-my-temperature-tracking-with-Python.html">Extending my temperature tracking with Python</a></li>
+                            
+                            <li><a href="/post/140/A-simple-dashboard-based-on-the-data-from-my-Arduino-project.html">A simple dashboard based on the data from my Arduino project</a></li>
+                            
+                            <li><a href="/post/139/Controling-Sonos-with-Python-in-just-a-couple-lines-of-code.html">Controling Sonos with Python in just a couple lines of code</a></li>
+                            
+                        </div>
+                    </div>
+                    <div class="sidebar-box">
+                        <h3>Python Everything</h3>
+                        <p>We at Python Everything try to provide you with your daily Python inspiration! Our post are ment to inspire you and ensure that you start coding in Python yourself.</p>
+                        <p><a href="/about.html" class="btn btn-primary btn-sm">Read More</a></p>
+                    </div>
+                    <!--
+                    <div class="sidebar-box">
+                        <h3>Paragraph</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus itaque, autem necessitatibus voluptate quod mollitia delectus aut, sunt placeat nam vero culpa sapiente consectetur similique, inventore eos fugit cupiditate numquam!</p>
+                    </div>
+                    -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+
+
+    <!-- ======= Footer ======= -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h3>About Python Everything</h3>
+                    <p>We're python enthousiasts, who want to ensure you are getting the same smile on you face everytime your python script runs successfully.</p>
+                </div>
+                <div class="col-md-7 ml-auto">
+                    <div class="row site-section pt-0">
+                        <div class="col-md-4 mb-4 mb-md-0">
+                            <h3>Navigation</h3>
+                            <ul class="list-unstyled">
+                                <li><a href="/">Home</a></li>
+                                <li><a href="/explore/1.html">Expore</a></li>
+                                <li><a href="/#contact">Get in touch</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row justify-content-center text-center">
+                <div class="col-md-7">
+                    <p class="copyright">&copy; Copyright Python Everything. All Rights Reserved</p>
+                    <div class="credits">
+                        Designed by <a href="/">Python Everything</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+    <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+
+    <!-- Vendor JS Files -->
+    <script src="/static/vendor/jquery/jquery.min.js"></script>
+    <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/vendor/jquery.easing/jquery.easing.min.js"></script>
+    <script src="/static/vendor/aos/aos.js"></script>
+    <script src="/static/vendor/owl.carousel/owl.carousel.min.js"></script>
+    <script src="/static/vendor/jquery-sticky/jquery.sticky.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="/static/js/main.js"></script>
+
+</body>
+
+</html>

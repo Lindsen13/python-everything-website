@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-149203155-2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-149203155-2');
+    </script>
+    <!-- Favicons -->
+
+    <link href="/static/img/favicon/android-chrome-512x512.png" rel="icon">
+    <link href="/static/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/vendor/markdown-converter/styles.css" rel="stylesheet">
+
+    <link href="/static/vendor/icofont/icofont.min.css" rel="stylesheet">
+    <link href="/static/vendor/aos/aos.css" rel="stylesheet">
+    <link href="/static/vendor/line-awesome/css/line-awesome.min.css" rel="stylesheet">
+    <link href="/static/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="/static/css/style.css" rel="stylesheet">
+
+    <meta name="robots" content="index, follow">
+
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"> 
+<title>Python Everything - Controling Sonos with Python in just a couple lines of code</title>
+<meta name="description" content="Yes, SoCo allows us to control our sonos system with python - A quick thought: Would it be able to control Sonos with Python? I wasn&#39;t real..."> 
+</head>
+
+<body>
+
+    <!-- ======= Mobile Menu ======= -->
+    <div class="site-mobile-menu site-navbar-target">
+        <div class="site-mobile-menu-header">
+            <div class="site-mobile-menu-close mt-3">
+                <span class="icofont-close js-menu-toggle"></span>
+            </div>
+        </div>
+        <div class="site-mobile-menu-body"></div>
+    </div>
+
+    <!-- ======= Header ======= -->
+    <header class="site-navbar js-sticky-header site-navbar-target" role="banner">
+
+        <div class="container">
+            <div class="row align-items-center">
+
+                <div class="col-6 col-lg-2">
+                    <h1 class="mb-0 site-logo"><a href="/" class="mb-0">Python Everything</a></h1>
+                </div>
+
+                <div class="col-12 col-md-10 d-none d-lg-block">
+                    <nav class="site-navigation position-relative text-right" role="navigation">
+
+                        <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
+                            <li class="active"><a href="/" class="nav-link">Home</a></li>
+                            <li><a href="/explore/1.html" class="nav-link">Explore</a></li>
+                            <li><a href="/authors.html" class="nav-link">Collaborators</a></li>
+                            <li><a href="/#contact" class="nav-link">Get in touch</a></li>
+                        </ul>
+                    </nav>
+                </div>
+
+                <div class="col-6 d-inline-block d-lg-none ml-md-0 py-3" style="position: relative; top: 3px;">
+
+                    <a href="#" class="burger site-menu-toggle js-menu-toggle" data-toggle="collapse" data-target="#main-navbar">
+                        <span></span>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+    </header>
+
+    
+
+<main id="main">
+
+    <section class="hero-section inner-page">
+        <div class="wave">
+
+            <svg width="1920px" height="265px" viewBox="0 0 1920 265" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+          <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+            <g id="Apple-TV" transform="translate(0.000000, -402.000000)" fill="#FFFFFF">
+              <path d="M0,439.134243 C175.04074,464.89273 327.944386,477.771974 458.710937,477.771974 C654.860765,477.771974 870.645295,442.632362 1205.9828,410.192501 C1429.54114,388.565926 1667.54687,411.092417 1920,477.771974 L1920,667 L1017.15166,667 L0,667 L0,439.134243 Z" id="Path"></path>
+            </g>
+          </g>
+        </svg>
+
+        </div>
+
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-12">
+                    <div class="row justify-content-center">
+                        <div class="col-md-10 text-center hero-text">
+                            <h1 data-aos="fade-up" data-aos-delay=""><h1>Controling Sonos with Python in just a couple lines of code</h1></h1>
+                            <p class="mb-5" data-aos="fade-up" data-aos-delay="100">2020-09-29 &bullet; By <a href="#" class="text-white">Ivo</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <section class="site-section mb-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 blog-content">
+
+                    <p class="lead mb-5"><p>Yes, <strong>SoCo</strong> allows us to control our sonos system with python</p></p>
+                    <p><p>A quick thought: Would it be able to control Sonos with Python? I wasn't really sure if this would be something which can be done easily. Turns out it took me 10 minutes to not only figure out that it's possible, but also to implement what I wanted.</p>
+<p>I am currently working from home a bit more then I wanted (hence this blog). Part of my job is taking zoom or team calls spontaneously, where I have to stop the music before picking up the call. How cool would it be to be able to both pause and play music on my Sonos system with a simple script? This is how it's done!</p>
+<h2>Getting started to remotely adjust my Sonos system</h2>
+<p>Lets first install the SoCo package</p>
+<div class="codehilite"><pre><span></span><code>pip3 install soco
+</code></pre></div>
+
+<p>And lets make a file that will be home of our code</p>
+<div class="codehilite"><pre><span></span><code>touch script.py
+</code></pre></div>
+
+<p>In this file, we will import the <strong>soco</strong> library and the <strong>sys</strong> library. The latter is so we can pass arguments in the command line to be handled with the script.</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">soco</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+</code></pre></div>
+
+<p>First thing is to find all the Sonos groups on your system. For me, I am interested in the first group which is returned, the one closest to my workspace. Therefore, I specify the first element of the list of Sonos groups.</p>
+<div class="codehilite"><pre><span></span><code><span class="n">sonos_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">soco</span><span class="o">.</span><span class="n">discover</span><span class="p">())</span>
+<span class="n">sonos</span> <span class="o">=</span> <span class="n">sonos_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</code></pre></div>
+
+<p>Now we have a <strong>sonos</strong> variable that allows us to control many things! I quickly wrote the following:</p>
+<div class="codehilite"><pre><span></span><code><span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;play&#39;</span><span class="p">:</span>
+    <span class="n">sonos</span><span class="o">.</span><span class="n">play</span><span class="p">()</span>
+<span class="k">elif</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;pause&#39;</span><span class="p">:</span>
+    <span class="n">sonos</span><span class="o">.</span><span class="n">pause</span><span class="p">()</span>
+<span class="k">elif</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;next&#39;</span><span class="p">:</span>
+    <span class="n">sonos</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+<span class="k">elif</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;previous&#39;</span><span class="p">:</span>
+    <span class="n">sonos</span><span class="o">.</span><span class="n">previous</span><span class="p">()</span>
+<span class="k">elif</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;vol_up&#39;</span><span class="p">:</span>
+    <span class="n">sonos</span><span class="o">.</span><span class="n">volume</span> <span class="o">+=</span> <span class="mi">10</span>
+<span class="k">elif</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;vol_down&#39;</span><span class="p">:</span>
+    <span class="n">sonos</span><span class="o">.</span><span class="n">volume</span> <span class="o">-=</span> <span class="mi">10</span>
+</code></pre></div>
+
+<p>Get it? Running:</p>
+<div class="codehilite"><pre><span></span><code>python3 script.py play
+</code></pre></div>
+
+<p>Will play the current track</p>
+<div class="codehilite"><pre><span></span><code>python3 script.py pause
+</code></pre></div>
+
+<p>Will pause the current track</p>
+<div class="codehilite"><pre><span></span><code>python3 script.py next
+</code></pre></div>
+
+<p>Will play the next track</p>
+<div class="codehilite"><pre><span></span><code>python3 script.py previous
+</code></pre></div>
+
+<p>Will play the previous track (for all the guilty pleasures which you want to repeat)</p>
+<div class="codehilite"><pre><span></span><code>python3 script.py vol_up
+</code></pre></div>
+
+<p>Will increase 1/10th of the volume</p>
+<div class="codehilite"><pre><span></span><code>python3 script.py vol_down
+</code></pre></div>
+
+<p>Will decrease 1/10th of the volume</p>
+<p>I did not expect it to be so simple! What I did, is made a workflow with Alfred. What this is exactly, and how you can do it as well can be found <a href="https://python-everything.com/post/93/Running-Python-script-with-Alfred%2C-the-productivity-booster%21.html">here</a></p>
+<p><img alt="gif for Sonos control with Alfred" src="https://python-everything.com/static/blogpost_content/sonso_controler/sonos_pause.gif" /></p>
+<p>Full code:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">soco</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="n">sonos_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">soco</span><span class="o">.</span><span class="n">discover</span><span class="p">())</span>
+<span class="n">sonos</span> <span class="o">=</span> <span class="n">sonos_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;play&#39;</span><span class="p">:</span>
+    <span class="n">sonos</span><span class="o">.</span><span class="n">play</span><span class="p">()</span>
+<span class="k">elif</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;pause&#39;</span><span class="p">:</span>
+    <span class="n">sonos</span><span class="o">.</span><span class="n">pause</span><span class="p">()</span>
+<span class="k">elif</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;next&#39;</span><span class="p">:</span>
+    <span class="n">sonos</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+<span class="k">elif</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;previous&#39;</span><span class="p">:</span>
+    <span class="n">sonos</span><span class="o">.</span><span class="n">previous</span><span class="p">()</span>
+<span class="k">elif</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;vol_up&#39;</span><span class="p">:</span>
+    <span class="n">sonos</span><span class="o">.</span><span class="n">volume</span> <span class="o">+=</span> <span class="mi">10</span>
+<span class="k">elif</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;vol_down&#39;</span><span class="p">:</span>
+    <span class="n">sonos</span><span class="o">.</span><span class="n">volume</span> <span class="o">-=</span> <span class="mi">10</span>
+</code></pre></div>
+
+<p>Have a look at <a href="https://github.com/SoCo">Soco's Guithub page</a> if you'd like to learn more about the functionalities.</p></p>
+                </div>
+                <div class="col-md-4 sidebar">
+                    <div class="sidebar-box">
+                        <h3>Controling Sonos with Python in just a couple lines of code</h3>
+                        <img src="/static/img/blogposts/139.png" alt="Image" class="round-image img-fluid">
+                        <p><p>Yes, <strong>SoCo</strong> allows us to control our sonos system with python</p></p>
+                    </div>
+                    <div class="sidebar-box">
+                        <div class="categories">
+                            <h3>Latest posts</h3>
+                            
+                            <li><a href="/post/141/Extending-my-temperature-tracking-with-Python.html">Extending my temperature tracking with Python</a></li>
+                            
+                            <li><a href="/post/140/A-simple-dashboard-based-on-the-data-from-my-Arduino-project.html">A simple dashboard based on the data from my Arduino project</a></li>
+                            
+                            <li><a href="/post/139/Controling-Sonos-with-Python-in-just-a-couple-lines-of-code.html">Controling Sonos with Python in just a couple lines of code</a></li>
+                            
+                        </div>
+                    </div>
+                    <div class="sidebar-box">
+                        <h3>Python Everything</h3>
+                        <p>We at Python Everything try to provide you with your daily Python inspiration! Our post are ment to inspire you and ensure that you start coding in Python yourself.</p>
+                        <p><a href="/about.html" class="btn btn-primary btn-sm">Read More</a></p>
+                    </div>
+                    <!--
+                    <div class="sidebar-box">
+                        <h3>Paragraph</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus itaque, autem necessitatibus voluptate quod mollitia delectus aut, sunt placeat nam vero culpa sapiente consectetur similique, inventore eos fugit cupiditate numquam!</p>
+                    </div>
+                    -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+
+
+    <!-- ======= Footer ======= -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h3>About Python Everything</h3>
+                    <p>We're python enthousiasts, who want to ensure you are getting the same smile on you face everytime your python script runs successfully.</p>
+                </div>
+                <div class="col-md-7 ml-auto">
+                    <div class="row site-section pt-0">
+                        <div class="col-md-4 mb-4 mb-md-0">
+                            <h3>Navigation</h3>
+                            <ul class="list-unstyled">
+                                <li><a href="/">Home</a></li>
+                                <li><a href="/explore/1.html">Expore</a></li>
+                                <li><a href="/#contact">Get in touch</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row justify-content-center text-center">
+                <div class="col-md-7">
+                    <p class="copyright">&copy; Copyright Python Everything. All Rights Reserved</p>
+                    <div class="credits">
+                        Designed by <a href="/">Python Everything</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+    <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+
+    <!-- Vendor JS Files -->
+    <script src="/static/vendor/jquery/jquery.min.js"></script>
+    <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/vendor/jquery.easing/jquery.easing.min.js"></script>
+    <script src="/static/vendor/aos/aos.js"></script>
+    <script src="/static/vendor/owl.carousel/owl.carousel.min.js"></script>
+    <script src="/static/vendor/jquery-sticky/jquery.sticky.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="/static/js/main.js"></script>
+
+</body>
+
+</html>

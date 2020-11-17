@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-149203155-2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-149203155-2');
+    </script>
+    <!-- Favicons -->
+
+    <link href="/static/img/favicon/android-chrome-512x512.png" rel="icon">
+    <link href="/static/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/vendor/markdown-converter/styles.css" rel="stylesheet">
+
+    <link href="/static/vendor/icofont/icofont.min.css" rel="stylesheet">
+    <link href="/static/vendor/aos/aos.css" rel="stylesheet">
+    <link href="/static/vendor/line-awesome/css/line-awesome.min.css" rel="stylesheet">
+    <link href="/static/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="/static/css/style.css" rel="stylesheet">
+
+    <meta name="robots" content="index, follow">
+
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"> 
+<title>Python Everything - This post will save you at least one Google search per project!</title>
+<meta name="description" content="Datetime, Date, UNIX, Timezones and more: A quick overview of the most seeked questions regarding dates and times! - This post will be a bit different from normal posts: With each project, I am ..."> 
+</head>
+
+<body>
+
+    <!-- ======= Mobile Menu ======= -->
+    <div class="site-mobile-menu site-navbar-target">
+        <div class="site-mobile-menu-header">
+            <div class="site-mobile-menu-close mt-3">
+                <span class="icofont-close js-menu-toggle"></span>
+            </div>
+        </div>
+        <div class="site-mobile-menu-body"></div>
+    </div>
+
+    <!-- ======= Header ======= -->
+    <header class="site-navbar js-sticky-header site-navbar-target" role="banner">
+
+        <div class="container">
+            <div class="row align-items-center">
+
+                <div class="col-6 col-lg-2">
+                    <h1 class="mb-0 site-logo"><a href="/" class="mb-0">Python Everything</a></h1>
+                </div>
+
+                <div class="col-12 col-md-10 d-none d-lg-block">
+                    <nav class="site-navigation position-relative text-right" role="navigation">
+
+                        <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
+                            <li class="active"><a href="/" class="nav-link">Home</a></li>
+                            <li><a href="/explore/1.html" class="nav-link">Explore</a></li>
+                            <li><a href="/authors.html" class="nav-link">Collaborators</a></li>
+                            <li><a href="/#contact" class="nav-link">Get in touch</a></li>
+                        </ul>
+                    </nav>
+                </div>
+
+                <div class="col-6 d-inline-block d-lg-none ml-md-0 py-3" style="position: relative; top: 3px;">
+
+                    <a href="#" class="burger site-menu-toggle js-menu-toggle" data-toggle="collapse" data-target="#main-navbar">
+                        <span></span>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+    </header>
+
+    
+
+<main id="main">
+
+    <section class="hero-section inner-page">
+        <div class="wave">
+
+            <svg width="1920px" height="265px" viewBox="0 0 1920 265" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+          <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+            <g id="Apple-TV" transform="translate(0.000000, -402.000000)" fill="#FFFFFF">
+              <path d="M0,439.134243 C175.04074,464.89273 327.944386,477.771974 458.710937,477.771974 C654.860765,477.771974 870.645295,442.632362 1205.9828,410.192501 C1429.54114,388.565926 1667.54687,411.092417 1920,477.771974 L1920,667 L1017.15166,667 L0,667 L0,439.134243 Z" id="Path"></path>
+            </g>
+          </g>
+        </svg>
+
+        </div>
+
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-12">
+                    <div class="row justify-content-center">
+                        <div class="col-md-10 text-center hero-text">
+                            <h1 data-aos="fade-up" data-aos-delay=""><p>This post will save you at least one Google search per project!</p></h1>
+                            <p class="mb-5" data-aos="fade-up" data-aos-delay="100">2020-07-27 &bullet; By <a href="#" class="text-white">Ivo</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <section class="site-section mb-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 blog-content">
+
+                    <p class="lead mb-5"><p>Datetime, Date, UNIX, Timezones and more: A quick overview of the most seeked questions regarding dates and times!</p></p>
+                    <p><p>This post will be a bit different from normal posts: With each project, I am always using google to find out how to solve my datetime-issue. I just keep on forgetting how to work with python's <a href="https://docs.python.org/3/library/datetime.html">datetime</a> library. Therefore, the following questions and answers are the most relevant python-datetime questions according to <a href="https://stackoverflow.com/search?q=%5Bpython%5D+datetime">Stackoverflow</a>.</p>
+<p><strong>How to convert "Jun 1 2005  1:33PM" to a datetime object? (read from <a href="https://stackoverflow.com/questions/466345/converting-string-into-datetime">this post</a>)</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+
+<span class="n">datetime_object</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="s1">&#39;Jun 1 2005  1:33PM&#39;</span><span class="p">,</span> <span class="s1">&#39;%b </span><span class="si">%d</span><span class="s1"> %Y %I:%M%p&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">datetime_object</span><span class="p">)</span>
+</code></pre></div>
+
+
+<p>gives</p>
+<div class="codehilite"><pre><span></span><code><span class="err">2005-06-01 13:33:00</span>
+</code></pre></div>
+
+
+<p><strong>How to get the current datetime in python? (read from <a href="https://stackoverflow.com/questions/415511/how-to-get-the-current-time-in-python/415519#415519">this post</a>)</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">datetime</span>
+
+<span class="n">datetime_object</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">datetime_object</span><span class="p">)</span>
+</code></pre></div>
+
+
+<p>gives</p>
+<div class="codehilite"><pre><span></span><code><span class="err">2020-07-27 19:55:08.238399</span>
+</code></pre></div>
+
+
+<p><strong>How to get the current time in python? (read from <a href="https://stackoverflow.com/questions/415511/how-to-get-the-current-time-in-python/415519#415519">this post</a>)</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">datetime</span>
+
+<span class="n">datetime_object</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">datetime_object</span><span class="p">)</span>
+</code></pre></div>
+
+
+<p>gives</p>
+<div class="codehilite"><pre><span></span><code><span class="mi">19</span><span class="o">:</span><span class="mi">55</span><span class="o">:</span><span class="mf">42.884658</span>
+</code></pre></div>
+
+
+<p><strong>How to convert a date object into a datetime object? (read from <a href="https://stackoverflow.com/questions/1937622/convert-date-to-datetime-in-python">this post</a>)</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">datetime</span>
+
+<span class="n">datetime_object</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">combine</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">(),</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">min</span><span class="o">.</span><span class="n">time</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">datetime_object</span><span class="p">)</span>
+</code></pre></div>
+
+
+<p>gives</p>
+<div class="codehilite"><pre><span></span><code><span class="err">2020-07-27 00:00:00</span>
+</code></pre></div>
+
+
+<p><strong>How to parse an ISO 8601-formatted date? (read from <a href="https://stackoverflow.com/questions/127803/how-do-i-parse-an-iso-8601-formatted-date">this</a> and <a href="https://stackoverflow.com/questions/969285/how-do-i-translate-an-iso-8601-datetime-string-into-a-python-datetime-object">this</a> post.)</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">datetime</span>
+
+<span class="n">datetime_object</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">fromisoformat</span><span class="p">(</span><span class="s1">&#39;2017-01-01T12:30:59.000000&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">datetime_object</span><span class="p">)</span>
+</code></pre></div>
+
+
+<p>gives</p>
+<div class="codehilite"><pre><span></span><code><span class="err">2017-01-01 12:30:59</span>
+</code></pre></div>
+
+
+<p><strong>How to subtract a day from a date? (retrieved from <a href="https://stackoverflow.com/questions/441147/how-to-subtract-a-day-from-a-date/441152#441152">this post</a>)</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">datetime</span>
+
+<span class="n">days_to_subtract</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">datetime_object</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">today</span><span class="p">()</span> <span class="o">-</span> <span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="n">days_to_subtract</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">datetime_object</span><span class="p">)</span>
+</code></pre></div>
+
+
+<p>gives</p>
+<div class="codehilite"><pre><span></span><code><span class="err">2020-07-17 20:10:32.507353</span>
+</code></pre></div>
+
+
+<p>In the same fashion, we can also subtract a specified amount of seconds:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">datetime</span>
+
+<span class="n">seconds_to_subtract</span> <span class="o">=</span> <span class="mi">3600</span>
+<span class="n">datetime_object</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">today</span><span class="p">()</span> <span class="o">-</span> <span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">seconds</span><span class="o">=</span><span class="n">seconds_to_subtract</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">datetime_object</span><span class="p">)</span>
+</code></pre></div>
+
+
+<p>gives</p>
+<div class="codehilite"><pre><span></span><code><span class="err">2020-07-27 19:13:39.340982</span>
+</code></pre></div>
+
+
+<p><strong>How to print a datetime object without microseconds? (retrieved from <a href="https://stackoverflow.com/questions/7999935/python-datetime-to-string-without-microsecond-component">this post</a>)</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">datetime</span>
+
+<span class="n">datetime_object</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">datetime_object</span><span class="p">)</span>
+</code></pre></div>
+
+
+<p>gives</p>
+<div class="codehilite"><pre><span></span><code><span class="err">2020-07-27 20:15:05</span>
+</code></pre></div>
+
+
+<p>We can also use this to change the format of the datetime object:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">datetime</span>
+
+<span class="n">datetime_object</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y/%m/</span><span class="si">%d</span><span class="s2"> hour: %H minute: %M second: %S&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">datetime_object</span><span class="p">)</span>
+</code></pre></div>
+
+
+<p>gives</p>
+<div class="codehilite"><pre><span></span><code><span class="err">2020/07/27 hour: 20 minute: 16 second: 29</span>
+</code></pre></div>
+
+
+<p><strong>How to get the weekday from a datetime object? (retrieved from <a href="https://stackoverflow.com/questions/9847213/how-do-i-get-the-day-of-week-given-a-date/9847269#9847269">this post</a>)</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">datetime</span>
+
+<span class="n">datetime_object</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">today</span><span class="p">()</span><span class="o">.</span><span class="n">weekday</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">datetime_object</span><span class="p">)</span>
+</code></pre></div>
+
+
+<p>gives</p>
+<div class="codehilite"><pre><span></span><code><span class="err">0</span>
+</code></pre></div>
+
+
+<p>Note that monday is 0 and sunday is 6.</p>
+<p><strong>How to get the weekday in english from a datetime object? (retrieved from <a href="https://stackoverflow.com/questions/9847213/how-do-i-get-the-day-of-week-given-a-date/9847269#9847269">this post</a>)</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">datetime</span>
+
+<span class="n">datetime_object</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%A&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">datetime_object</span><span class="p">)</span>
+</code></pre></div>
+
+
+<p>gives</p>
+<div class="codehilite"><pre><span></span><code><span class="err">&#39;Monday&#39;</span>
+</code></pre></div>
+
+
+<p><strong>How to convert a UNIX timestamp into a datetime object? (retrieved from <a href="https://stackoverflow.com/questions/3682748/converting-unix-timestamp-string-to-readable-date/3682808#3682808">this post</a>)</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">datetime</span>
+
+<span class="n">datetime_object</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">fromtimestamp</span><span class="p">(</span><span class="mf">1172969203.1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">datetime_object</span><span class="p">)</span>
+</code></pre></div>
+
+
+<p>gives</p>
+<div class="codehilite"><pre><span></span><code><span class="err">2007-03-04 01:46:43.100000</span>
+</code></pre></div>
+
+
+<p>This one is specifically useful when working with APIs, often you get a UNIX timestamp returned. When reading a bit more at the original <a href="https://stackoverflow.com/questions/3682748/converting-unix-timestamp-string-to-readable-date/3682808#3682808">thread</a>, it came appeared that Python will return the timestamp converted to the timezone you are in. To make sure you always convert it to the same timestamp (UTC):</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">datetime</span>
+
+<span class="n">datetime_object</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">utcfromtimestamp</span><span class="p">(</span><span class="mf">1172969203.1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">datetime_object</span><span class="p">)</span>
+</code></pre></div>
+
+
+<p>gives</p>
+<div class="codehilite"><pre><span></span><code><span class="err">2007-03-04 01:46:43.100000</span>
+</code></pre></div>
+
+
+<p>Thanks!</p></p>
+                </div>
+                <div class="col-md-4 sidebar">
+                    <div class="sidebar-box">
+                        <h3>This post will save you at least one Google search per project!</h3>
+                        <img src="/static/img/blogposts/84.png" alt="Image" class="round-image img-fluid">
+                        <p><p>Datetime, Date, UNIX, Timezones and more: A quick overview of the most seeked questions regarding dates and times!</p></p>
+                    </div>
+                    <div class="sidebar-box">
+                        <div class="categories">
+                            <h3>Latest posts</h3>
+                            
+                            <li><a href="/post/141/Extending-my-temperature-tracking-with-Python.html">Extending my temperature tracking with Python</a></li>
+                            
+                            <li><a href="/post/140/A-simple-dashboard-based-on-the-data-from-my-Arduino-project.html">A simple dashboard based on the data from my Arduino project</a></li>
+                            
+                            <li><a href="/post/139/Controling-Sonos-with-Python-in-just-a-couple-lines-of-code.html">Controling Sonos with Python in just a couple lines of code</a></li>
+                            
+                        </div>
+                    </div>
+                    <div class="sidebar-box">
+                        <h3>Python Everything</h3>
+                        <p>We at Python Everything try to provide you with your daily Python inspiration! Our post are ment to inspire you and ensure that you start coding in Python yourself.</p>
+                        <p><a href="/about.html" class="btn btn-primary btn-sm">Read More</a></p>
+                    </div>
+                    <!--
+                    <div class="sidebar-box">
+                        <h3>Paragraph</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus itaque, autem necessitatibus voluptate quod mollitia delectus aut, sunt placeat nam vero culpa sapiente consectetur similique, inventore eos fugit cupiditate numquam!</p>
+                    </div>
+                    -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+
+
+    <!-- ======= Footer ======= -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h3>About Python Everything</h3>
+                    <p>We're python enthousiasts, who want to ensure you are getting the same smile on you face everytime your python script runs successfully.</p>
+                </div>
+                <div class="col-md-7 ml-auto">
+                    <div class="row site-section pt-0">
+                        <div class="col-md-4 mb-4 mb-md-0">
+                            <h3>Navigation</h3>
+                            <ul class="list-unstyled">
+                                <li><a href="/">Home</a></li>
+                                <li><a href="/explore/1.html">Expore</a></li>
+                                <li><a href="/#contact">Get in touch</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row justify-content-center text-center">
+                <div class="col-md-7">
+                    <p class="copyright">&copy; Copyright Python Everything. All Rights Reserved</p>
+                    <div class="credits">
+                        Designed by <a href="/">Python Everything</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+    <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+
+    <!-- Vendor JS Files -->
+    <script src="/static/vendor/jquery/jquery.min.js"></script>
+    <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/vendor/jquery.easing/jquery.easing.min.js"></script>
+    <script src="/static/vendor/aos/aos.js"></script>
+    <script src="/static/vendor/owl.carousel/owl.carousel.min.js"></script>
+    <script src="/static/vendor/jquery-sticky/jquery.sticky.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="/static/js/main.js"></script>
+
+</body>
+
+</html>
