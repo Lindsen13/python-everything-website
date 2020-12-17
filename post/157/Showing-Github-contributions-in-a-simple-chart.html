@@ -38,7 +38,7 @@
 
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport"> 
-<title>Python Everything -  Showing github contributions in a simple chart</title>
+<title>Python Everything - Showing Github contributions in a simple chart</title>
 <meta name="description" content="Using webscraping to fetch data from a SVG, show on a users Github&#39;s page - I was looking at my own Github page&lt;/a..."> 
 </head>
 
@@ -110,7 +110,7 @@
                 <div class="col-12">
                     <div class="row justify-content-center">
                         <div class="col-md-10 text-center hero-text">
-                            <h1 data-aos="fade-up" data-aos-delay=""><h1>Showing github contributions in a simple chart</h1></h1>
+                            <h1 data-aos="fade-up" data-aos-delay=""><h1>Showing Github contributions in a simple chart</h1></h1>
                             <p class="mb-5" data-aos="fade-up" data-aos-delay="100">2020-12-17 &bullet; By <a href="#" class="text-white">Ivo</a></p>
                         </div>
                     </div>
@@ -126,8 +126,8 @@
                 <div class="col-md-8 blog-content">
 
                     <p class="lead mb-5"><p>Using webscraping to fetch data from a SVG, show on a users Github's page</p></p>
-                    <p><p>I was looking at my own <a href="https://github.com/Lindsen13">Github page</a>, and the chart that shows my contributions per day over the last year popped up in my eye! It some fun data, which I'd like to have myself as well. When looking into the developer tools in Chrome, I found out that the data is based on a svg, which is rendered on the server side. This means that we cannot plug into an exising (non-documented) API, but that we have to use web scraping to extract the data. Fun to try to webscrape something which looks like a image, but which is actually based on SVG. Which wan parse with Python!</p>
-<h2>Lets get te requirements</h2>
+                    <p><p>I was looking at my own <a href="https://github.com/Lindsen13">Github page</a>, and the chart that shows my contributions per day over the last year popped up in my eye! It some fun data, which I'd like to have myself as well. When looking into the developer tools in Chrome, I found out that the data is based on a svg, which is rendered on the server side. This means that we cannot plug into an exising (non-documented) API, but that we have to use web scraping to extract the data. Fun to try to web scrape something which looks like a image, but which is actually based on SVG. Which wan parse with Python!</p>
+<h2>Lets get the requirements</h2>
 <p>For this, we will need the following packages:</p>
 <div class="codehilite"><pre><span></span><code>pip install beautifulsoup4
 pip install requests
@@ -144,14 +144,14 @@ pip install matplotlib
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 </code></pre></div>
 
-<p>And where we create a method to download the source page from a github account</p>
+<p>And where we create a method to download the source page from a Github account</p>
 <div class="codehilite"><pre><span></span><code><span class="n">base_url</span> <span class="o">=</span> <span class="s1">&#39;https://github.com/&#39;</span>
 <span class="n">user</span> <span class="o">=</span> <span class="s1">&#39;Lindsen13&#39;</span>
 <span class="n">url</span> <span class="o">=</span> <span class="n">base_url</span> <span class="o">+</span> <span class="n">user</span>
 <span class="n">output</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
 </code></pre></div>
 
-<p>If you are not interested in my commits, you can change the user name here. We will wrap our entire script that continues on the data from github in a if-else-statement, so we only continue if we managed to download the data from Github correctly.</p>
+<p>If you are not interested in my commits, you can change the user name here. We will wrap our entire script that continues on the data from Github in a if-else-statement, so we only continue if we managed to download the data from Github correctly.</p>
 <div class="codehilite"><pre><span></span><code><span class="k">if</span> <span class="n">output</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
     <span class="c1">#Logic comes here</span>
 <span class="k">else</span><span class="p">:</span>
@@ -179,14 +179,14 @@ pip install matplotlib
     <span class="n">output_count</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">day</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;data-count&#39;</span><span class="p">)))</span>
 </code></pre></div>
 
-<p>Now we have our data in place! Only thing that is left is to see if we can vizualise it. As you can see from the installed and imported dependencies, we are using matplotlib to do this. Creating a simple line chart, where we have the date on the x-axis and the count on the y-axis:</p>
+<p>Now we have our data in place! Only thing that is left is to see if we can visualise it. As you can see from the installed and imported dependencies, we are using Matplotlib to do this. Creating a simple line chart, where we have the date on the x-axis and the count on the y-axis:</p>
 <div class="codehilite"><pre><span></span><code><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">output_dates</span><span class="p">,</span> <span class="n">output_count</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;best&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </code></pre></div>
 
 <p>Which results in:</p>
-<p><img alt="Line chart with github contributions for Lindsen13" src="https://python-everything.com/static/blogpost_content/github_contributions/github_contributions.png" /></p>
+<p><img alt="Line chart with Github contributions for Lindsen13" src="https://python-everything.com/static/blogpost_content/github_contributions/github_contributions.png" /></p>
 <p>Entire code:</p>
 <div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">requests</span>
 <span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span> <span class="k">as</span> <span class="n">bs4</span>
@@ -217,7 +217,7 @@ pip install matplotlib
                 </div>
                 <div class="col-md-4 sidebar">
                     <div class="sidebar-box">
-                        <h3> Showing github contributions in a simple chart</h3>
+                        <h3>Showing Github contributions in a simple chart</h3>
                         <img src="/static/img/blogposts/157.png" alt="Image" class="round-image img-fluid">
                         <p><p>Using webscraping to fetch data from a SVG, show on a users Github's page</p></p>
                     </div>
@@ -225,7 +225,7 @@ pip install matplotlib
                         <div class="categories">
                             <h3>Latest posts</h3>
                             
-                            <li><a href="/post/157/-Showing-github-contributions-in-a-simple-chart.html"> Showing github contributions in a simple chart</a></li>
+                            <li><a href="/post/157/Showing-Github-contributions-in-a-simple-chart.html">Showing Github contributions in a simple chart</a></li>
                             
                             <li><a href="/post/141/Extending-my-temperature-tracking-with-Python.html">Extending my temperature tracking with Python</a></li>
                             
