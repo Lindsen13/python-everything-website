@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-149203155-2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-149203155-2');
+    </script>
+    <!-- Favicons -->
+
+    <link href="/static/img/favicon/android-chrome-512x512.png" rel="icon">
+    <link href="/static/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/vendor/markdown-converter/styles.css" rel="stylesheet">
+
+    <link href="/static/vendor/icofont/icofont.min.css" rel="stylesheet">
+    <link href="/static/vendor/aos/aos.css" rel="stylesheet">
+    <link href="/static/vendor/line-awesome/css/line-awesome.min.css" rel="stylesheet">
+    <link href="/static/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="/static/css/style.css" rel="stylesheet">
+
+    <meta name="robots" content="index, follow">
+
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"> 
+<title>Python Everything - Create a button in HTML that executes a serverless python function with GCP</title>
+<meta name="description" content="Using Google&#39;s cloud platform to create a cloud function that handles the click of a button on your website! - A little back story first
+I am working as a data consultant, and one..."> 
+</head>
+
+<body>
+
+    <!-- ======= Mobile Menu ======= -->
+    <div class="site-mobile-menu site-navbar-target">
+        <div class="site-mobile-menu-header">
+            <div class="site-mobile-menu-close mt-3">
+                <span class="icofont-close js-menu-toggle"></span>
+            </div>
+        </div>
+        <div class="site-mobile-menu-body"></div>
+    </div>
+
+    <!-- ======= Header ======= -->
+    <header class="site-navbar js-sticky-header site-navbar-target" role="banner">
+
+        <div class="container">
+            <div class="row align-items-center">
+
+                <div class="col-6 col-lg-2">
+                    <h1 class="mb-0 site-logo"><a href="/" class="mb-0">Python Everything</a></h1>
+                </div>
+
+                <div class="col-12 col-md-10 d-none d-lg-block">
+                    <nav class="site-navigation position-relative text-right" role="navigation">
+
+                        <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
+                            <li class="active"><a href="/" class="nav-link">Home</a></li>
+                            <li><a href="/explore/1.html" class="nav-link">Explore</a></li>
+                            <li><a href="/authors.html" class="nav-link">Collaborators</a></li>
+                            <li><a href="/#contact" class="nav-link">Get in touch</a></li>
+                        </ul>
+                    </nav>
+                </div>
+
+                <div class="col-6 d-inline-block d-lg-none ml-md-0 py-3" style="position: relative; top: 3px;">
+
+                    <a href="#" class="burger site-menu-toggle js-menu-toggle" data-toggle="collapse" data-target="#main-navbar">
+                        <span></span>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+    </header>
+
+    
+
+<main id="main">
+
+    <section class="hero-section inner-page">
+        <div class="wave">
+
+            <svg width="1920px" height="265px" viewBox="0 0 1920 265" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+          <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+            <g id="Apple-TV" transform="translate(0.000000, -402.000000)" fill="#FFFFFF">
+              <path d="M0,439.134243 C175.04074,464.89273 327.944386,477.771974 458.710937,477.771974 C654.860765,477.771974 870.645295,442.632362 1205.9828,410.192501 C1429.54114,388.565926 1667.54687,411.092417 1920,477.771974 L1920,667 L1017.15166,667 L0,667 L0,439.134243 Z" id="Path"></path>
+            </g>
+          </g>
+        </svg>
+
+        </div>
+
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-12">
+                    <div class="row justify-content-center">
+                        <div class="col-md-10 text-center hero-text">
+                            <h1 data-aos="fade-up" data-aos-delay=""><h1>Create a button in HTML that executes a serverless python function with GCP</h1></h1>
+                            <p class="mb-5" data-aos="fade-up" data-aos-delay="100">2021-05-23 &bullet; By <a href="#" class="text-white">Ivo</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <section class="site-section mb-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 blog-content">
+
+                    <p class="lead mb-5"><p>Using Google's cloud platform to create a cloud function that handles the click of a button on your website!</p></p>
+                    <p><h2>A little back story first</h2>
+<p>I am working as a data consultant, and one of our client wanted to have a button in his dashboard that updates the datasource. This made me thinking, on how such a functionality could be made. A couple of things that should be possible to implement:</p>
+<ul>
+<li>Trigger any type of workflow: either a python script, an sql query or a Alteryx workflow.</li>
+<li>Make the frontend customisable to fit the style of any dashboard</li>
+<li>Use a http trigger to a cloud function to make it as cheap as possible to run!</li>
+</ul>
+<h2>Using Google Cloud Functions for this</h2>
+<p>GCP's Cloud Functions can satisfy the first and third requirement. We can cope with the second requirement by just making a simple html page for the button we want to use. So let us make a simple cloud function that handles a http request. Note that I explain how to use google cloud functions in <a href="https://python-everything.com/post/138/Tracking-temperature-in-you-house-using-Micro-controllers-and-Python.html">one of my previous posts</a>.</p>
+<p>For the function, we only need to import the logging library</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">logging</span>
+</code></pre></div>
+
+<p>And the function that will handle our request will look like this:</p>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="n">request_json</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">get_json</span><span class="p">()</span>
+    <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;Access-Control-Allow-Origin&#39;</span><span class="p">:</span> <span class="s1">&#39;*&#39;</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">args</span> <span class="ow">and</span> <span class="s1">&#39;message&#39;</span> <span class="ow">in</span> <span class="n">request</span><span class="o">.</span><span class="n">args</span><span class="p">:</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">args</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;message&#39;</span><span class="p">))</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;value is found in requests.args&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">args</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;message&#39;</span><span class="p">),</span> <span class="mi">200</span><span class="p">,</span> <span class="n">headers</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">(</span><span class="s1">&#39;Hello World!&#39;</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="n">headers</span><span class="p">)</span>
+</code></pre></div>
+
+<p>One thing worth mentioning here, is that we set the return headers to include <em>Access-Control-Allow-Origin</em>, with a value of <em>*</em>. The asterisk specifies that it's OK to invoke the function from anywhere or anything, and thus allows us to return the proper value. Besides this, the function will just return "Hello World" or the message we parse in.</p>
+<h2>A simple HTML file from which we will trigger our cloud function</h2>
+<p>Now, lets create a html file that we will use trigger the function from</p>
+<div class="codehilite"><pre><span></span><code><span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&quot;en&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Sample page - press the button to execute a GCP function!<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Sample page - press the button to execute GCP function!<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">button</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;executebutton&quot;</span><span class="p">&gt;</span>Click me!<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</code></pre></div>
+
+<p>This returns the most basic html page, with a title and a button. We would like to make a http requests to our function with javascript:</p>
+<div class="codehilite"><pre><span></span><code><span class="kd">function</span> <span class="nx">executeFunction</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">Http</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
+    <span class="kd">const</span> <span class="nx">url</span><span class="o">=</span><span class="s1">&#39;https://us-central1-personaliot.cloudfunctions.net/trigger-from-webpage?message=FIND THIS MESSAGE&#39;</span><span class="p">;</span>
+    <span class="nx">Http</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s2">&quot;GET&quot;</span><span class="p">,</span> <span class="nx">url</span><span class="p">);</span>
+    <span class="nx">Http</span><span class="p">.</span><span class="nx">send</span><span class="p">();</span>
+    <span class="nx">Http</span><span class="p">.</span><span class="nx">onreadystatechange</span> <span class="o">=</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">Http</span><span class="p">.</span><span class="nx">responseText</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;#executebutton&#39;</span><span class="p">).</span><span class="nx">innerText</span> <span class="o">=</span> <span class="s1">&#39;Executed!&#39;</span><span class="p">;</span>
+    <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+        <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">&quot;#executebutton&quot;</span><span class="p">).</span><span class="nx">innerText</span> <span class="o">=</span> <span class="s2">&quot;Click me!&quot;</span><span class="p">;</span>
+    <span class="p">},</span><span class="mf">1000</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>We are parsing in <em>FIND THIS MESSAGE</em> as a value for our <em>message</em> parameter. We can execute the <em>executeFunction</em> function by adding an <em>onclick</em> event to our button</p>
+<div class="codehilite"><pre><span></span><code><span class="p">&lt;</span><span class="nt">button</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;executebutton&quot;</span> <span class="na">onclick</span><span class="o">=</span><span class="s">&quot;executeFunction()&quot;</span><span class="p">&gt;</span>Click me!<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+</code></pre></div>
+
+<p>Combining this together gives us our html page which triggers the google cloud function</p>
+<div class="codehilite"><pre><span></span><code><span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&quot;en&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Sample page - press the button to execute gcp function!<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Sample page - press the button to execute GCP function!<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">button</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;executebutton&quot;</span> <span class="na">onclick</span><span class="o">=</span><span class="s">&quot;executeFunction()&quot;</span><span class="p">&gt;</span>Click me!<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+            <span class="kd">function</span> <span class="nx">executeFunction</span><span class="p">()</span> <span class="p">{</span>
+                <span class="kd">const</span> <span class="nx">Http</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
+                <span class="kd">const</span> <span class="nx">url</span><span class="o">=</span><span class="s1">&#39;https://us-central1-personaliot.cloudfunctions.net/trigger-from-webpage?message=FIND THIS MESSAGE&#39;</span><span class="p">;</span>
+                <span class="nx">Http</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s2">&quot;GET&quot;</span><span class="p">,</span> <span class="nx">url</span><span class="p">);</span>
+                <span class="nx">Http</span><span class="p">.</span><span class="nx">send</span><span class="p">();</span>
+                <span class="nx">Http</span><span class="p">.</span><span class="nx">onreadystatechange</span> <span class="o">=</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+                    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">Http</span><span class="p">.</span><span class="nx">responseText</span><span class="p">)</span>
+                <span class="p">}</span>
+                <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;#executebutton&#39;</span><span class="p">).</span><span class="nx">innerText</span> <span class="o">=</span> <span class="s1">&#39;Executed!&#39;</span><span class="p">;</span>
+                <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+                    <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">&quot;#executebutton&quot;</span><span class="p">).</span><span class="nx">innerText</span> <span class="o">=</span> <span class="s2">&quot;Click me!&quot;</span><span class="p">;</span>
+                <span class="p">},</span><span class="mf">1000</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</code></pre></div>
+
+<h2></h2>
+<p>Our javascript should return the value we assign the <em>message</em>. We can check this in the developer pane:
+<img alt="Example Response from GCP" src="https://python-everything.com/static/blogpost_content/html_page_with_gcp_function/example_response_gcp_function.png" /></p>
+<p>Thanks for reading!</p></p>
+                </div>
+                <div class="col-md-4 sidebar">
+                    <div class="sidebar-box">
+                        <h3>Create a button in HTML that executes a serverless python function with GCP</h3>
+                        <img src="/static/img/blogposts/159.png" alt="Image" class="round-image img-fluid">
+                        <p><p>Using Google's cloud platform to create a cloud function that handles the click of a button on your website!</p></p>
+                    </div>
+                    <div class="sidebar-box">
+                        <div class="categories">
+                            <h3>Latest posts</h3>
+                            
+                            <li><a href="/post/159/Create-a-button-in-HTML-that-executes-a-serverless-python-function-with-GCP.html">Create a button in HTML that executes a serverless python function with GCP</a></li>
+                            
+                            <li><a href="/post/158/Scheduling-python-scripts-without-the-use-a-Cloud-Computer-Vendor.html">Scheduling python scripts without the use a Cloud Computer Vendor</a></li>
+                            
+                            <li><a href="/post/157/Showing-Github-contributions-in-a-simple-chart.html">Showing Github contributions in a simple chart</a></li>
+                            
+                        </div>
+                    </div>
+                    <div class="sidebar-box">
+                        <h3>Python Everything</h3>
+                        <p>We at Python Everything try to provide you with your daily Python inspiration! Our post are ment to inspire you and ensure that you start coding in Python yourself.</p>
+                        <p><a href="/about.html" class="btn btn-primary btn-sm">Read More</a></p>
+                    </div>
+                    <!--
+                    <div class="sidebar-box">
+                        <h3>Paragraph</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus itaque, autem necessitatibus voluptate quod mollitia delectus aut, sunt placeat nam vero culpa sapiente consectetur similique, inventore eos fugit cupiditate numquam!</p>
+                    </div>
+                    -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+
+
+    <!-- ======= Footer ======= -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h3>About Python Everything</h3>
+                    <p>We're python enthousiasts, who want to ensure you are getting the same smile on you face everytime your python script runs successfully.</p>
+                </div>
+                <div class="col-md-7 ml-auto">
+                    <div class="row site-section pt-0">
+                        <div class="col-md-4 mb-4 mb-md-0">
+                            <h3>Navigation</h3>
+                            <ul class="list-unstyled">
+                                <li><a href="/">Home</a></li>
+                                <li><a href="/explore/1.html">Expore</a></li>
+                                <li><a href="/#contact">Get in touch</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row justify-content-center text-center">
+                <div class="col-md-7">
+                    <p class="copyright">&copy; Copyright Python Everything. All Rights Reserved</p>
+                    <div class="credits">
+                        Designed by <a href="/">Python Everything</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+    <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+
+    <!-- Vendor JS Files -->
+    <script src="/static/vendor/jquery/jquery.min.js"></script>
+    <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/vendor/jquery.easing/jquery.easing.min.js"></script>
+    <script src="/static/vendor/aos/aos.js"></script>
+    <script src="/static/vendor/owl.carousel/owl.carousel.min.js"></script>
+    <script src="/static/vendor/jquery-sticky/jquery.sticky.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="/static/js/main.js"></script>
+
+</body>
+
+</html>
