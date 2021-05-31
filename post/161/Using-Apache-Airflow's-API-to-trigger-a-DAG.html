@@ -38,8 +38,8 @@
 
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport"> 
-<title>Python Everything - A simple dashboard based on the data from my Arduino project</title>
-<meta name="description" content="Using Tableau and my previous IoT devices build with Ardunio and Google Cloud Functions to create amazing dashboard - Remember, in one of my &lt;a href=&#34;https://python-everything.com/post/138/Tracki..."> 
+<title>Python Everything - Using Apache Airflow&#39;s API to trigger a DAG</title>
+<meta name="description" content="Apache Airflow&#39;s API recently stepped out of the stage of being an experimental API. Lets see if we can use it to trigger a DAG! - In my last post, I talked about a DAG that figures out if I need to close dow..."> 
 </head>
 
 <body>
@@ -110,8 +110,8 @@
                 <div class="col-12">
                     <div class="row justify-content-center">
                         <div class="col-md-10 text-center hero-text">
-                            <h1 data-aos="fade-up" data-aos-delay=""><h1>A simple dashboard based on the data from my Arduino project</h1></h1>
-                            <p class="mb-5" data-aos="fade-up" data-aos-delay="100">2020-11-05 &bullet; By <a href="#" class="text-white">Ivo</a></p>
+                            <h1 data-aos="fade-up" data-aos-delay=""><h1>Using Apache Airflow's API to trigger a DAG</h1></h1>
+                            <p class="mb-5" data-aos="fade-up" data-aos-delay="100">2021-05-31 &bullet; By <a href="#" class="text-white">Ivo</a></p>
                         </div>
                     </div>
                 </div>
@@ -125,57 +125,39 @@
             <div class="row">
                 <div class="col-md-8 blog-content">
 
-                    <p class="lead mb-5"><p>Using Tableau and my previous IoT devices build with Ardunio and Google Cloud Functions to create amazing dashboard</p></p>
-                    <p><p>Remember, in one of my <a href="https://python-everything.com/post/138/Tracking-temperature-in-you-house-using-Micro-controllers-and-Python.html">last posts</a> I made a simple device that tracks the temperature in the room. I have right now 3 of them running, all writing data to the same SQL database with the help of Google Cloud functions.</p>
-<p>In this post, I'd quickly would like to show what I did with this data. Although I did not have to use any Python code, it's still something which is pretty cool.</p>
-<h2>A simple dashboard with Tableau Public</h2>
-<p>I made a simple dashboard with this data, and uploaded it to Tableau public. Now I can always see what the temperature is in my house, for different areas.</p>
-<div class='tableauPlaceholder' id='viz1604583634749' style='position: relative'><noscript><a
-            href='https:&#47;&#47;python-everything.com&#47;'><img alt=' '
-                src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Te&#47;TemperatureDevelopmentatHome&#47;Temperatureinfo&#47;1_rss.png'
-                style='border: none' /></a></noscript><object class='tableauViz' style='display:none;'>
-        <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
-        <param name='embed_code_version' value='3' />
-        <param name='site_root' value='' />
-        <param name='name' value='TemperatureDevelopmentatHome&#47;Temperatureinfo' />
-        <param name='tabs' value='no' />
-        <param name='toolbar' value='yes' />
-        <param name='static_image'
-            value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Te&#47;TemperatureDevelopmentatHome&#47;Temperatureinfo&#47;1.png' />
-        <param name='animate_transition' value='yes' />
-        <param name='display_static_image' value='yes' />
-        <param name='display_spinner' value='yes' />
-        <param name='display_overlay' value='yes' />
-        <param name='display_count' value='yes' />
-        <param name='language' value='en-GB' /></object></div>
-<script type='text/javascript'>
-    var divElement = document.getElementById('viz1604583634749');
-    var vizElement = divElement.getElementsByTagName('object')[0];
-    vizElement.style.width = '100%';
-    vizElement.style.height = '1927px';
-    /*if (divElement.offsetWidth > 800) {
-        vizElement.style.width = '1000px';
-        vizElement.style.height = '827px';
-    } else if (divElement.offsetWidth > 500) {
-        vizElement.style.width = '1000px';
-        vizElement.style.height = '827px';
-    } else {
-        vizElement.style.width = '100%';
-        vizElement.style.height = '1927px';
-    }*/
-    var scriptElement = document.createElement('script');
-    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
-    vizElement.parentNode.insertBefore(scriptElement, vizElement);
-</script>
+                    <p class="lead mb-5"><p>Apache Airflow's API recently stepped out of the stage of being an experimental API. Lets see if we can use it to trigger a DAG!</p></p>
+                    <p><p>In my last post, I talked about a DAG that figures out if I need to close down my 3D printer. I have not created the <em>magic</em> function that will actually handle it, because I wanted to try some new things for this. The first one, is to create a DAG which is solely used to turn off the 3d printer. The idea is that this DAG can be invoked by another DAG (or another application!) with Airflow's API. </p>
+<p>The following function enables this. It creates a http requests with basic authentication the the Airflow server. Note that there is more authentication methods possible. Since my Airflow is running on my local network, I do not need the extra security which comes with a more advance authentication method.</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">base64</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">json</span>
 
-<p>You can see that I have placed an arduino in my living room, in  my workshop and in my 3d printing enclosure. You can click on the different signs on the right to switch between the three locations. So much fun to see my personal behavior back in this data!</p>
-<p>As always, thanks for reading!</p></p>
+<span class="k">def</span> <span class="nf">run_dag</span><span class="p">(</span><span class="n">dag_id</span><span class="p">):</span>
+    <span class="n">encoded_u</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64encode</span><span class="p">(</span><span class="s1">&#39;Username:Password&#39;</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
+
+    <span class="n">date_id</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2">T%H:%M:%S.</span><span class="si">%f</span><span class="s2">+00:00&quot;</span><span class="p">)</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;http://192.168.0.56:8080/api/v1/dags/</span><span class="si">{</span><span class="n">dag_id</span><span class="si">}</span><span class="s2">/dagRuns&quot;</span>
+
+    <span class="n">payload</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span><span class="s2">&quot;dag_run_id&quot;</span><span class="p">:</span><span class="sa">f</span><span class="s2">&quot;api_</span><span class="si">{</span><span class="n">date_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">})</span>
+
+    <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;Content-Type&#39;</span><span class="p">:</span> <span class="s1">&#39;application/json&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Accept&#39;</span><span class="p">:</span> <span class="s1">&#39;application/json&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Authorization&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;Basic </span><span class="si">{</span><span class="n">encoded_u</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
+    <span class="p">}</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
+
+<span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</code></pre></div>
+
+<p>The only thing that we need to parse into this function is the ID of the DAG, and we that's it!</p></p>
                 </div>
                 <div class="col-md-4 sidebar">
                     <div class="sidebar-box">
-                        <h3>A simple dashboard based on the data from my Arduino project</h3>
-                        <img src="/static/img/blogposts/140.png" alt="Image" class="round-image img-fluid">
-                        <p><p>Using Tableau and my previous IoT devices build with Ardunio and Google Cloud Functions to create amazing dashboard</p></p>
+                        <h3>Using Apache Airflow's API to trigger a DAG</h3>
+                        <img src="/static/img/blogposts/161.png" alt="Image" class="round-image img-fluid">
+                        <p><p>Apache Airflow's API recently stepped out of the stage of being an experimental API. Lets see if we can use it to trigger a DAG!</p></p>
                     </div>
                     <div class="sidebar-box">
                         <div class="categories">
